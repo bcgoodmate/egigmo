@@ -18,4 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/{path}', 'App\TestController@index')->name('test');
+Route::get('{path}/{any?}', 'App\TestController@indexSub')->where('any', '(.*)');
+
 Route::resource('/adminxxx/pagebuilder', 'AdminPageBuilderController');
+
+
+
