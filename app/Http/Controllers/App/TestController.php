@@ -8,33 +8,41 @@ use Liquid\Template;
 
 class TestController extends Controller
 {
-    public  function  index(Request $request){
+    public  function index(Request $request){
         $getUri = $request->path();
 
         $uri = $getUri != '' ? $getUri : 'index';
 
         $page = null;
         $path = 'site/'.$uri;
+        $template = 'example';
+        $template_path = 'site/template/'.$template;
+        $data = null;
 
-        $data = $this->render($path);
+        if($template){
+            $data = $this->renderTemplate($path,$template_path);
+        }else{
+            $data = $this->render($path);
+        }
 
-        return view('test',compact('data'));
+
+        return view('frontend.index',compact('data'));
     }
 
-    public  function  indexSub(Request $request){
-        $getUri = $request->path();
+    protected function renderTemplate($path, $template_path = null){
 
-        $uri = $getUri != '' ? $getUri : 'index';
+        if(!file_exists($template_path.'.html') && !file_exists($template_path.'.htm')) return $this->render($path);
 
-        $page = null;
-        $path = 'site/'.$uri;
+        $template_page = file_get_contents($template_path.'.html');
+        $template = new Template();
+        $template->parse($template_page);
+        $page_content =  $this->render($path);
+        $data = $template->render(array('tag_pagecontent' => $page_content));
 
-        $data = $this->render($path);
-
-        return view('test',compact('data'));
+        return $data;
     }
 
-    protected function render($path){
+    protected function render($path,$template = null){
 
         if(!file_exists($path.'.html') && !file_exists($path.'.htm')){
             if (!is_dir($path)) {

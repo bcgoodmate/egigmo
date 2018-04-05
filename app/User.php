@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected static $uuid = true;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        if(static::$uuid) {
+            static::creating(function ($model) {
+                if(!isset($model->{$model->getKeyName()})){
+                    $model->{$model->getKeyName()} = Str::uuid();
+                }
+            });
+        }
+    }
+
 }

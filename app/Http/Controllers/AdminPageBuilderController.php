@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use File;
+use View;
+use SplFileInfo;
+use DirectoryIterator;
 use Illuminate\Http\Request;
 
 class AdminPageBuilderController extends Controller
 {
+
+    public $directories = array();
+
     /**
      * Display a listing of the resource.
      *
@@ -24,43 +30,28 @@ class AdminPageBuilderController extends Controller
      */
     public function create()
     {
-        // @source https://github.com/laravel/framework/issues/14517
+        $directories = $this->recursiveDirectoryPath($this->recursiveDirectoryOnlyIterator('site'));
+        return view("admin.pagebuilder.create",compact('directories'));
+    }
 
-        $template = "frontend._templates.app";
-        $contents = "";
-        $view = "about/company";
-        $path = $this->viewPath($view);
-
-        $this->createDir($path);
-
-        $contents .= "@extends('".$template."')\n\n";
-        $contents .= "@section('content')\n";
-        $contents .= "\tInsert your code herexxxx..\n";
-        $contents .= "@endsection";
-
-        if (File::exists($path))
-        {
-            // Append to a file
-            File::append($path, $contents);
-
-            // Delete the file at a given path
-            // File::delete('path');
-
-            // $this->error("File {$path} already exists!");
-            // return;
-        } else {        
-            // Write the contents of a file
-            $bytes_written = File::put($path, $contents);  
-            if ($bytes_written === false)
-            {
-                die("Error writing to file");
+    public function recursiveDirectoryPathIterator($current_dir,$array = array()){
+        foreach($array as $key => $val) {
+            $current_dir = $current_dir .'/'. $key;
+            array_push($this->directories, $current_dir);
+            if($val){
+                $this->recursiveDirectoryPathIterator($current_dir,$val);
             }
-
-            // $this->info("File {$path} created.");
         }
-
-        // return view("admin.pagebuilder.create");
-    }  
+    }
+    public function recursiveDirectoryPath($dirs){
+        foreach($dirs as $key => $val) {
+            array_push($this->directories, $key);
+            if($val){
+                $this->recursiveDirectoryPathIterator($key,$val);
+            }
+        }
+        return $this->directories;
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -70,7 +61,17 @@ class AdminPageBuilderController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+
+
+        $page_title = $request -> page_title;
+        $page_body = $request -> page_body;
+        $folder = '/'.$request->folder;
+        $page_name = str_slug($page_title , '-').'.html';
+
+        File::put(public_path() . '/site'.$folder.'/'.$page_name, View::make('admin.pagebuilder.page-templates.create',compact('page_title','page_body')));
+
+        return 'ok';
     }
 
     /**
@@ -118,34 +119,44 @@ class AdminPageBuilderController extends Controller
         //
     }
 
-    /**
-     * Get the view full path.
-     *
-     * @param string $view
-     *
-     * @return string
-     */
-    public function viewPath($view)
-    {
-        $view = str_replace('.', '/', $view) . '.blade.php';
+    public function recursiveDirectoryIterator ($directory = null, $files = array()) {
+        $iterator = new \DirectoryIterator ( $directory );
 
-        $path = "/var/www/html/resources/views/frontend/{$view}";
-
-        return $path;
-    }
-
-    /**
-     * Create view directory if not exists.
-     *
-     * @param $path
-     */
-    public function createDir($path)
-    {
-        $dir = dirname($path);
-        
-        if (!file_exists($dir))
-        {
-            mkdir($dir, 0777, true);
+        foreach ( $iterator as $info ) {
+            if ($info->isFile ()) {
+                $files [$info->__toString ()] = $info;
+            } elseif (!$info->isDot ()) {
+                $list = array($info->__toString () => $this->recursiveDirectoryIterator(
+                    $directory.DIRECTORY_SEPARATOR.$info->__toString ()
+                ));
+                if(!empty($files))
+                    $files = array_merge_recursive($files, $list);
+                else {
+                    $files = $list;
+                }
+            }
         }
+        return $files;
     }
+
+    public function recursiveDirectoryOnlyIterator ($directory = null, $files = array()) {
+        $iterator = new \DirectoryIterator ( $directory );
+
+        foreach ( $iterator as $info ) {
+            if ($info->isFile ()) {
+                continue;
+            } elseif (!$info->isDot ()) {
+                $list = array($info->__toString () => $this->recursiveDirectoryOnlyIterator(
+                    $directory.DIRECTORY_SEPARATOR.$info->__toString ()
+                ));
+                if(!empty($files))
+                    $files = array_merge_recursive($files, $list);
+                else {
+                    $files = $list;
+                }
+            }
+        }
+        return $files;
+    }
+
 }
