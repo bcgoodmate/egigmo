@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => array(
 
         /*
          * Laravel Framework Service Providers...
@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         HieuLe\Active\ActiveServiceProvider::class,
+        JasonLewis\ResourceWatcher\Integration\LaravelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -160,7 +161,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-    ],
+    ),
 
     /*
     |--------------------------------------------------------------------------
