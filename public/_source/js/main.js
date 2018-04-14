@@ -159,7 +159,10 @@
                 this.addpage();
             },
             addpage: function () {
-                $('.rich_editor').trumbowyg();
+                $('.rich_editor').trumbowyg({
+                    autogrow: true,
+                    autogrowOnEnter: true,
+                });
             }
         }
 

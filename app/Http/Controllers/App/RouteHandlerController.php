@@ -20,14 +20,12 @@ class RouteHandlerController extends Controller
             $template = PageTemplate::where('default_template', true)->first();
             $page_path = public_path() . '/site' . $page->content_path;
             $template_path = public_path() . '/site' . $template->content_path;
-
-            $pageview = $this->renderTemplate($page_path, $template_path);
+            $pageview = $this->renderTemplate($page, $page_path, $template_path);
         } elseif ($page->page_template_id) {
             $template = PageTemplate::where('id', $page->page_template_id)->first();
             $page_path = public_path() . '/site' . $page->content_path;
             $template_path = public_path() . '/site' . $template->content_path;
-
-            $pageview = $this->renderTemplate($page_path, $template_path);
+            $pageview = $this->renderTemplate($page, $page_path, $template_path);
         } else {
             $page_path = public_path() . '/site' . $page->content_path;
             $pageview = $this->render($page, $page_path);
@@ -37,17 +35,17 @@ class RouteHandlerController extends Controller
 
     }
 
-    protected function renderTemplate($path, $template_path = null)
+    protected function renderTemplate($page, $path, $template_path = null)
     {
 
-        if (!file_exists($template_path . '.html') && !file_exists($template_path . '.htm')) {
+        if (!file_exists($path) && !str_contains($path, ['.html', '.htm'])) {
             return $this->render($path);
         }
 
-        $template_page = file_get_contents($template_path . '.html');
+        $template_page = file_get_contents($template_path);
         $template = new Template();
         $template->parse($template_page);
-        $page_content = $this->render($path);
+        $page_content = $this->render($page, $path);
         $data = $template->render(array('tag_pagecontent' => $page_content));
 
         return $data;
