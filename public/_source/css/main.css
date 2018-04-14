@@ -1,12 +1,16 @@
 html,
 body {
-	max-width: 100%;
-	overflow-x: hidden;
-	font-size: 14px;
-	line-height: 1.4;
-	color: #333333;
-	background: #f0f1f2;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333333;
+    background: #f0f1f2;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+hr {
+    border-top: 1px solid #efefef;
 }
 
 h1,
@@ -15,61 +19,71 @@ h3,
 h4,
 h5,
 h6,
-p{
-	color: #333333;
-	margin: 0 0 10px 0;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+p {
+    color: #333333;
+    margin: 0 0 10px 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 500;
 }
 
-a{
-	color: #333333;
+a {
+    color: #333333;
 }
+
 a:hover,
 a:focus,
 a:active {
-	color: #333333;
-	text-decoration: none;
+    color: #333333;
+    text-decoration: none;
 }
 
 p {
-	font-size: 14px;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-input{
-	outline: none;
+    font-size: 14px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-input[type="checkbox"], 
+input {
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 34px;
+}
+
+input[type="checkbox"],
 input[type="radio"] {
     cursor: pointer;
 }
 
-ul{
-	padding: 0;
+ul {
+    padding: 0;
 }
-
 
 /********** header ***********/
 
-.navbar-brand{
+.navbar-brand {
     color: #ffffff;
 }
-.navbar-nav > li > a{
+
+.navbar-nav > li > a {
     color: #ffffff;
 }
-.navbar-nav > li{
+
+.navbar-nav > li {
     list-style: none;
     padding: 15px 0;
 }
+
 .navbar-nav > li > .dropdown-menu {
     padding: 10px;
     margin-top: 6px;
 }
 
-.navbar-nav .caret{
+.navbar-nav .caret {
     border-top-color: #ffffff;
 }
+
 /********** footer ***********/
 
 /********** content ***********/
@@ -80,24 +94,28 @@ ul{
     position: relative;
     z-index: 1000;
     color: #fff;
-    padding:  7px 20px;
+    padding: 7px 20px;
 }
-.ribbon h2{
-	color: #fff;
+
+.ribbon h2 {
+    color: #fff;
 }
+
 .main-wrapper {
     padding: 20px;
-    position:  relative;
+    position: relative;
 }
+
 .sidebar-panel {
     float: left;
-    width: 210px;    
-    z-index: 9999;
-    position: relative;  
-    margin-right: -100%; 
+    width: 210px;
+    z-index: 2;
+    position: relative;
+    margin-right: -100%;
 }
+
 .list-tre {
-     border: 1px solid #cbcbcb;
+    border: 1px solid #cbcbcb;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -109,28 +127,32 @@ ul{
 }
 
 .sidebar-panel ul li {
-	border-bottom: 1px solid #e6e6e6;
-    display:  block;
+    border-bottom: 1px solid #e6e6e6;
+    display: block;
 }
+
 .sidebar-panel ul li a {
     display: block;
     padding: 13px 0 13px 30px;
     position: relative;
 }
+
 .sidebar-panel ul li a:hover {
     background: #eee;
-    text-decoration:  none;
+    text-decoration: none;
 }
+
 .aside {
-	float: left;
+    float: left;
     width: 100%;
     margin-bottom: 20px;
 }
+
 .aside .side-left-main {
-	margin: 0 0 0 226px;
+    margin: 0 0 0 226px;
     min-width: 730px;
     padding: 15px 20px;
-    background:  #fff;
+    background: #fff;
     border: 1px solid #cbcbcb;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -139,54 +161,69 @@ ul{
     -webkit-box-shadow: 0 0 5px #e1e1e1;
     box-shadow: 0 0 5px #e1e1e1;
 }
+
 .list-view ul li a {
     color: #fff;
 }
+
 .list-view ul li {
     background: #2996e3;
     padding: 10px 20px;
 }
-.list-view ul li{
-	display: inline-block;
+
+.list-view ul li {
+    display: inline-block;
 }
+
 .list-tre ul {
     margin-bottom: 0;
 }
+
 .side-left-main .list-btr {
     margin-bottom: 10px;
     border-bottom: 1px solid #e6e6e6;
 }
+
 .sidebar-panel .drop ul li {
     border-bottom: none;
 }
-.sidebar-panel .drop{
-	display: none;
+
+.sidebar-panel .drop {
+    display: none;
 }
+
 .sidebar-panel .drop ul li a {
     font-size: 12px;
-	padding: 6px 0 6px 40px;
+    padding: 6px 0 6px 40px;
 }
-.sidebar-panel ul li a.active{
+
+.sidebar-panel ul li a.active {
     background: #2996e3;
     color: #fff;
 }
+
 .list-view {
-    margin-bottom:  20px;
+    margin-bottom: 20px;
 }
+
 .aside .pages .list-btr {
     margin-bottom: 0;
 }
+
 .pages .list-view ul {
     border-bottom: 1px solid #e6e6e6;
 }
+
 .drop.active {
-    display:  block;
+    display: block;
 }
+
 .sidebar-panel ul li a i {
-    position:  absolute;
+    position: absolute;
     left: 14px;
-    font-size:  18px;
+    font-size: 18px;
 }
+
 .btn-add ul li a {
     display: inline-block;
     font-size: 12px;
@@ -207,11 +244,42 @@ ul{
     border-style: solid;
     background: #ffffff;
     background: -moz-linear-gradient(top, #ffffff 0%, #dedede 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dedede));
-    background: -webkit-linear-gradient(top, #ffffff 0%,#dedede 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #dedede));
+    background: -webkit-linear-gradient(top, #ffffff 0%, #dedede 100%);
     padding: 2px 10px 3px 10px;
 }
 
 .btn-add ul li {
-    display:  inline-block;
+    display: inline-block;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated
+.custom-select:invalid, .custom-select.is-invalid {
+    border-color: #dc3545;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback, .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback, .form-control.is-invalid ~ .invalid-tooltip, .was-validated
+.custom-select:invalid ~ .invalid-feedback, .was-validated
+.custom-select:invalid ~ .invalid-tooltip, .custom-select.is-invalid ~ .invalid-feedback, .custom-select.is-invalid ~ .invalid-tooltip {
+    display: block;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.white-popup {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+.form-label-inline{
+    line-height: 34px;
 }

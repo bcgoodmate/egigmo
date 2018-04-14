@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
+
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            {{ session('status') }}
+        </div>
+    @endif
+
     <div class="list-btr">
         <h2>Pages</h2>
     </div>
@@ -21,106 +29,29 @@
                 <th>Page Name</th>
                 <th>URL</th>
                 <th>Template</th>
-                <th>Preview</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Admin Log In</td>
-                <td>/_source/vendor/selectize.js-master/examples/api.html</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>contacts</td>
-                <td>/browse/ph/butuan-city/gigs/cleaning-installation-and-repair/aircon-services</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>/browse/by-event-type</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Admin Log In</td>
-                <td>/_source/vendor/selectize.js-master/examples/api.html</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Admin Log In</td>
-                <td>/_source/vendor/selectize.js-master/examples/api.html</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Admin Log In</td>
-                <td>/_source/vendor/selectize.js-master/examples/api.html</td>
-                <td>Inner</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
-            <tr>
-                <td>Browse Entertainers in Butuan City via eGigmo</td>
-                <td>/browse/ph/butuan-city/gigs/entertainers</td>
-                <td>Don't use a template</td>
-                <td><a href="" target="_blank">Preview</a> | <a href=""> Edit</a></td>
-            </tr>
+            @foreach($pages as $page)
+                <tr>
+                    <td>{{$page->name}}</td>
+                    <td>{{$page->page_url}}</td>
+                    <td>
+                        @if($page->default_template)
+                            default template
+                        @else
+                            @if($page -> template()->first())
+                                {{$page -> template()->first()->name}}
+                            @else
+                                no template
+                            @endif
+                        @endif
+                    </td>
+                    <td><a href="{{str_replace_last('.html', '', $page->content_path)}}" target="_blank">Preview</a> | <a
+                                href="{{route('admin.pagebuilder.edit', $page->id)}}"> Edit</a></td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

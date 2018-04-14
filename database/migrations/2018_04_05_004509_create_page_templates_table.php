@@ -17,8 +17,9 @@ class CreatePageTemplatesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('content_path')->nullable();
+            $table->text('content_html')->nullable();
             $table->boolean('is_draft')->default(0);
-            $table->uuid('user_id')->index();
+            $table->boolean('default_template')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

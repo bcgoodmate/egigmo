@@ -114,13 +114,20 @@
         ui: {
 
             init: function () {
-                utils.ui.dataTbale();
+                utils.ui.inlinePopup();
+                utils.ui.dataTable();
                 utils.ui.listItem();
-
             },
 
+            inlinePopup: function () {
+                if(!$('.open-popup-link')[0]) return;
+                $('.open-popup-link').magnificPopup({
+                    type:'inline',
+                    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+                });
+            },
 
-            dataTbale: function () {
+            dataTable: function () {
 
                 $('#table-anchor').DataTable();
 
@@ -152,10 +159,7 @@
                 this.addpage();
             },
             addpage: function () {
-                var editor = new Simditor({
-                    textarea: $('#page_body')
-                    //optional options
-                });
+                $('.rich_editor').trumbowyg();
             }
         }
 

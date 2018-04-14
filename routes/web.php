@@ -22,20 +22,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*admin routes*/
 
-Route::group(['middleware' => ['auth'],'prefix' => 'admin', 'as' => 'admin.','namespace'  => 'Admin'],function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::post('pagebuilder/folder/store', [
+        'as' => 'pagebuilder.folder.store',
+        'uses' => 'PageBuilderController@folderStore'
+    ]);
     Route::resource('pagebuilder', 'PageBuilderController');
-    Route::resource('pagetemplate', 'PageTemplateBuilderController');
+    Route::resource('pagetemplatebuilder', 'PageTemplateBuilderController');
 });
 
 
-
-
-
-
 /*frontend routes*/
-
-Route::get('/{path}', 'App\TestController@index')->name('test');
-Route::get('{path}/{any?}', 'App\TestController@index')->where('any', '(.*)');
+Route::group(['as' => 'app.', 'namespace' => 'App'], function () {
+    Route::get('/{path}', 'RouteHandlerController@index');
+    //Route::get('{path}/{any?}', 'App\RouteHandlerController@index')->where('any', '(.*)');
+});
+/*Route::get('{path}/{any?}', 'App\TestController@index')->where('any', '(.*)');*/
 
 

@@ -13,11 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('_source/vendors/dataTables/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('_source/vendors/bootstrap/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('_source/vendors/simditor-2.3.13/site/assets/styles/simditor.css') }}"  rel="stylesheet">
+    <link href="{{ asset('_source/vendors/trumbowyg-master/dist/ui/trumbowyg.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('_source/vendors/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
 
     <link href="{{ asset('_source/css/main.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('_source/js/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('_source/js/jquery.min.js') }}"></script>
 </head>
 <body>
 <div id="app">
@@ -33,14 +34,10 @@
             </div>
         </div>
     </div>
-
-    <script src="{{ asset('_source/vendors/simditor-2.3.13/site/assets/scripts/jquery.min.js') }}"></script>
-    <script src="{{ asset('_source/vendors/simditor-2.3.13/site/assets/scripts/module.js') }}"></script>
-    <script src="{{ asset('_source/vendors/simditor-2.3.13/site/assets/scripts/hotkeys.js') }}"></script>
-    <script src="{{ asset('_source/vendors/simditor-2.3.13/site/assets/scripts/uploader.js') }}"></script>
-    <script src="{{ asset('_source/vendors/simditor-2.3.13/site/assets/scripts/simditor.js') }}"></script>
+    <script src="{{ asset('_source/vendors/trumbowyg-master/dist/trumbowyg.min.js')}}"></script>
     <script src="{{ asset('_source/vendors/dataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('_source/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('_source/vendors/magnific-popup/magnific-popup.min.js') }}"></script>
     <script src="{{ asset('_source/js/main.js') }}"></script>
 
 </div>

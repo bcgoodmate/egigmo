@@ -69,7 +69,7 @@ class AdminPageBuilderController extends Controller
         $folder = '/'.$request->folder;
         $page_name = str_slug($page_title , '-').'.html';
 
-        File::put(public_path() . '/site'.$folder.'/'.$page_name, View::make('admin.pagebuilder.page-templates.create',compact('page_title','page_body')));
+        File::put(public_path() . '/site'.$folder.'/'.$page_name, View::make('admin.pagebuilder.templates.create',compact('page_title','page_body')));
 
         return 'ok';
     }
