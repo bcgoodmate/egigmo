@@ -46,7 +46,15 @@ class RouteHandlerController extends Controller
         $template = new Template();
         $template->parse($template_page);
         $page_content = $this->render($page, $path);
-        $data = $template->render(array('tag_pagecontent' => $page_content));
+
+        $renderer = array(
+            'tag_pagetitle' => $page->page_title,
+            'tag_pagedescription' => $page->page_description,
+            'tag_pagename' => $page->name,
+            'tag_pagecontent' => $page_content
+        );
+
+        $data = $template->render($renderer);
 
         return $data;
     }

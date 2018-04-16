@@ -64,7 +64,7 @@ class PageTemplate extends BaseModel
     public function rules()
     {
         return [
-            'name' => 'required|unique:page_templates',
+            'name' => 'required|unique:page_templates,name,NULL,id,deleted_at,NULL',
         ];
     }
 

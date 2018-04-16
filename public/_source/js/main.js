@@ -162,6 +162,7 @@
                 $('.rich_editor').trumbowyg({
                     autogrow: true,
                     autogrowOnEnter: true,
+                    semantic: false
                 });
             }
         }
