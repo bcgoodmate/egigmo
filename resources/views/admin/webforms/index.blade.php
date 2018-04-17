@@ -11,7 +11,7 @@
 
 	        <div class="btn-add">
 		        <ul>
-		            <li><a id="" class="" href="http://localhost:8080/admin/webforms-properties">Add Web Form</a></li>
+		            <li><a id="" class="" href="{{route('admin.webform.create')}}">Add Web Form</a></li>
 		        </ul>
 		    </div>
 

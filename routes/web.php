@@ -30,16 +30,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     ]);
     Route::resource('pagebuilder', 'PageBuilderController');
     Route::resource('pagetemplatebuilder', 'PageTemplateBuilderController');
-    
-    Route::get('webforms', function(){
-        return view('admin.webforms.index');
-    });
-    Route::get('webforms-properties', function(){
-        return view('admin.webforms.addforms.index');
-    });
-    Route::get('webformscreate', function(){
-        return view('admin.webforms.addforms.create');
-    });
+    Route::resource('webform', 'WebformController');
 
 });
 
