@@ -515,3 +515,8 @@ span.prev-edit > * {
 #opportunity-details.active{
     display: block;
 }
+.warningMessage {
+    border: 1px dashed #FDD8A6;
+    padding: 10px;
+    margin-bottom: 20px;
+}

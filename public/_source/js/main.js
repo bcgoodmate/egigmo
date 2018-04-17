@@ -200,7 +200,7 @@
                 //     });
 
                 // });  
-                $('a.popup-edit').magnificPopup({type:'inline'});
+                $('a.popup-edit').magnificPopup();
             },
 
             oppurtunity: function(){
