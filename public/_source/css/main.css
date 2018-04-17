@@ -224,7 +224,7 @@ ul {
     font-size: 18px;
 }
 
-.btn-add ul li a {
+.btn-add ul li > a {
     display: inline-block;
     font-size: 12px;
     line-height: 16px;
@@ -246,7 +246,7 @@ ul {
     background: -moz-linear-gradient(top, #ffffff 0%, #dedede 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #dedede));
     background: -webkit-linear-gradient(top, #ffffff 0%, #dedede 100%);
-    padding: 2px 10px 3px 10px;
+    padding: 3px 10px;
 }
 
 .btn-add ul li {
@@ -282,4 +282,226 @@ ul {
 }
 .form-label-inline{
     line-height: 34px;
+}
+.popup-content-wrapper {
+    width: 583px;
+    height: auto;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+    background-color: #fff;
+    max-width: 100%;
+    position: relative;
+    border-radius: 3px;
+    margin: 0 auto;
+    padding: 10px 25px;
+}
+#webform-builder {
+    width: 100%;
+}
+
+#field-buttons {
+    background-color: rgb(214, 234, 245);
+    padding: 9px;
+    vertical-align: top;
+    width: 100%;
+}
+#wysiwyg{
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 20px 10px;
+    width: 100%;
+}
+#field-buttons h1 {
+    font-size: 13px;
+    color: #000;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+#system-fields ul#tabs li {
+    display:  inline-block;
+    background: #eeeeee;
+    margin: -2px;
+    border: 1px solid rgb(215, 215, 215);
+    padding: 6px 0;
+}
+#system-fields .list-tab li {
+    display: block;
+}   
+#system-fields ul#tabs li a {
+    color: #000;
+    font-size: 11px;
+    padding: 10px 15px;
+}
+#system-fields .list-tab li a {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(136, 136, 136);
+    border-image: initial;
+    font-size: 11px;
+    font-weight: bold;
+    float: left;
+    line-height: 24px;
+    width: 48%;
+    background: #f7f7f7;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 3px;
+    color: rgb(204, 204, 204);
+}
+#custom-fields ul#create li a {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(136, 136, 136);
+    border-image: initial;
+    font-size: 11px;
+    font-weight: bold;
+    float: left;
+    line-height: 24px;
+    width: 238px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 3px;
+    color: rgb(204, 204, 204);
+}
+#custom-fields ul#create li{
+    display: block;
+}
+#wysiwyg #edit-form-title h1 {
+    font-size: 16px;
+    color: #000;
+}
+#system-fields{
+    min-height: 320px;
+}
+#system-fields ul#tabs li.active a {
+    background-color: #1E85E3;
+    color: #fff;
+}
+#system-fields ul#tabs li.active a:hover{
+    background-color: #1E85E3;
+    color: #fff;
+}
+#system-fields ul#tabs li a:hover{
+    background: #bbb;
+}
+.popup-content-wrapper .list-btr {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.modalwindow label {
+    font-size: 11px;
+}
+
+.modalwindow label a {
+    color:  #1E86E3;
+}
+
+.modalwindow input[type="text"] {
+    width: 100%;
+}
+
+.modalwindow select {
+    width: 100%;
+}
+.modalwindow {
+    padding: 15px 0;
+}
+
+.modalwindow tr {
+    margin-bottom: 13px;
+}
+
+.modalwindow td.var {
+    padding: 8px 0;
+}
+.list-btr-top {
+    border-top: 1px solid #e6e6e6;
+    padding-top:  10px;
+}
+.list-tab{
+    display: none;
+}
+.list-tab.active{
+    display: block;
+}
+.btn-add ul li .dropdown-menu a {
+    border: none;
+    background:  none;
+}
+.btn-add ul li .btn-group button {
+    padding: 0px 10px 1px;
+    margin: 0;
+}   
+#system-fields .list-tab li.used a{
+    background: #1E85E3;
+    color: #fff;
+    border: 1px solid #1E85E3;
+}
+#system-fields .list-tab li a:hover{
+    background: #bbb;
+}
+#system-fields .list-tab li.used a:hover{
+    background: #1E85E3;
+    color: #fff;
+    border: 1px solid #1E85E3;
+    cursor: default;
+}
+#wysiwyg h1 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom:  10px;
+}
+.ui-sortable > li {
+    display:  block;
+    position: relative;
+    padding-bottom: 10px;
+    cursor: all-scroll;
+    border-bottom: 1px dotted #d7d7d7;
+}
+.ui-sortable {
+    border: 1px dotted #d7d7d7; 
+}
+.wrapper label{
+    font-weight: normal;
+}
+.ui-sortable .field-actions{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+#custom-fields ul#create li a:hover {
+    background: #bbb;
+}
+.ui-sortable > li div {
+    padding: 15px 15px 0 15px;
+}
+.ui-sortable li:hover .field-actions {
+    display:  block;
+}
+.col-custom.left{
+    width: 536px;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-custom.right{
+    width: 361px;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.modalwindow table {
+    width:  100%;
+}
+span.prev-edit > * {
+    color: #1E86E3;
 }

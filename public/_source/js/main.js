@@ -117,14 +117,33 @@
                 utils.ui.inlinePopup();
                 utils.ui.dataTable();
                 utils.ui.listItem();
+                utils.ui.accordion();
             },
 
             inlinePopup: function () {
+
                 if(!$('.open-popup-link')[0]) return;
                 $('.open-popup-link').magnificPopup({
                     type:'inline',
                     midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
                 });
+
+                if(!$('#popup-content')[0]) return;
+                $.magnificPopup.open({
+                    items: {
+                        src: $('#popup-content').html(),
+                        type: 'inline'
+                    }
+                });
+
+                // if(!$('a.popup-edit')[0]) return;
+                $('a.popup-edit').each(function() {
+                    $(this).magnificPopup({                        
+                        type: 'inline'
+                    });
+
+                });    
+
             },
 
             dataTable: function () {
@@ -152,6 +171,21 @@
 
             },
 
+            accordion: function () {
+
+                $('#tabs li a').on('click', function(e){
+                    e.preventDefault();
+                    var $parents = $(this).parents('#system-fields');
+                    var target = $(this).attr('href');
+                    var $active = $(this).parents('#tabs');
+                    
+                    $parents.find('.list-tab').removeClass('active');
+                    $(target).addClass('active');
+                    $active.find('li.active').removeClass('active');
+                    $(this).parent().addClass('active');
+                })              
+
+            },
 
         },
         route: {
