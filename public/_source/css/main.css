@@ -184,6 +184,11 @@ ul {
     border-bottom: 1px solid #e6e6e6;
 }
 
+.list-btr {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
 .sidebar-panel .drop ul li {
     border-bottom: none;
 }
@@ -286,7 +291,6 @@ ul {
 .popup-content-wrapper {
     width: 583px;
     height: auto;
-    margin: auto;
     background-repeat: no-repeat;
     background-position: right center;
     background-size: cover;
@@ -504,4 +508,10 @@ ul {
 }
 span.prev-edit > * {
     color: #1E86E3;
+}
+#opportunity-details{
+    display: none;
+}
+#opportunity-details.active{
+    display: block;
 }

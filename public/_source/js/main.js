@@ -109,6 +109,7 @@
         init: function () {
             this.ui.init();
             this.route.init();
+            this.components.init();
         },
 
         ui: {
@@ -117,7 +118,7 @@
                 utils.ui.inlinePopup();
                 utils.ui.dataTable();
                 utils.ui.listItem();
-                utils.ui.accordion();
+                utils.ui.accordionWebform();
             },
 
             inlinePopup: function () {
@@ -127,23 +128,6 @@
                     type:'inline',
                     midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
                 });
-
-                if(!$('#popup-content')[0]) return;
-                $.magnificPopup.open({
-                    items: {
-                        src: $('#popup-content').html(),
-                        type: 'inline'
-                    }
-                });
-
-                // if(!$('a.popup-edit')[0]) return;
-                $('a.popup-edit').each(function() {
-                    $(this).magnificPopup({                        
-                        type: 'inline'
-                    });
-
-                });    
-
             },
 
             dataTable: function () {
@@ -171,7 +155,7 @@
 
             },
 
-            accordion: function () {
+            accordionWebform: function () {
 
                 $('#tabs li a').on('click', function(e){
                     e.preventDefault();
@@ -185,7 +169,50 @@
                     $(this).parent().addClass('active');
                 })              
 
+            }
+           
+
+        },
+        components:{
+            init:function(){
+                this.webform();
+                this.webformCreate();
+                this.oppurtunity();
             },
+            webform: function(){
+
+                if(!$('#popup-content')[0]) return;
+                $.magnificPopup.open({
+                    items: {
+                        src: $('#popup-content').html(),
+                        type: 'inline'
+                    }
+                });
+
+            },
+
+            webformCreate: function(){
+
+                if(!$('a.popup-edit')[0]) return;
+                // $('a.popup-edit').each(function() {
+                //     $(this).magnificPopup({                        
+                //         type: 'inline'
+                //     });
+
+                // });  
+                $('a.popup-edit').magnificPopup({type:'inline'});
+            },
+
+            oppurtunity: function(){
+               $('.open-check').on('click', function(){
+                    if($(this).is(':checked')){
+                        $(this).parents('.modalwindow').find('#opportunity-details').addClass('active');
+                    }else{
+                        $(this).parents('.modalwindow').find('#opportunity-details').removeClass('active');
+                    }
+                });
+            }
+
 
         },
         route: {
