@@ -165,9 +165,17 @@ ul {
 .list-view ul li a {
     color: #fff;
 }
-
-.list-view ul li {
+.list-view ul li{
+    padding: 10px 20px;
+    color: #000;
+}
+.list-view ul li.active{
     background: #2996e3;
+    padding: 10px 20px;
+    color: #ffffff;
+}
+.list-view ul li a{
+    color: #000;
     padding: 10px 20px;
 }
 
@@ -397,7 +405,7 @@ ul {
 }
 
 .modalwindow label {
-    font-size: 11px;
+    font-weight: normal;
 }
 
 .modalwindow label a {
@@ -520,3 +528,17 @@ span.prev-edit > * {
     padding: 10px;
     margin-bottom: 20px;
 }
+
+.list-view ul li.active a {
+    color: #fff;
+}
+.rad-main{
+    display: none;
+}
+.rad-main.open{
+    display: block;
+}
+.rad-wrapper input[type="radio"]{
+    display: block;
+}
+a.pad-lft {padding-left: 20px;}

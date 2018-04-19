@@ -153,113 +153,106 @@
 
 		        		<form id="" action="http://localhost:8080/admin/webformscreate">	        		
 
-							<table id="" class="" cellspacing="0" cellpadding="0" border="0">
-							   <tbody>
-							      <tr>
-							         <td class="var">
-							            <label>
-							            Web Form Name
-							            <a class="help" title="Please enter a name for your web form.">(?)</a></label>
-							         </td>
-							         <td>
-							            <input name="" type="text" value="New Web Form" id="" class="form-control">						           
-							         </td>
-							      </tr>
-							      <tr>
-							         <td class="var">
-							            <label>
-							            	Use Workflow? 
-							            	<a href="#" type="button" class="" data-toggle="tooltip" data-placement="top" title="You can attach a business process to this web form. Workflows are business processes that you can create that send real-time alerts via email or SMS to designated recipients within your organization when your customers fill in this form.">(?)</a>
-							        	</label>
-							         </td>
-							         <td>
-							            <select name="" id="" class="form-control">
+							<div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Web Form Name </label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<input type="text" name="name" id="name" class="form-control" value="">
+							    	</div>
+							    </div>
+						    </div>
+
+						    <div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Use Workflow?</label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<select name="" id="" class="form-control">
 							               <option value="">Don't use a workflow</option>
 							               <option value="">Buyer Registration</option>
 							               <option value="">Content Approval Workflow</option>
 							               <option value="">Customer Inquiry Workflow</option>
 							               <option value="">Seller Registration</option>
 							            </select>
-							         </td>
-							      </tr>
-							      <tr>
-							         <td class="var">
-							            <label>
-								            Secure Zone 
-								            <a class="help" title="As part of your web form you can automatically subscribe customers to a secure zone and log them in automatically. You may include the Username and Password fields on your web form if you wish for the customer to use these the next time they log in, alternatively they can fill in the web form again to gain access.">(?)</a>
-								        </label>
-							         </td>
-							         <td>
-							            <select name="uc$" id="" class="form-control">
+							    	</div>
+							    </div>
+						    </div>
+
+						    <div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Secure Zone</label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<select name="uc$" id="" class="form-control">
 							               <option selected="selected" value="-1">Don't subscribe to a Secure Zone</option>
-							               <option value="0">Sell ongoing membership access to a secure zone</option>
-							               <option value="8644">Administrator</option>
-							               <option value="8645">Buyer</option>
-							               <option value="8653">Censored</option>
-							               <option value="8633">Seller Level 1. Free</option>
-							               <option value="8647">Seller Level 2. Pro</option>
-							               <option value="8648">Seller Level 3. Featured</option>
+							               <option value="">Sell ongoing membership access to a secure zone</option>
+							               <option value="">Administrator</option>
+							               <option value="">Buyer</option>
+							               <option value="">Censored</option>
+							               <option value="">Seller Level 1. Free</option>
+							               <option value="">Seller Level 2. Pro</option>
+							               <option value="">Seller Level 3. Featured</option>
 							            </select>
-							         </td>
-							      </tr>
-							      <tr>
-							         <td class="var">
-							            <label>
-								            Affiliate Program Lists  
-								            <a class="help" title="As part of your web form you can automatically subscribe customers to one of your affiliate programs. When a customer is subscribed to an affiliate program, they'll receive an email with their affiliate link which they can then place on their website so they refer leads to you.">(?)</a>
-								        </label>
-							         </td>
-							         <td>
-							            <select name="uc$" id="" disabled="disabled" class="form-control">
+							    	</div>
+							    </div>
+						    </div>
+
+						    <div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Affiliate Program Lists</label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<select name="uc$" id="" disabled="disabled" class="form-control">
 							               <option selected="selected" value="-1">You don't have any Affiliate Programs.</option>
 							            </select>
-							         </td>
-							      </tr>
-							      <tr>
-							         <td class="var">
-							            <label class="choice">Create Customer Case 
-							            	<a class="help" title="When a web form is submitted on your website a Case is automatically created and attached to the customer record who is making the enquiry. If each enquiry has a relatively fixed monetary value then you can set this option so a new sales opportunity is also created. Sales Opportunities are a great way to track and measure sales.">(?)</a>
-							            </label>                                      
-							         </td>
-							         <td>
-							            <input type="checkbox" id="chkCreateCase" checked="checked" disabled="disabled">
-							         </td>
-							      </tr>
-							      <tr>
-							         <td class="var">
-							            <label class="choice" for="uc_chkSetWholeSale">
-							            Wholesaler Subscription
-							            </label>
-							         </td>
-							         <td>
-							            <input name="uc$" type="checkbox" id="uc_chkSetWholeSale">
-							         </td>
-							      </tr>
-							      <tr>
-							         <td class="var">
-							            <label class="choice" for="uc_chkCreateOppotunity">
-							            	Create Sales Opportunity 
-							            	<a class="help" title="When a web form is submitted on your website a Case is automatically created and attached to the customer record who is making the enquiry. If each enquiry has a relatively fixed monetary value then you can set this option so a new sales opportunity is also created. Sales Opportunities are a great way to track and measure sales.">(?)</a>
-							            </label>
-							         </td>
-							         <td>
-							            <input name="uc$chkCreateOppotunity" type="checkbox" id="uc_chkCreateOppotunity" class="open-check">							            		           
-							         </td>
-							      </tr>
+							    	</div>
+							    </div>
+						    </div>
 
-							   </tbody>
-							</table>
+						    <div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Create Customer Case</label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<input type="checkbox" name="name" id="name" class="" value="">
+							    	</div>
+							    </div>
+						    </div>
 
-							<div id="opportunity-details">
-								
-								<div class="list-btr">
-						            <h2 class="hybridFormHeader">
-						               <span class="hybridFormTitlewrap">Sales Opportunity Options</span>
-						            </h2>
-						        </div>
+						    <div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Wholesaler Subscription</label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<input type="checkbox" name="name" id="name" class="" value="">
+							    	</div>
+							    </div>
+						    </div>
+
+						    <div class="form-group">
+							    <div class="row">
+							    	<div class="col-sm-4">
+							    		<label for="name">Create Sales Opportunity</label>
+							    	</div>
+							    	<div class="col-sm-8">
+							    		<input name="" type="checkbox" id="" class="open-check">
+							    	</div>
+							    </div>
+						    </div>
 
 
-					            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+							<div id="opportunity-details">								
+
+
+					           <!--  <table border="0" cellpadding="0" cellspacing="0" width="100%">
 					               <tbody>
 					                  <tr>
 					                     <td class="var">
@@ -340,14 +333,94 @@
 					                     </td>
 					                  </tr>
 					               </tbody>
-					            </table>
-						        
-						     </div>
+					            </table> -->
+
+					            <hr>
+						        <h3><b>Sales Opportunity Options</b></h3>
+						      
+
+
+					            <div class="form-group">
+								    <div class="row">
+								    	<div class="col-sm-4">
+								    		<label for="name">Opportunity Type</label>
+								    	</div>
+								    	<div class="col-sm-8">
+								    		<select name="uc$ddlOpportunityType" id="uc_ddlOpportunityType" class="form-control">
+					                           <option value="">New Business</option>
+					                           <option value="">Existing Business</option>
+					                           <option value="">Add-On Business</option>
+					                           <option value="">Maintenance</option>
+					                           <option value="">Upgrade</option>
+					                           <option value="">Services</option>
+					                        </select>
+								    	</div>
+								    </div>							        
+							    </div>
+							    <div class="form-group">
+								    <div class="row">
+								    	<div class="col-sm-4">
+								    		<label for="name">Opportunity Stage</label>
+								    	</div>
+								    	<div class="col-sm-8">
+								    		<select name="" id="" class="form-control">
+					                           <option value="">Prospecting</option>
+					                           <option value="">Needs Analysis</option>
+					                           <option value="">Presentation/Demo</option>
+					                           <option value="">Value Proposition</option>
+					                           <option value="">Proposal/Price Quote</option>
+					                           <option value="">Selected</option>
+					                           <option value="">Negotiation</option>
+					                           <option value="">Closed/Won</option>
+					                           <option value="">Closed/Lost</option>
+					                        </select>
+								    	</div>
+								    </div>							        
+							    </div>
+							    <div class="form-group">
+								    <div class="row">
+								    	<div class="col-sm-4">
+								    		<label for="name">Close Date</label>
+								    	</div>
+								    	<div class="col-sm-8">
+								    		<select name="" id="" class="form-control">
+					                           <option value="">In a week</option>
+					                           <option value="">In a fortnight</option>
+					                           <option value="">In a month</option>
+					                           <option selected="selected" value="">In 3 months</option>
+					                           <option value="">In 6 months</option>
+					                           <option value="">In 1 year</option>
+					                        </select>
+								    	</div>
+								    </div>							        
+							    </div>
+							    <div class="form-group">
+								    <div class="row">
+								    	<div class="col-sm-4">
+								    		<label for="name">Probability (%)</label>
+								    	</div>
+								    	<div class="col-sm-8">
+								    		<input name="" type="text" id="" class="form-control">
+								    	</div>
+								    </div>
+							    </div>
+							   	<div class="form-group">
+								    <div class="row">
+								    	<div class="col-sm-4">
+								    		<label for="name">Amount </label>
+								    	</div>
+								    	<div class="col-sm-8">
+								    		<input name="" type="text" id="" class="form-control">
+								    	</div>
+								    </div>
+							    </div>
+
+							 </div>
 							
-							<div class="list-btr-top">
-						       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-						       	<input type="button" id="btnCancel" value="Cancel" class="btn btn-default">
-						    </div>
+							<hr>
+					       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+					       	<input type="button" id="btnCancel" value="Cancel" class="btn btn-default">
+						   
 
 						</form>
 

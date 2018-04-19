@@ -14,7 +14,7 @@
     </div>
     <div class="list-view">
         <ul>
-            <li><a href="#">List View</a></li>
+            <li class="active"><a href="#">List View</a></li>
         </ul>
     </div>
     <div class="btn-add">

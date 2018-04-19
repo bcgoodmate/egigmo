@@ -33,6 +33,43 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
 
     Route::resource('formbuilder', 'FormBuilderController');
     Route::resource('webform', 'WebformController');
+
+    /*new link page*/
+    Route::get('contentholders-index', function () {
+        return view('admin.contentholders.index');
+    });
+
+    Route::get('contentholders-create', function () {
+        return view('admin.contentholders.create');
+    });
+
+    Route::get('contentholders-edit', function () {
+        return view('admin.contentholders.edit');
+    });
+
+    Route::get('menus-index', function () {
+        return view('admin.menus.index');
+    });
+
+    Route::get('menus-create-details', function () {
+        return view('admin.menus.create.details');
+    });
+
+    Route::get('menus-create-menu', function () {
+        return view('admin.menus.create.menu');
+    });
+
+    Route::get('menus-create-menulook', function () {
+        return view('admin.menus.create.menu-look');
+    });
+
+    Route::get('menus-create-itemslook', function () {
+        return view('admin.menus.create.items-look');
+    });
+
+    Route::get('systempages-index', function () {
+        return view('admin.systempages.index');
+    });
 });
 
 
