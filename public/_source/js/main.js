@@ -109,6 +109,7 @@
         init: function () {
             this.ui.init();
             this.route.init();
+            this.components.init();
         },
 
         ui: {
@@ -117,9 +118,11 @@
                 utils.ui.inlinePopup();
                 utils.ui.dataTable();
                 utils.ui.listItem();
+                utils.ui.accordionWebform();
             },
 
             inlinePopup: function () {
+
                 if(!$('.open-popup-link')[0]) return;
                 $('.open-popup-link').magnificPopup({
                     type:'inline',
@@ -152,6 +155,64 @@
 
             },
 
+            accordionWebform: function () {
+
+                $('#tabs li a').on('click', function(e){
+                    e.preventDefault();
+                    var $parents = $(this).parents('#system-fields');
+                    var target = $(this).attr('href');
+                    var $active = $(this).parents('#tabs');
+                    
+                    $parents.find('.list-tab').removeClass('active');
+                    $(target).addClass('active');
+                    $active.find('li.active').removeClass('active');
+                    $(this).parent().addClass('active');
+                })              
+
+            }
+           
+
+        },
+        components:{
+            init:function(){
+                this.webform();
+                this.webformCreate();
+                this.oppurtunity();
+            },
+            webform: function(){
+
+                if(!$('#popup-content')[0]) return;
+                $.magnificPopup.open({
+                    items: {
+                        src: $('#popup-content').html(),
+                        type: 'inline'
+                    }
+                });
+
+            },
+
+            webformCreate: function(){
+
+                if(!$('a.popup-edit')[0]) return;
+                // $('a.popup-edit').each(function() {
+                //     $(this).magnificPopup({                        
+                //         type: 'inline'
+                //     });
+
+                // });  
+                $('a.popup-edit').magnificPopup();
+            },
+
+            oppurtunity: function(){
+               $('.open-check').on('click', function(){
+                    if($(this).is(':checked')){
+                        $(this).parents('.modalwindow').find('#opportunity-details').addClass('active');
+                    }else{
+                        $(this).parents('.modalwindow').find('#opportunity-details').removeClass('active');
+                    }
+                });
+            }
+
 
         },
         route: {
@@ -159,7 +220,11 @@
                 this.addpage();
             },
             addpage: function () {
-                $('.rich_editor').trumbowyg();
+                $('.rich_editor').trumbowyg({
+                    autogrow: true,
+                    autogrowOnEnter: true,
+                    semantic: false
+                });
             }
         }
 

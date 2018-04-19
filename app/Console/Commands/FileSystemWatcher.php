@@ -19,6 +19,9 @@ class FileSystemWatcher extends Command
      *
      * @var string
      */
+
+    private $deleted = null;
+
     protected $signature = 'watch:filesystem';
 
     /**

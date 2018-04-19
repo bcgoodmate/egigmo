@@ -21,6 +21,62 @@
                         <li><a href="#">URL Redirects</a></li>
                         <li><a href="#">System Pages</a></li>
                         <li><a href="#">System Emails</a></li>
+                        <li><a href="{{route('admin.webform.index')}}"  class="{{active_class(if_route(['admin.webform.index']))}}">Web Form</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Web Apps</a>
+                <div class="drop">
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Modules</a>
+                <div class="drop">
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">CRM</a>
+                <div class="drop">
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">E-commerce</a>
+                <div class="drop">
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">E-mail Marketing</a>
+                <div class="drop">
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
                     </ul>
                 </div>
             </li>
