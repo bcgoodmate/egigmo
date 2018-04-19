@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     ]);
     Route::resource('pagebuilder', 'PageBuilderController');
     Route::resource('pagetemplatebuilder', 'PageTemplateBuilderController');
+    Route::resource('formbuilder', 'FormBuilderController');
 });
 
 
