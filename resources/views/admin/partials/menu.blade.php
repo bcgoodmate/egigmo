@@ -15,11 +15,12 @@
                     <ul>
                         <li><a href="{{route('admin.pagebuilder.index')}}" class="{{active_class(if_route(['admin.pagebuilder.index']))}}">Pages</a></li>
                         <li><a href="{{route('admin.pagetemplatebuilder.index')}}"  class="{{active_class(if_route(['admin.pagetemplatebuilder.index']))}}">Page Templates</a></li>
-                        <li><a href="#">Content Holders</a></li>
+                        <li><a href="/admin/contentholders-index">Content Holders</a></li>
+                        <li><a href="/admin/menus-index">Menus</a></li>
                         <li><a href="{{route('admin.formbuilder.index')}}"  class="{{active_class(if_route(['admin.formbuilder.index']))}}">Web Forms</a></li>
                         <li><a href="#">File Manager</a></li>
                         <li><a href="#">URL Redirects</a></li>
-                        <li><a href="#">System Pages</a></li>
+                        <li><a href="/admin/systempages-index">System Pages</a></li>
                         <li><a href="#">System Emails</a></li>
                         <li><a href="{{route('admin.webform.index')}}"  class="{{active_class(if_route(['admin.webform.index']))}}">Web Form</a></li>
                     </ul>

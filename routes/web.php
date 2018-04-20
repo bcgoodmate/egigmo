@@ -70,6 +70,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('systempages-index', function () {
         return view('admin.systempages.index');
     });
+
+    Route::get('systememails-index', function () {
+        return view('admin.systememails.index');
+    });
 });
 
 

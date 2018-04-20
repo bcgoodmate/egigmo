@@ -541,4 +541,7 @@ span.prev-edit > * {
 .rad-wrapper input[type="radio"]{
     display: block;
 }
-a.pad-lft {padding-left: 20px;}
+a.pad-lft {
+    padding-left: 20px;
+    color: #428bca;
+}

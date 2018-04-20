@@ -4,7 +4,7 @@
 
 	   	
 	        <div class="list-btr">
-	            <h2>Menus</h2>
+	            <h2>System E-mails</h2>
 	        </div>
 			
 			<br>
@@ -27,19 +27,16 @@
 	                <tbody>
 	                    <tr>
 	                        <td>Booking Form</td>
-	                        <td><a href="/admin/menus-index">Edit</a></td>	                                                                                     
+	                        <td><a href="#">Edit</a></td>	                                                                                     
 	                    </tr>
 
 	                    <tr>
 	                         <td>Booking Form</td>
-	                        <td><a href="/admin/menus-index">Edit</a></td>	    
+	                        <td><a href="#">Edit</a></td>	    
 	                                                                                     
 	                    </tr>
 
-	                    <tr>
-	                        <td>Booking Form</td>
-	                        <td><a href="/admin/menus-index">Edit</a></td>	                                           
-	                    </tr>
+	                   
 	                    
 	                   
 	                </tbody>
