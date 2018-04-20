@@ -186,9 +186,10 @@
                 $.magnificPopup.open({
                     items: {
                         src: $('#popup-content').html(),
-                        type: 'inline'
+                        type: 'inline'                        
                     }
                 });
+
 
             },
 

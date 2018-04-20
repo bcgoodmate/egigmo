@@ -245,6 +245,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('WorkflowRejection', function () {
         return view('admin.systememails.custom.WorkflowRejection');
     });
+    Route::get('url-ridirects-index', function () {
+        return view('admin.url-ridirects.index');
+    });
+    Route::get('url-ridirects-import', function () {
+        return view('admin.url-ridirects.import');
+    });
 
 
 

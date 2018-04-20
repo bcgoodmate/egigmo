@@ -627,26 +627,22 @@
 					        <div class="modalwindow">
 
 				        		<form id="" action="">	
-
-				        			<table id="" class="" cellspacing="0" cellpadding="0" border="0">
-									   <tbody>
-									      <tr>
-									         <td class="var">
-									            <label>Option</label>
-									         </td>
-									         <td>
-									            <span class="text">
-									            	<input id="uc_chkLoadShadow" type="checkbox" name="uc$chkLoadShadow" checked="checked" onclick="">
-									            	<label for="uc_chkLoadShadow">Load Working Copy</label>
-									            </span>				           
-									         </td>
-									      </tr>
-									  </tbody>
-									</table>
-
-				        			<div class="list-btr-top">
-								       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
+				        			
+									<div class="form-group">
+									    <div class="row">
+									    	<div class="col-sm-4">
+									    		<label for="name">Option</label>
+									    	</div>
+									    	<div class="col-sm-8">
+									    		<input id="uc_chkLoadShadow" type="checkbox" name="uc$chkLoadShadow" checked="checked" onclick="">Load Working Copy
+									    	</div>
+									    </div>
 								    </div>
+
+
+				        			<hr>
+								    <input type="button" id="btnCancel" value="Close" class="btn btn-default">
+								    
 
 								</form>
 							</div>
@@ -668,13 +664,9 @@
 
 							<div class="modalwindow">
 
-				        		<form id="" action="">	        		
-
-									
-									<div class="list-btr-top">
-								       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
-								    </div>
-
+				        		<form id="" action="">	
+									<hr>
+									<input type="button" id="btnCancel" value="Close" class="btn btn-default">
 								</form>
 
 							</div>
@@ -693,31 +685,25 @@
 					            <h2>Web Form Editor</h2>
 					        </div>
 
-					        <div class="modalwindow">
+					       <div class="modalwindow">
 
 				        		<form id="" action="">	
-
-				        			<table id="" class="" cellspacing="0" cellpadding="0" border="0">
-									   <tbody>
-									      <tr>
-									         <td class="var">
-									            <label>Option</label>
-									         </td>
-									         <td>
-									            <span class="text">
-									            	<input id="uc_chkLoadShadow" type="checkbox" name="uc$chkLoadShadow" checked="checked" onclick="">
-									            	<label for="uc_chkLoadShadow">Load Working Copy</label>
-									            </span>				           
-									         </td>
-									      </tr>
-									  </tbody>
-									</table>
-
-				        			<div class="list-btr-top">
-								       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-								       	<input type="button" id="btnCancel" value="Restore to Default" class="btn btn-default">
-								       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
+				        			
+									<div class="form-group">
+									    <div class="row">
+									    	<div class="col-sm-4">
+									    		<label for="name">Option</label>
+									    	</div>
+									    	<div class="col-sm-8">
+									    		<input id="uc_chkLoadShadow" type="checkbox" name="uc$chkLoadShadow" checked="checked" onclick="">Load Working Copy
+									    	</div>
+									    </div>
 								    </div>
+
+
+				        			<hr>
+								    <input type="button" id="btnCancel" value="Close" class="btn btn-default">
+								    
 
 								</form>
 							</div>

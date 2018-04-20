@@ -545,3 +545,13 @@ a.pad-lft {
     padding-left: 20px;
     color: #428bca;
 }
+
+span.warning {
+    color: #ff0000;
+}
+.inline ul li {
+    display:  inline-block;
+}
+a.blue {
+    color: #428bca;
+}
