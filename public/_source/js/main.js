@@ -195,10 +195,7 @@
             webformCreate: function(){
 
                 if(!$('a.popup-edit')[0]) return;
-                $('a.popup-edit').magnificPopup({
-                    closeOnContentClick: true,
-                    type: 'inline'
-                });
+                $('a.popup-edit').magnificPopup();
             },
 
             oppurtunity: function(){

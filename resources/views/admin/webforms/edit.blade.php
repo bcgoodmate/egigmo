@@ -50,7 +50,7 @@
 
 						      	<h1>Select system fields to add to Web Form </h1>
 
-						         <ul id="tabs" class="clear">
+						         <ul id="tabs" class="">
 						            <li class="active"><a href="#contact">Contacts </a></li>
 						            <li><a href="#ecommerce">E-Commerce </a></li>
 						            <li><a href="#marketing">E-Mail Campaigns </a></li>
@@ -59,7 +59,7 @@
 						            <li><a href="#innerForms">CRM Forms </a></li>
 						         </ul>
 
-						        <ul id="contact" class="clear list-tab active clearfix">
+						        <ul id="contact" class="list-tab active clearfix">
 						            <li class="used"><a href="#" >Title, Firstname / Lastname</a></li>
 						            <li><a href="#" >Email Address</a></li>
 						            <li><a href="#" >Home Address</a></li>
@@ -76,7 +76,7 @@
 						            <li><a href="#" >Password</a></li>
 						        </ul>
 								
-								<ul id="ecommerce" class="clear list-tab">
+								<ul id="ecommerce" class="list-tab">
 								   <li><a href="#" id="">Payment Method Options</a></li>
 								   <li><a href="#" id="">Credit Card Processing</a></li>
 								   <li><a href="#" id="">Credit Card (Existing Orders)</a></li>
@@ -87,7 +87,7 @@
 								   <li><a href="#" id="">Shipping Attention</a></li>
 								</ul>
 
-								<ul id="marketing" class="clear list-tab">
+								<ul id="marketing" class="list-tab">
 								   <li><a href="#" id="">Refer-a-Friend</a></li>
 								   <li><a href="#" id="">Anniversary 1 Date</a></li>
 								   <li><a href="#" id="">Anniversary 2 Date</a></li>
@@ -96,18 +96,18 @@
 								   <li><a href="#" id="">Anniversary 5 Date</a></li>
 								</ul>
 
-								<ul id="other" class="clear list-tab">
+								<ul id="other" class="list-tab">
 								   <li><a href="#" id="">File Attachment</a></li>
 								   <li><a href="#" id="">Image Verification</a></li>
 								   <li><a href="#" id="">Recaptcha V2</a></li>
 								   <li class="used"><a id="">Anti-bot Fraud Protection</a></li>
 								</ul>
 
-								<ul id="list" class="clear list-tab">
+								<ul id="list" class="list-tab">
 								   <li class="used"><a>You don't have any Campaign Lists.</a></li>
 								</ul>
 
-								<ul id="innerForms" class="clear list-tab">
+								<ul id="innerForms" class="list-tab">
 								   <li><a href="#" id="">Company Details</a></li>
 								   <li><a href="#" id="">Personal Details</a></li>
 								   <li><a href="#" id="">Seller Account</a></li>
@@ -162,11 +162,11 @@
 								         <div>
 								            <label for="Title">Title</label>
 								            <select name="Title" id="Title" class="form-control">
-								               <option value="1599812">DR</option>
-								               <option value="1599811">MISS</option>
-								               <option value="1599808" selected="selected">MR</option>
-								               <option value="1599809">MRS</option>
-								               <option value="1599810">MS</option>
+								               <option value="">DR</option>
+								               <option value="">MISS</option>
+								               <option value="" selected="selected">MR</option>
+								               <option value="">MRS</option>
+								               <option value="">MS</option>
 								            </select>
 								         </div>
 
@@ -227,9 +227,9 @@
 
 				<div class="webform-popup">
 
-		        	<div class="mfp-hide" id="edit-prop">
+		        	<div class="mfp-hide popup-content-wrapper" id="edit-prop">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 
 			        	
 				        	<div class="list-btr">
@@ -339,89 +339,7 @@
 								<div id="opportunity-details">								
 
 
-						           <!--  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-						               <tbody>
-						                  <tr>
-						                     <td class="var">
-						                        <label>
-						                        	Opportunity Type  
-							                        <a class="help" title="Choose the default opportunity type that should be applied to new sales opportunities created via this web form.">(?)</a>
-							                    </label>
-						                     </td>
-						                     <td>
-						                        <select name="uc$ddlOpportunityType" id="uc_ddlOpportunityType" class="form-control">
-						                           <option value="816829">New Business</option>
-						                           <option value="816830">Existing Business</option>
-						                           <option value="816831">Add-On Business</option>
-						                           <option value="816832">Maintenance</option>
-						                           <option value="816833">Upgrade</option>
-						                           <option value="816834">Services</option>
-						                        </select>
-						                     </td>
-						                  </tr>
-						                  <tr>
-						                     <td class="var">
-						                        <label>
-							                        Opportunity Stage 
-							                        <a class="help" title="Choose the default opportunity stage that should be applied to new sales opportunities created via this web form.">(?)</a>
-							                    </label>
-						                     </td>
-						                     <td>
-						                        <select name="uc$ddlOpportunityStage" id="uc_ddlOpportunityStage" class="form-control">
-						                           <option value="1223743">Prospecting</option>
-						                           <option value="1223744">Needs Analysis</option>
-						                           <option value="1223745">Presentation/Demo</option>
-						                           <option value="1223746">Value Proposition</option>
-						                           <option value="1223747">Proposal/Price Quote</option>
-						                           <option value="1223748">Selected</option>
-						                           <option value="1223749">Negotiation</option>
-						                           <option value="1223750">Closed/Won</option>
-						                           <option value="1223751">Closed/Lost</option>
-						                        </select>
-						                     </td>
-						                  </tr>
-						                  <tr>
-						                     <td class="var">
-						                        <label>
-							                        Close Date 
-							                        <a class="help" title="Choose the date that you roughly expect to bring this sales opportunity to a close.">(?)</a>
-							                    </label>
-						                     </td>
-						                     <td>
-						                        <select name="uc$ddlCycleType" id="uc_ddlCycleType" class="form-control">
-						                           <option value="3">In a week</option>
-						                           <option value="4">In a fortnight</option>
-						                           <option value="5">In a month</option>
-						                           <option selected="selected" value="6">In 3 months</option>
-						                           <option value="7">In 6 months</option>
-						                           <option value="8">In 1 year</option>
-						                        </select>
-						                     </td>
-						                  </tr>
-						                  <tr>
-						                     <td class="var">
-						                        <label>
-							                        Probability (%) 
-							                        <a class="help" title="Choose the default probability that should be applied to new sales opportunities created via this web form.">(?)</a>
-							                    </label>
-						                     </td>
-						                     <td>
-						                        <input name="uc$txtProbability" type="text" id="uc_txtProbability" class="form-control">
-						                     </td>
-						                  </tr>
-						                  <tr>
-						                     <td class="var">
-						                        <label>
-							                        Amount <a class="help" title="Enter the estimated value of this sales opportunity to your organization.">(?)</a>
-							                    </label>
-						                     </td>
-						                     <td>
-						                        <input name="uc$txtAmount" type="text" id="uc_txtAmount"  class="form-control">
-						                     </td>
-						                  </tr>
-						               </tbody>
-						            </table> -->
-
+						          
 						            <hr>
 							        <h3><b>Sales Opportunity Options</b></h3>
 							      
@@ -515,9 +433,9 @@
 						</div>
 					</div>
 
-					<div class="mfp-hide" id="preview-web">
+					<div class="mfp-hide popup-content-wrapper" id="preview-web">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 
 			        	
 				        	<div class="list-btr">
@@ -586,9 +504,9 @@
 
 					</div>
 
-					<div class="mfp-hide" id="autoresponder">
+					<div class="mfp-hide popup-content-wrapper" id="autoresponder">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 
 			        	
 				        	<div class="list-btr">
@@ -658,19 +576,19 @@
 									    		<select name="" id="" class="form-control">
 													<option selected="selected" value="-1">Don't use a template</option>
 													<option value="0">Use default template</option>
-													<option value="1961266">Blank</option>
-													<option value="1961633">Buyer Dashboard</option>
-													<option value="1961634">Buyer Dashboard - Account</option>
-													<option value="1961635">Buyer Dashboard - Inbox</option>
-													<option value="1961636">Buyer Dashboard - Profile</option>
-													<option value="1960979">Home</option>
-													<option value="1960980">Inner</option>
-													<option value="1961434">Seller Dashboard</option>
-													<option value="1961437">Seller Dashboard - Account</option>
-													<option value="1961436">Seller Dashboard - Inbox</option>
-													<option value="1961435">Seller Dashboard - Listing</option>
-													<option value="1961438">Seller Dashboard - Tools</option>
-													<option value="1968262">test-2</option>
+													<option value="">Blank</option>
+													<option value="">Buyer Dashboard</option>
+													<option value="">Buyer Dashboard - Account</option>
+													<option value="">Buyer Dashboard - Inbox</option>
+													<option value="">Buyer Dashboard - Profile</option>
+													<option value="">Home</option>
+													<option value="">Inner</option>
+													<option value="">Seller Dashboard</option>
+													<option value="">Seller Dashboard - Account</option>
+													<option value="">Seller Dashboard - Inbox</option>
+													<option value="">Seller Dashboard - Listing</option>
+													<option value="">Seller Dashboard - Tools</option>
+													<option value="">test-2</option>
 												</select>
 												<span id="" class="prev-edit">
 													<a href="#">Preview</a>
@@ -698,9 +616,9 @@
 
 					</div>
 
-					<div class="mfp-hide" id="chooseweb">
+					<div class="mfp-hide popup-content-wrapper" id="chooseweb">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 			        	
 				        	<div class="list-btr">
 					            <h2>Choose web page to instantly publish this content on</h2>
@@ -737,9 +655,9 @@
 
 					</div>
 
-					<div class="mfp-hide" id="codeweb">
+					<div class="mfp-hide popup-content-wrapper" id="codeweb">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 
 			        	
 				        	<div class="list-btr">
@@ -767,9 +685,9 @@
 
 					</div>
 
-					<div class="mfp-hide" id="custom-form">
+					<div class="mfp-hide popup-content-wrapper" id="custom-form">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 			        	
 				        	<div class="list-btr">
 					            <h2>Web Form Editor</h2>
@@ -808,9 +726,9 @@
 
 					</div>
 
-					<div class="mfp-hide" id="view-audit">
+					<div class="mfp-hide popup-content-wrapper" id="view-audit">
 
-		        		<div class="popup-content-wrapper">
+		        		<div class="">
 			        	
 				        	<div class="list-btr">
 					            <h2>Audit Log</h2>

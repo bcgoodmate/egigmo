@@ -8,8 +8,7 @@
 	   	
 		        <div class="list-btr">
 		            <h2>Content Holders</h2>
-		            <br>
-		            <h2><em>Title Page Name</em></h2>
+		            <h5><em>Title Page Name</em></h5>
 		        </div>	
 		        			
 				<br>

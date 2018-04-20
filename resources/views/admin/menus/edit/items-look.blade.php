@@ -7,8 +7,7 @@
 		   <div class="col-sm-8">
 		      <div class="list-btr">
 		         <h2>Menus</h2>
-		         <br>
-		        	<h2><em>Title Page Name</em></h2>
+		        	<h5><em>Title Page Name</em></h5>
 		      </div>
 		      <div class="list-view">
 		         <ul>

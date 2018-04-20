@@ -4,7 +4,7 @@
 
 	   	
 	        <div class="list-btr">
-	            <h2>Pages</h2>
+	            <h2>Web Forms</h2>
 	        </div>
 			
 			<br>
@@ -21,35 +21,22 @@
 	                <thead>
 	                    <tr class="">                                    
 	                        <th>WebForm Name</th>
-	                        
+	                        <th>Actions</th>	
 	                    </tr>
 	                </thead>
 	                <tbody>
+
 	                    <tr>
 	                        <td>Booking Form</td>
-	                                                                                     
-	                    </tr>
-	                    <tr>
-	                        <td>Buyer Registration</td>
-	                                                                                     
-	                    </tr>
-	                    <tr>
-	                        <td>Contact Us Form</td>
-	                                                                                     
-	                    </tr>
-	                    <tr>
-	                        <td>Online Shop Purchase Form</td>
-	                                                                                     
-	                    </tr>
-	                    <tr>
-	                        <td>Online Shop Quote Form</td>
+	                        <td><a href="#">edit</a></td>
 	                                                                                     
 	                    </tr>
 
 	                    <tr>
-	                        <td>Seller Registration</td>
+	                        <td>Buyer Registration</td>
+	                        <td><a href="#">edit</a></td>
 	                                                                                     
-	                    </tr>
+	                    </tr>	                                      
 	                   
 	                </tbody>
 	               
