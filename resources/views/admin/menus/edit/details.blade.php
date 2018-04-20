@@ -1,20 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-		
 
-		<div class="row">
+	   	<div class="row">
 	   		<div class="col-sm-8">
-	   	
 		        <div class="list-btr">
-		            <h2>Content Holders</h2>
+		            <h2>Menus</h2>
 		            <br>
 		            <h2><em>Title Page Name</em></h2>
 		        </div>	
-		        			
-				<br>
 
-		        <div class="btn-add">
+		        <br>
+
+		    	<div class="btn-add">
 			        <ul>
 			            <li>
 			            	<div class="btn-group">
@@ -22,48 +20,47 @@
 							    Actions <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a class="popup-edit" href="#contentholder-add">Add Content Holder to a Web Page</a></li>
-							    <li><a class="popup-edit" href="#contentholder-audit">View Audit Log</a></li>
+							    <li><a class="popup-edit" href="#contentholder-add">Add Menu to a Web Page</a></li>
 							  </ul>
 							</div>
 						</li>
 			        </ul>
 			    </div>
 
-				<hr>
-
-			    <h3><b>Content Holder Details</b></h3>	
-			    <br>  
-
-			    <div class="form-group">
+				<div class="list-view">
+			        <ul>
+			            <li class="active"><a href="#"> Details</a></li>
+			            <li><a href="/admin/menus-edit-menu">Menu Items</a></li>
+			            <li><a href="/admin/menus-edit-menulook">Menu look</a></li>
+			            <li><a href="/admin/menus-edit-itemslook">Items look</a></li>
+			        </ul>
+			    </div>
+				
+				<div class="form-group">
 				    <label for="name">Name</label>
 				    <input type="text" name="name" id="name" class="form-control" value="">
 			    </div>
 
 			    <div class="form-group">
-				    <label for="default_template">
-				    	<input type="checkbox" id="" value="1" name="">
-				        Enabled:
-				    </label>
-				</div>
-
-				<hr>
-
-				<h3><b>Content Holder Content</b></h3>
-				<br>
-
-				<textarea name="page_body" cols="30" rows="10" class="rich_editor form-control" id="page_body"></textarea>
+			    	<label>Menu Type:</label>				   
+					<select class="form-control">
+						<option>Default</option>
+						<option>CSS</option>
+						<option>CSS (HTML only)</option>
+					</select>
+				</div>		
 
 		    	<hr>
 		       
-		       	<input type="button" id="" value="Update" class="btn btn-primary">
-		       	<input type="button" id="" value="Delete" class="btn btn-default">
-
+		       	<input type="button" id="" value="Save" class="btn btn-default">
+		       	<input type="button" id="" value="Cancel" class="btn btn-default">
+		       	<input type="button" id="" value="Next" class="btn btn-primary btn-default">
+			   
+			   </div>
 			</div>
-		</div>
 
-
-		<div class="webform-popup">
+    	
+    	<div class="webform-popup">
 
         	<div class="mfp-hide popup-content-wrapper" id="contentholder-add">
 	        	
@@ -164,12 +161,5 @@
 			</div>
 
 		</div>
-
-
-
-
-	       
-	    	
-    	
 @endsection
 

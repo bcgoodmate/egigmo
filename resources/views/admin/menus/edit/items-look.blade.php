@@ -7,12 +7,14 @@
 		   <div class="col-sm-8">
 		      <div class="list-btr">
 		         <h2>Menus</h2>
+		         <br>
+		        	<h2><em>Title Page Name</em></h2>
 		      </div>
 		      <div class="list-view">
 		         <ul>
-		            <li><a href="/admin/menus-create-details">Details</a></li>
-		            <li><a href="/admin/menus-create-menu">Menu Items</a></li>
-		            <li><a href="/admin/menus-create-menulook">Menu look</a></li>
+		            <li><a href="/admin/menus-edit-details">Details</a></li>
+		            <li><a href="/admin/menus-edit-menu">Menu Items</a></li>
+		            <li><a href="/admin/menus-edit-menulook">Menu look</a></li>
 		            <li class="active"><a href="#">Items look</a></li>
 		         </ul>
 		      </div>

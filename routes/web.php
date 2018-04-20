@@ -74,6 +74,27 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('systememails-index', function () {
         return view('admin.systememails.index');
     });
+
+
+    
+
+    Route::get('menus-edit-details', function () {
+        return view('admin.menus.edit.details');
+    });
+
+    Route::get('menus-edit-menu', function () {
+        return view('admin.menus.edit.menu');
+    });
+
+    Route::get('menus-edit-menulook', function () {
+        return view('admin.menus.edit.menu-look');
+    });
+
+    Route::get('menus-edit-itemslook', function () {
+        return view('admin.menus.edit.items-look');
+    });
+
+
 });
 
 

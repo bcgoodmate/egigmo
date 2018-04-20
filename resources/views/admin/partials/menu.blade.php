@@ -21,7 +21,7 @@
                         <li><a href="#">File Manager</a></li>
                         <li><a href="#">URL Redirects</a></li>
                         <li><a href="/admin/systempages-index">System Pages</a></li>
-                        <li><a href="#">System Emails</a></li>
+                        <li><a href="/admin/systememails-index">System Emails</a></li>
                         <li><a href="{{route('admin.webform.index')}}"  class="{{active_class(if_route(['admin.webform.index']))}}">Web Form</a></li>
                     </ul>
                 </div>

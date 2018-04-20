@@ -5,7 +5,7 @@
 	   	<div class="row">
 	   		<div class="col-sm-8">
 		        <div class="list-btr">
-		            <h2>Content Holders</h2>
+		            <h2>Menus</h2>
 		        </div>	
 
 				<div class="list-view">
@@ -23,17 +23,12 @@
 			    </div>
 
 			    <div class="form-group">
-			    	<label>Menu Type:</label>
-				   <div class="btn-group">
-					  <button type="button" class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    Default <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu">
-					    <li><a class="popup-edit" href="#contentholder-add">Default</a></li>
-					    <li><a class="popup-edit" href="#contentholder-audit">CSS</a></li>
-					    <li><a class="popup-edit" href="#contentholder-audit">CSS (HTML only)</a></li>
-					  </ul>
-					</div>
+			    	<label>Menu Type:</label>				   
+					<select class="form-control">
+						<option>Default</option>
+						<option>CSS</option>
+						<option>CSS (HTML only)</option>
+					</select>
 				</div>		
 
 		    	<hr>
