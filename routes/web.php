@@ -289,7 +289,30 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('adminusers-edit', function () {
         return view('admin.adminusers.edit');
     });
-
+    Route::get('userroles-index', function () {
+        return view('admin.userroles.index');
+    });
+    Route::get('userroles-create-details', function () {
+        return view('admin.userroles.create.details');
+    });
+    Route::get('userroles-create-users', function () {
+        return view('admin.userroles.create.users');
+    });
+    Route::get('userroles-create-permission', function () {
+        return view('admin.userroles.create.permission');
+    });
+    Route::get('userroles-edit-details', function () {
+        return view('admin.userroles.edit.details');
+    });
+    Route::get('userroles-edit-users', function () {
+        return view('admin.userroles.edit.users');
+    });
+    Route::get('userroles-edit-permission', function () {
+        return view('admin.userroles.edit.permission');
+    });
+    Route::get('mobilesupport-index', function () {
+        return view('admin.mobilesupport.index');
+    });
 
 
 

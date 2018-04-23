@@ -44,8 +44,8 @@
                     <ul>
                         <li><a href="/admin/sitedomains-index">Site Domains</a></li>
                         <li><a href="/admin/adminusers-index">Admin Users</a></li>
-                        <li><a href="#">User Roles</a></li>
-                        <li><a href="#">Mobile Support</a></li>
+                        <li><a href="/admin/userroles-index">User Roles</a></li>
+                        <li><a href="/admin/mobilesupport-index">Mobile Support</a></li>
                         <li><a href="#">Site Billing</a></li>
                         <li><a href="#">Site Management</a></li>
                         <li><a href="#">Security Settings</a></li>
