@@ -43,7 +43,7 @@
                 <div class="drop">
                     <ul>
                         <li><a href="/admin/sitedomains-index">Site Domains</a></li>
-                        <li><a href="#">Admin Users</a></li>
+                        <li><a href="/admin/adminusers-index">Admin Users</a></li>
                         <li><a href="#">User Roles</a></li>
                         <li><a href="#">Mobile Support</a></li>
                         <li><a href="#">Site Billing</a></li>

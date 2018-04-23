@@ -280,6 +280,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('sitedomains-index', function () {
         return view('admin.sitedomains.index');
     });
+    Route::get('adminusers-index', function () {
+        return view('admin.adminusers.index');
+    });
+    Route::get('adminusers-invite', function () {
+        return view('admin.adminusers.invite');
+    });
+    Route::get('adminusers-edit', function () {
+        return view('admin.adminusers.edit');
+    });
 
 
 
