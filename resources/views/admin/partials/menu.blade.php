@@ -47,9 +47,9 @@
                         <li><a href="/admin/userroles-index">User Roles</a></li>
                         <li><a href="/admin/mobilesupport-index">Mobile Support</a></li>
                         <li><a href="#">Site Billing</a></li>
-                        <li><a href="#">Site Management</a></li>
-                        <li><a href="#">Security Settings</a></li>
-                        <li><a href="#">Beta Features</a></li>
+                        <li><a href="/admin/sitemanagement-index">Site Management</a></li>
+                        <li><a href="/admin/securitysetting-index">Security Settings</a></li>
+                        <li><a href="/admin/betafeatures-index">Beta Features</a></li>
                     </ul>
                 </div>
             </li>

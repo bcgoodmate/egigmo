@@ -313,11 +313,18 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('mobilesupport-index', function () {
         return view('admin.mobilesupport.index');
     });
+    Route::get('sitemanagement-index', function () {
+        return view('admin.sitemanagement.index');
+    });
+    Route::get('securitysetting-index', function () {
+        return view('admin.securitysetting.index');
+    });
+    Route::get('betafeatures-index', function () {
+        return view('admin.betafeatures.index');
+    });
 
 
 
-
-  
 
 
 });

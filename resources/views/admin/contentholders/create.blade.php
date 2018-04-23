@@ -21,7 +21,7 @@
 
 			    <div class="form-group">
 				    <label for="default_template">
-				    	<input type="checkbox" id="" value="1" name="">
+				    	<input type="checkbox" id="default_template" value="1" name="">
 				        Enabled:
 				    </label>
 				</div>

@@ -632,14 +632,14 @@
 									    		<label for="name">Option</label>
 									    	</div>
 									    	<div class="col-sm-8">
-									    		<input id="uc_chkLoadShadow" type="checkbox" name="uc$chkLoadShadow" checked="checked" onclick="">Load Working Copy
+									    		<input id="ai-01" type="checkbox" name=""><label for="ai-01">Load Working Copy</label>
 									    	</div>
 									    </div>
 								    </div>
 
 
 				        			<hr>
-									<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+									<input type="button" id="" value="Save" class="btn btn-primary btn-default">
 								    
 
 								</form>
@@ -693,7 +693,7 @@
 									    		<label for="name">Option</label>
 									    	</div>
 									    	<div class="col-sm-8">
-									    		<input id="uc_chkLoadShadow" type="checkbox" name="uc$chkLoadShadow" checked="checked" onclick="">Load Working Copy
+									    		<input id="ai02" type="checkbox" name="u"><label for="ai02">Load Working Copy</label>
 									    	</div>
 									    </div>
 								    </div>
