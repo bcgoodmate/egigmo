@@ -95,8 +95,7 @@
 	        			<hr>
 
 
-	        			<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-					    <input type="button" id="btnCancel" value="Close" class="btn btn-default">						   
+	        			<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">					   
 
 					</form>
 				</div>

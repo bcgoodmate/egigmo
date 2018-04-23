@@ -167,7 +167,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('EventVerificationPage', function () {
         return view('admin.systempages.custom.EventVerificationPage');
     });
-    Route::get('UpdateDetailsFormConfirmation', function () {
+    Route::get('WebFormsConfirmation', function () {
         return view('admin.systempages.custom.WebFormsConfirmation');
     });
     Route::get('EventVerificationPage', function () {
@@ -250,6 +250,35 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     });
     Route::get('url-ridirects-import', function () {
         return view('admin.url-ridirects.import');
+    });
+
+    Route::get('visitors-overview', function () {
+        return view('admin.visitors.overview');
+    });
+
+    Route::get('visitors-visitview', function () {
+        return view('admin.visitors.visitview');
+    });
+    Route::get('visitors-geographic', function () {
+        return view('admin.visitors.geographic');
+    });
+    Route::get('visitors-uniquevisitor', function () {
+        return view('admin.visitors.uniquevisitor');
+    });
+    Route::get('visitors-visitorloyalty', function () {
+        return view('admin.visitors.visitorloyalty');
+    });
+    Route::get('visitors-browser', function () {
+        return view('admin.visitors.browser');
+    });
+    Route::get('visitors-opratesystem', function () {
+        return view('admin.visitors.opratesystem');
+    });
+    Route::get('visitors-addresslist', function () {
+        return view('admin.visitors.addresslist');
+    });
+    Route::get('sitedomains-index', function () {
+        return view('admin.sitedomains.index');
     });
 
 

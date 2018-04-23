@@ -29,13 +29,13 @@
 	                    <tr>
 	                        <td>Booking Form</td>
 	                        <td>Yes</td>
-	                        <td><a href="/admin/contentholders-edit">Edit</a></td>
+	                        <td><a href="/admin/contentholders-edit" class="blue">Edit</a></td>
 	                                                                                     
 	                    </tr>
 	                    <tr>
 	                        <td>Booking Form</td>
 	                        <td>Yes</td>
-	                        <td><a href="/admin/contentholders-edit">Edit</a></td>
+	                        <td><a href="/admin/contentholders-edit" class="blue">Edit</a></td>
 	                                                                                     
 	                    </tr>                    
 	                   

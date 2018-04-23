@@ -9,6 +9,7 @@
 	   	
 		        <div class="list-btr">
 		            <h2>Web Form</h2>
+		            <h5><em>Title Page Name</em></h5>
 		        </div>
 				
 				<br>
@@ -424,7 +425,6 @@
 								
 								<hr>
 						       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-						       	<input type="button" id="btnCancel" value="Cancel" class="btn btn-default">
 							   
 
 							</form>
@@ -493,9 +493,8 @@
 									    </div>
 								    </div>
 
-								   <div class="list-btr-top">						       	
-								       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
-								    </div>
+								   <hr>
+								   <input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
 
 								</form>
 							</div>
@@ -603,7 +602,6 @@
 									<hr>
 							       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
 							       	<input type="button" id="btnCancel" value="Email Me" class="btn btn-default">
-							       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
 								   
 
 								</form>
@@ -641,7 +639,7 @@
 
 
 				        			<hr>
-								    <input type="button" id="btnCancel" value="Close" class="btn btn-default">
+									<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
 								    
 
 								</form>
@@ -666,7 +664,7 @@
 
 				        		<form id="" action="">	
 									<hr>
-									<input type="button" id="btnCancel" value="Close" class="btn btn-default">
+									<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
 								</form>
 
 							</div>
@@ -702,7 +700,7 @@
 
 
 				        			<hr>
-								    <input type="button" id="btnCancel" value="Close" class="btn btn-default">
+									<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
 								    
 
 								</form>
@@ -775,9 +773,7 @@
 
 
 
-				        			<div class="list-btr-top">
-								       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
-								    </div>
+
 
 								</form>
 							</div>

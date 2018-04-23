@@ -28,13 +28,13 @@
 
 	                    <tr>
 	                        <td>Booking Form</td>
-	                        <td><a href="#">edit</a></td>
+	                        <td><a href="#" class="blue">edit</a></td>
 	                                                                                     
 	                    </tr>
 
 	                    <tr>
 	                        <td>Buyer Registration</td>
-	                        <td><a href="#">edit</a></td>
+	                        <td><a href="#" class="blue">edit</a></td>
 	                                                                                     
 	                    </tr>	                                      
 	                   

@@ -29,7 +29,7 @@
                 <a href="#">Reports</a>
                 <div class="drop">
                     <ul>
-                        <li><a href="#">Visitors</a></li>
+                        <li><a href="/admin/visitors-overview">Visitors</a></li>
                         <li><a href="#">Traffic Sources</a></li>
                         <li><a href="#">Website Content</a></li>
                         <li><a href="#">Web Form Usage</a></li>
@@ -42,7 +42,7 @@
                 <a href="#">Site Settings</a>
                 <div class="drop">
                     <ul>
-                        <li><a href="#">Site Domains</a></li>
+                        <li><a href="/admin/sitedomains-index">Site Domains</a></li>
                         <li><a href="#">Admin Users</a></li>
                         <li><a href="#">User Roles</a></li>
                         <li><a href="#">Mobile Support</a></li>

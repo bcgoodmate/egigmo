@@ -555,3 +555,17 @@ span.warning {
 a.blue {
     color: #428bca;
 }
+.tab-wrapper {
+    position:  relative;
+}
+
+.tab-wrapper .tab-row {
+    position:  relative;
+}
+
+.tab-wrapper .tab-row > div {
+    display:  none;
+}
+.tab-wrapper .tab-row > div.open{
+    display: block;
+}

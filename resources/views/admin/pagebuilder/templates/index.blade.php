@@ -30,7 +30,7 @@
             @foreach($templates as $template)
                 <tr>
                     <td>{{$template -> name}} @if($template->default_template)(default template)@endif </td>
-                    <td><a href="{{route('admin.pagetemplatebuilder.edit',$template->id)}}">Edit</a></td>
+                    <td><a href="{{route('admin.pagetemplatebuilder.edit',$template->id)}}" class="blue">Edit</a></td>
                 </tr>
             @endforeach
             </tbody>

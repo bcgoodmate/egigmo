@@ -252,88 +252,7 @@
 							<div id="opportunity-details">								
 
 
-					           <!--  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-					               <tbody>
-					                  <tr>
-					                     <td class="var">
-					                        <label>
-					                        	Opportunity Type  
-						                        <a class="help" title="Choose the default opportunity type that should be applied to new sales opportunities created via this web form.">(?)</a>
-						                    </label>
-					                     </td>
-					                     <td>
-					                        <select name="uc$ddlOpportunityType" id="uc_ddlOpportunityType" class="form-control">
-					                           <option value="816829">New Business</option>
-					                           <option value="816830">Existing Business</option>
-					                           <option value="816831">Add-On Business</option>
-					                           <option value="816832">Maintenance</option>
-					                           <option value="816833">Upgrade</option>
-					                           <option value="816834">Services</option>
-					                        </select>
-					                     </td>
-					                  </tr>
-					                  <tr>
-					                     <td class="var">
-					                        <label>
-						                        Opportunity Stage 
-						                        <a class="help" title="Choose the default opportunity stage that should be applied to new sales opportunities created via this web form.">(?)</a>
-						                    </label>
-					                     </td>
-					                     <td>
-					                        <select name="uc$ddlOpportunityStage" id="uc_ddlOpportunityStage" class="form-control">
-					                           <option value="1223743">Prospecting</option>
-					                           <option value="1223744">Needs Analysis</option>
-					                           <option value="1223745">Presentation/Demo</option>
-					                           <option value="1223746">Value Proposition</option>
-					                           <option value="1223747">Proposal/Price Quote</option>
-					                           <option value="1223748">Selected</option>
-					                           <option value="1223749">Negotiation</option>
-					                           <option value="1223750">Closed/Won</option>
-					                           <option value="1223751">Closed/Lost</option>
-					                        </select>
-					                     </td>
-					                  </tr>
-					                  <tr>
-					                     <td class="var">
-					                        <label>
-						                        Close Date 
-						                        <a class="help" title="Choose the date that you roughly expect to bring this sales opportunity to a close.">(?)</a>
-						                    </label>
-					                     </td>
-					                     <td>
-					                        <select name="uc$ddlCycleType" id="uc_ddlCycleType" class="form-control">
-					                           <option value="3">In a week</option>
-					                           <option value="4">In a fortnight</option>
-					                           <option value="5">In a month</option>
-					                           <option selected="selected" value="6">In 3 months</option>
-					                           <option value="7">In 6 months</option>
-					                           <option value="8">In 1 year</option>
-					                        </select>
-					                     </td>
-					                  </tr>
-					                  <tr>
-					                     <td class="var">
-					                        <label>
-						                        Probability (%) 
-						                        <a class="help" title="Choose the default probability that should be applied to new sales opportunities created via this web form.">(?)</a>
-						                    </label>
-					                     </td>
-					                     <td>
-					                        <input name="uc$txtProbability" type="text" id="uc_txtProbability" class="form-control">
-					                     </td>
-					                  </tr>
-					                  <tr>
-					                     <td class="var">
-					                        <label>
-						                        Amount <a class="help" title="Enter the estimated value of this sales opportunity to your organization.">(?)</a>
-						                    </label>
-					                     </td>
-					                     <td>
-					                        <input name="uc$txtAmount" type="text" id="uc_txtAmount"  class="form-control">
-					                     </td>
-					                  </tr>
-					               </tbody>
-					            </table> -->
+
 
 					            <hr>
 						        <h3><b>Sales Opportunity Options</b></h3>
@@ -419,7 +338,6 @@
 							
 							<hr>
 					       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-					       	<input type="button" id="btnCancel" value="Cancel" class="btn btn-default">
 						   
 
 						</form>

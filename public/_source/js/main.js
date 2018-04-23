@@ -119,6 +119,7 @@
                 utils.ui.dataTable();
                 utils.ui.listItem();
                 utils.ui.accordionWebform();
+                utils.ui.tablets();
             },
 
             inlinePopup: function () {
@@ -169,6 +170,14 @@
                     $(this).parent().addClass('active');
                 })              
 
+            },
+
+            tablets: function () {
+
+                $('.tab-wrapper .tab-row a').on('click', function(e){
+                    e.preventDefault();
+                    $(this).next().slideToggle();
+                })
             }
            
 

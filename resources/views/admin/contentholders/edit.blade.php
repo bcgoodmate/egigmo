@@ -85,7 +85,7 @@
 
 
 						<hr>
-				       	<input type="button" id="btnCancel" value="Close" class="btn btn-default close-main">							  
+				       	<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">							  
 
 					</form>
 
@@ -153,9 +153,7 @@
 
 
 
-	        			<div class="list-btr-top">
-					       	<input type="button" id="btnCancel" value="Close" class="btn btn-default">
-					    </div>
+	        			
 
 					</form>
 				</div>
