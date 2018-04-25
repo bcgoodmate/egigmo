@@ -119,6 +119,7 @@
                 utils.ui.dataTable();
                 utils.ui.listItem();
                 utils.ui.accordionWebform();
+                utils.ui.tablets();
             },
 
             inlinePopup: function () {
@@ -169,6 +170,14 @@
                     $(this).parent().addClass('active');
                 })              
 
+            },
+
+            tablets: function () {
+
+                $('.tab-wrapper .tab-row a').on('click', function(e){
+                    e.preventDefault();
+                    $(this).next().slideToggle();
+                })
             }
            
 
@@ -178,6 +187,7 @@
                 this.webform();
                 this.webformCreate();
                 this.oppurtunity();
+                this.menus();
             },
             webform: function(){
 
@@ -185,32 +195,41 @@
                 $.magnificPopup.open({
                     items: {
                         src: $('#popup-content').html(),
-                        type: 'inline'
+                        type: 'inline'                        
                     }
                 });
+
 
             },
 
             webformCreate: function(){
 
                 if(!$('a.popup-edit')[0]) return;
-                // $('a.popup-edit').each(function() {
-                //     $(this).magnificPopup({
-                //         type: 'inline'
-                //     });
-
-                // });
                 $('a.popup-edit').magnificPopup({type:'inline'});
             },
 
             oppurtunity: function(){
                $('.open-check').on('click', function(){
                     if($(this).is(':checked')){
-                        $(this).parents('.modalwindow').find('#opportunity-details').addClass('active');
+                        $(this).parents('.modalwindow, .for-check').find('#opportunity-details, .open-check-active').addClass('active');
                     }else{
-                        $(this).parents('.modalwindow').find('#opportunity-details').removeClass('active');
+                        $(this).parents('.modalwindow, .for-check').find('#opportunity-details, .open-check-active').removeClass('active');
                     }
                 });
+
+            },
+
+            menus: function(){
+
+                $('.choice').on('click', function(){     
+                   var target = $(this).attr('href');
+                    var $parents = $(this).parents('.rad-wrapper');
+                    
+                    $parents.find('.rad-main').removeClass('open');
+                    $(target).addClass('open');  
+                 });
+
+
             }
 
 
