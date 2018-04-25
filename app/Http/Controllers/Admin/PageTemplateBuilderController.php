@@ -59,8 +59,7 @@ class PageTemplateBuilderController extends Controller
 
 
         $name = $request->name;
-        $raw_body = $request->body;
-        $body = $raw_body ? $raw_body : '{tag_pagecontent}';
+        $body = $request->page_body;
         $is_default = false;
         if ($request->default_template) {
             $is_default = true;
@@ -77,7 +76,7 @@ class PageTemplateBuilderController extends Controller
 
         $template->name = $name;
         $template->content_path = $relative_file_path;
-        $template->content_html = $relative_file_path;
+        $template->content_html = $body;
         $template->default_template = $is_default;
         $template->save();
 
@@ -144,8 +143,7 @@ class PageTemplateBuilderController extends Controller
                 ->withInput();
         }
 
-        $raw_body =$request->body;
-        $body = $raw_body ? $raw_body : '{tag_pagecontent}';
+        $body = $request->page_body;
         $is_default = false;
         if ($request->default_template) {
             $is_default = true;

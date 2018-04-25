@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 /*admin routes*/
@@ -37,9 +37,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
 
 /*frontend routes*/
 Route::group(['as' => 'app.', 'namespace' => 'App'], function () {
+    Route::get('/', 'RouteHandlerController@index');
     Route::get('/{path}', 'RouteHandlerController@index');
-    //Route::get('{path}/{any?}', 'App\RouteHandlerController@index')->where('any', '(.*)');
+    Route::get('{path}/{any?}', 'RouteHandlerController@index')->where('any', '(.*)');
 });
-/*Route::get('{path}/{any?}', 'App\TestController@index')->where('any', '(.*)');*/
-
 

@@ -21,7 +21,7 @@
                 <div class="card-header"><h1>New Page</h1></div>
                 <hr>
                 <div class="card-body">
-                    <form action="{{route('admin.pagebuilder.store')}}" method="post">
+                    <form action="{{route('admin.pagebuilder.store')}}" method="post" class="pageForm">
                     {{csrf_field()}}
                     @include('admin.pagebuilder.pages.partials.form')
                     </form>

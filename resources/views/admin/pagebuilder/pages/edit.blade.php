@@ -22,7 +22,7 @@
                 <hr>
 
                 <div class="card-body">
-                    <form action="{{route('admin.pagebuilder.update',$page->id)}}" method="post">
+                    <form action="{{route('admin.pagebuilder.update',$page->id)}}" method="post" class="pageForm">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="patch" />
                         @include('admin.pagebuilder.pages.partials.form')

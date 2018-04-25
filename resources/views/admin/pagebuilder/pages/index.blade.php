@@ -35,7 +35,7 @@
             <tbody>
             @foreach($pages as $page)
                 <tr>
-                    <td>{{$page->name}}</td>
+                    <td>{{$page->name}} {{$page->is_start_page ? '(Start Page)' : ''}}</td>
                     <td>{{$page->page_url}}</td>
                     <td>
                         @if($page->default_template)

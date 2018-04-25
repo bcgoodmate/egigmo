@@ -1119,7 +1119,6 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         // @param full  : wrap text nodes in <p>
         // @param keepRange  : leave selection range as it is
         semanticCode: function (force, full, keepRange) {
-            return;
             var t = this;
             t.saveRange();
             t.syncCode(force);

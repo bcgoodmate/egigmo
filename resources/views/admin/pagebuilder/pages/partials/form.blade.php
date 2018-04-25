@@ -14,6 +14,10 @@
         </span>
     @endif
 </div>
+
+<div class="form-group">
+    <label for="start_page"><input type="checkbox" id="start_page" value="1" name="start_page" {{ old('is_start_page') ? 'checked' : $page && $page->is_start_page ? 'checked' : '' }}> Set as Start Page</label>
+</div>
 <div class="form-group">
     <label>Folder</label>
     <div class="row">
@@ -22,7 +26,7 @@
                 <select name="folder" class="form-control {{ $errors->has('folder') ? ' is-invalid' : '' }}">
                     <option value="">/</option>
                     @foreach($directories as $directory)
-                        <option value="{{$directory}}" {{ old('folder') == $directory? 'selected' : '' }} >
+                        <option value="{{$directory}}" {{ old('folder') == $directory ? 'selected' : '' }} >
                             /{{$directory}}</option>
                     @endforeach
                 </select>
@@ -30,7 +34,7 @@
                 <select name="folder" class="form-control {{ $errors->has('folder') ? ' is-invalid' : '' }}">
                     <option value="">/</option>
                     @foreach($directories as $directory)
-                        <option value="/{{$directory}}" {{$page ? $directory == $page->folder ? 'selected' : '' : ''}} >
+                        <option value="/{{$directory}}" {{$page ? '/'.$directory == $page->folder ? 'selected' : '' : ''}} >
                             /{{$directory}}</option>
                     @endforeach
                 </select>
@@ -91,14 +95,17 @@
 <hr>
 <div class="form-group">
     <label>Content</label>
-    @if(old('name'))
-        <textarea name="page_body" cols="30" rows="10" class="rich_editor form-control"
-                  id="page_body">{!! old('page_body') !!}</textarea>
-    @else
-        <textarea name="page_body" cols="30" rows="10" class="rich_editor form-control"
-                  id="page_body">{!! $page? $page->body : null !!}</textarea>
-    @endif
+    <div class="rich-editor">
+        <div class="rich_editor">
+            <textarea id="page_rich_body"></textarea>
+        </div>
+        <iframe id="temp_html" class="hide"></iframe>
+        <div class="code_editor">
+            <pre id="page_code_body"></pre>
+        </div>
+    </div>
+    <textarea name="page_body" class="hide">{{$page ? $page->content_html: null}}</textarea>
 </div>
-<button class="btn btn-primary btn-default">Submit</button>
+<button class="btn btn-primary btn-default btn-submit">Submit</button>
 <a href="#" class="btn btn-danger" onclick="event.preventDefault();
                                                      document.getElementById('page-form-delete').submit();">Delete</a>

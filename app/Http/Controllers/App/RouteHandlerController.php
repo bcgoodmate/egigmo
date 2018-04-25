@@ -14,13 +14,22 @@ class RouteHandlerController extends Controller
     public function index(Request $request)
     {
 
-        $page = Page::where('content_path', '/' . $request->path() . '.html')->firstOrFail();
+        if ($request->path() == '/') {
+            $page = Page::where('is_start_page', true)->firstOrFail();
+        } else {
+            $page = Page::where('content_path', '/' . $request->path() . '.html')->firstOrFail();
+        }
 
         if ($page->default_template) {
             $template = PageTemplate::where('default_template', true)->first();
-            $page_path = public_path() . '/site' . $page->content_path;
-            $template_path = public_path() . '/site' . $template->content_path;
-            $pageview = $this->renderTemplate($page, $page_path, $template_path);
+            if ($template) {
+                $page_path = public_path() . '/site' . $page->content_path;
+                $template_path = public_path() . '/site' . $template->content_path;
+                $pageview = $this->renderTemplate($page, $page_path, $template_path);
+            } else {
+                $page_path = public_path() . '/site' . $page->content_path;
+                $pageview = $this->render($page, $page_path);
+            }
         } elseif ($page->page_template_id) {
             $template = PageTemplate::where('id', $page->page_template_id)->first();
             $page_path = public_path() . '/site' . $page->content_path;
@@ -43,6 +52,8 @@ class RouteHandlerController extends Controller
         }
 
         $template_page = file_get_contents($template_path);
+        $template_page = str_replace('<!--<notscript', '<script', $template_page);
+        $template_page = str_replace('</notscript>-->', '</script>', $template_page);
         $template = new Template();
         $template->parse($template_page);
         $page_content = $this->render($page, $path);
@@ -83,6 +94,8 @@ class RouteHandlerController extends Controller
                 abort(404);
             }
         }
+        $page = str_replace('<!--<notscript', '<script', $page);
+        $page = str_replace('</notscript>-->', '</script>', $page);
 
         $template = new Template();
         $template->parse($page);

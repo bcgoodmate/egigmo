@@ -8,7 +8,7 @@
                 <hr>
 
                 <div class="card-body">
-                    <form action="{{route('admin.pagetemplatebuilder.update',$template->id)}}" method="post">
+                    <form action="{{route('admin.pagetemplatebuilder.update',$template->id)}}" method="post" class="pageForm">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="patch" />
                         @include('admin.pagebuilder.templates.partials.form',array('content' => '{tag_pagecontent}'))

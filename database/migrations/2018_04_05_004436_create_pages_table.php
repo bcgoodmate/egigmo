@@ -21,6 +21,7 @@ class CreatePagesTable extends Migration
             $table->text('content_html')->nullable();
             $table->uuid('page_template_id')->index()->nullable();
             $table->boolean('is_draft')->default(0);
+            $table->boolean('is_start_page')->default(0);
             $table->boolean('default_template')->default(0);
             $table->string('page_title')->nullable();
             $table->string('page_url')->nullable();
