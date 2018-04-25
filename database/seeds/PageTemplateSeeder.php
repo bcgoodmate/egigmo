@@ -23,7 +23,7 @@ class PageTemplateSeeder extends Seeder
                                         <meta http-equiv="X-UA-Compatible" content="IE=edge">
                                         <meta name="viewport" content="width=device-width, initial-scale=1">
                                         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-                                        <title>Wolfrex</title>
+                                        <title>foreverBC</title>
                                         <link href="/site/_source/css/main.css" rel="stylesheet">
                                     </head>
                                     <body>
@@ -34,12 +34,17 @@ class PageTemplateSeeder extends Seeder
                 'name' => 'Home',
                 'content_path' => '/template/home.html',
                 'content_html' => $body,
+                'default_template' => true,
             ]);
 
-            mkdir(public_path() ."/site/template", 0700,true);
-            mkdir(public_path() ."/site/_source/css", 0700,true);
+            if (!file_exists(public_path() . "/site/template")) {
+                mkdir(public_path() . "/site/template", 0700, true);
+            }
+            if (!file_exists(public_path() . "/site/_source/css")) {
+                mkdir(public_path() . "/site/_source/css", 0700, true);
+            }
             $file_path = public_path() . '/site/template/home.html';
-            File::put(public_path() . '/site/_source/css/main.css','/*main css*/');
+            File::put(public_path() . '/site/_source/css/main.css','h1{text-align:center; height: 100vh; display:flex; justify-content:center; align-items:center;}');
             File::put($file_path,
                 View::make('admin.pagebuilder.builder-generator.create-template', compact('body')));
         }

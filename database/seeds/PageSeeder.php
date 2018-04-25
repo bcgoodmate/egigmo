@@ -23,7 +23,7 @@ class PageSeeder extends Seeder
                         <html>
                         <head></head>
                         <body>
-                            <h1 style="text-align:center; height: 100vh; display:flex; justify-content:center; align-items:center;">Welcome to forever BC</h1>
+                            <h1>Welcome to forever BC</h1>
                         </body>
                         </html>';
 
@@ -32,6 +32,7 @@ class PageSeeder extends Seeder
                 'slug' => 'home',
                 'is_start_page' => true,
                 'content_path' => '/home.html',
+                'default_template' => true,
                 'content_html' => $page_body,
                 'page_title' => 'forverBC | home',
                 'page_url' => '/',
