@@ -639,3 +639,49 @@ a.blue {
 .tab-wrapper .tab-row > div.open{
     display: block;
 }
+.warningMessage {
+    border: 1px dashed #FDD8A6;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.list-view ul li.active a {
+    color: #fff;
+}
+.rad-main{
+    display: none;
+}
+.rad-main.open{
+    display: block;
+}
+.rad-wrapper input[type="radio"]{
+    display: block;
+}
+a.pad-lft {
+    padding-left: 20px;
+    color: #428bca;
+}
+
+span.warning {
+    color: #ff0000;
+}
+.inline ul li {
+    display:  inline-block;
+}
+a.blue {
+    color: #428bca;
+}
+.tab-wrapper {
+    position:  relative;
+}
+
+.tab-wrapper .tab-row {
+    position:  relative;
+}
+
+.tab-wrapper .tab-row > div {
+    display:  none;
+}
+.tab-wrapper .tab-row > div.open{
+    display: block;
+}
