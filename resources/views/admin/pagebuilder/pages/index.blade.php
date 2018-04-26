@@ -14,7 +14,7 @@
     </div>
     <div class="list-view">
         <ul>
-            <li><a href="#">List View</a></li>
+            <li class="active"><a href="#">List View</a></li>
         </ul>
     </div>
     <div class="btn-add">
@@ -35,7 +35,7 @@
             <tbody>
             @foreach($pages as $page)
                 <tr>
-                    <td>{{$page->name}}</td>
+                    <td>{{$page->name}} {{$page->is_start_page ? '(Start Page)' : ''}}</td>
                     <td>{{$page->page_url}}</td>
                     <td>
                         @if($page->default_template)
@@ -48,8 +48,8 @@
                             @endif
                         @endif
                     </td>
-                    <td><a href="{{str_replace_last('.html', '', $page->content_path)}}" target="_blank">Preview</a> | <a
-                                href="{{route('admin.pagebuilder.edit', $page->id)}}"> Edit</a></td>
+                    <td><a href="{{str_replace_last('.html', '', $page->content_path)}}" target="_blank" class="blue">Preview</a> | <a
+                                href="{{route('admin.pagebuilder.edit', $page->id)}}" class="blue"> Edit</a></td>
                 </tr>
             @endforeach
             </tbody>

@@ -62,11 +62,12 @@ class PageBuilderController extends HelperController
 
         $name = $request->name;
         $page_title = $request->page_title;
+        $is_start_page = $request->start_page;
         $page_body = $request->page_body;
         $page_desc = $request->page_desc;
         $folder = $request->folder;
         $template = $request->template;
-
+        return $is_start_page;
         $page_url = $folder . '/' . str_slug($name, '-');
         $page_name = str_slug($name, '-') . '.html';
         $relative_file_path = $folder . '/' . $page_name;
@@ -82,11 +83,17 @@ class PageBuilderController extends HelperController
                 ));
         }
 
+        if ($is_start_page) {
+            $is_start_page = true;
+            Page::where('is_start_page', true)->update(['is_start_page' => false]);
+        }
+
         $page->name = $name;
         $page->slug = str_slug($name, '-');
         $page->content_path = $relative_file_path;
         $page->content_html = $page_body;
         $page->page_title = $page_title;
+        $page->is_start_page = $is_start_page;
         $page->page_url = $page_url;
         $page->page_description = $page_desc;
         $page->page_template_id = $template == 'default' ? null : $template;
@@ -169,9 +176,15 @@ class PageBuilderController extends HelperController
 
         $name = $request->name;
         $page_title = $request->page_title;
+        $is_start_page = $request->start_page;
         $page_body = $request->page_body;
         $page_desc = $request->page_desc;
         $template = $request->template;
+
+
+        if ($is_start_page) {
+            Page::where([['is_start_page', '=', true], ['id', '!=', $id]])->update(['is_start_page' => false]);
+        }
 
         $page_url = $folder . '/' . str_slug($name, '-');
 
@@ -184,6 +197,7 @@ class PageBuilderController extends HelperController
         $page->content_path = $relative_file_path;
         $page->content_html = $page_body;
         $page->page_title = $page_title;
+        $page->is_start_page = $is_start_page ? true : false;
         $page->page_url = $page_url;
         $page->page_description = $page_desc;
         $page->page_template_id = $template == 'default' ? null : $template;
@@ -209,7 +223,7 @@ class PageBuilderController extends HelperController
     {
         $page = Page::where('id', $id)->firstOrFail();
         SiteDirectory::removeFile(public_path() . '/site/' . $page->content_path);
-        Page::where('page_template_id',$id)->update([
+        Page::where('page_template_id', $id)->update([
             'page_template_id' => null
         ]);
         $name = $page->name;

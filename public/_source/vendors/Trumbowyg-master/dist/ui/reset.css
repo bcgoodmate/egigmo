@@ -1,0 +1,8 @@
+@import "./trumbowyg.min.css";
+
+html{
+    overflow-x: hidden;
+}
+body{
+    width: 99%;
+}

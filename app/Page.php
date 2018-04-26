@@ -14,6 +14,7 @@ class Page extends BaseModel
         'content_path',
         'page_template_id',
         'is_draft',
+        'is_start_page',
         'default_template',
         'page_title',
         'page_description',
@@ -28,6 +29,7 @@ class Page extends BaseModel
 
     protected $casts = [
         'is_draft' => 'boolean',
+        'is_start_page' => 'boolean',
         'id'=>'string'
     ];
 

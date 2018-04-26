@@ -119,6 +119,7 @@
                 utils.ui.dataTable();
                 utils.ui.listItem();
                 utils.ui.accordionWebform();
+                utils.ui.tablets();
             },
 
             inlinePopup: function () {
@@ -169,6 +170,14 @@
                     $(this).parent().addClass('active');
                 })              
 
+            },
+
+            tablets: function () {
+
+                $('.tab-wrapper .tab-row a').on('click', function(e){
+                    e.preventDefault();
+                    $(this).next().slideToggle();
+                })
             }
            
 
@@ -178,6 +187,7 @@
                 this.webform();
                 this.webformCreate();
                 this.oppurtunity();
+                this.menus();
             },
             webform: function(){
 
@@ -185,32 +195,41 @@
                 $.magnificPopup.open({
                     items: {
                         src: $('#popup-content').html(),
-                        type: 'inline'
+                        type: 'inline'                        
                     }
                 });
+
 
             },
 
             webformCreate: function(){
 
                 if(!$('a.popup-edit')[0]) return;
-                // $('a.popup-edit').each(function() {
-                //     $(this).magnificPopup({                        
-                //         type: 'inline'
-                //     });
-
-                // });  
-                $('a.popup-edit').magnificPopup();
+                $('a.popup-edit').magnificPopup({type:'inline'});
             },
 
             oppurtunity: function(){
                $('.open-check').on('click', function(){
                     if($(this).is(':checked')){
-                        $(this).parents('.modalwindow').find('#opportunity-details').addClass('active');
+                        $(this).parents('.modalwindow, .for-check').find('#opportunity-details, .open-check-active').addClass('active');
                     }else{
-                        $(this).parents('.modalwindow').find('#opportunity-details').removeClass('active');
+                        $(this).parents('.modalwindow, .for-check').find('#opportunity-details, .open-check-active').removeClass('active');
                     }
                 });
+
+            },
+
+            menus: function(){
+
+                $('.choice').on('click', function(){     
+                   var target = $(this).attr('href');
+                    var $parents = $(this).parents('.rad-wrapper');
+                    
+                    $parents.find('.rad-main').removeClass('open');
+                    $(target).addClass('open');  
+                 });
+
+
             }
 
 
@@ -220,11 +239,134 @@
                 this.addpage();
             },
             addpage: function () {
-                $('.rich_editor').trumbowyg({
+
+                if(!$('.pageForm')[0]) return;
+
+                var editor = ace.edit("page_code_body");
+                editor.setTheme("ace/theme/monokai");
+
+                editor.setOptions({
+                    mode: "ace/mode/html",
+                    autoScrollEditorIntoView: true
+                });
+                ace.config.loadModule("ace/ext/emmet", function() {
+                    ace.require("ace/lib/net").loadScript("https://cloud9ide.github.io/emmet-core/emmet.js", function() {
+                        editor.setOption("enableEmmet", true);
+                        editor.setOption("enableEmmet", true);
+                    });
+                });
+
+                var $temp_html = $('#temp_html').contents();
+
+                var richEditor = $('#page_rich_body').trumbowyg({
                     autogrow: true,
                     autogrowOnEnter: true,
-                    semantic: false
+                    btnsDef: {
+                        viewSource: {
+                            fn: function(e) {
+                                updateFrame();
+                            },
+                            ico: 'viewHTML'
+                        }
+                    },
+                    btns: [
+                        ['viewSource'],
+                        ['undo', 'redo'],
+                        ['formatting'],
+                        ['strong', 'em', 'del'],
+                        ['superscript', 'subscript'],
+                        ['link'],
+                        ['insertImage'],
+                        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        ['unorderedList', 'orderedList'],
+                        ['horizontalRule'],
+                        ['removeformat'],
+                    ]
                 });
+
+                setupFrame();
+
+                function htmlDecode(input){
+                    var e = document.createElement('div');
+                    e.innerHTML = input;
+                    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+                }
+
+                function replaceAll(txt, replace, with_this) {
+                    return txt.replace(new RegExp(replace, 'g'),with_this);
+                }
+                
+                function updateFrame() {
+                    richHtml = editor.getValue();
+
+                    var richHtml, html;
+                    $parent = $('#page_rich_body').closest('.rich-editor');
+                    $parent.toggleClass('inactive').find('.trumbowyg-button-pane').toggleClass('trumbowyg-disable')
+                        .find('.trumbowyg-viewSource-button').toggleClass('trumbowyg-active');
+
+                    if($parent.hasClass('inactive')){
+                        richHtml = richEditor.trumbowyg('html');
+                        if($temp_html.find('body')[0]){
+                            $temp_html.find('body').html(richHtml);
+                        }else{
+                            $temp_html[0].open();
+                            $temp_html[0].write(richHtml);
+                            $temp_html[0].close();
+                        }
+
+                        var template = `<!DOCTYPE html>${$temp_html.find('html')[0].outerHTML}`;
+
+                        template = replaceAll(template,"<!--<notscript", "<script");
+                        template = replaceAll(template,"</notscript>-->", "</script>");
+                        editor.setValue(template);
+                    }else{
+                        richHtml = editor.getValue();
+
+                        richHtml = replaceAll(richHtml,"<script", "<!--<notscript");
+                        richHtml = replaceAll(richHtml,"</script>", "</notscript>-->");
+
+                        $temp_html[0].open();
+                        $temp_html[0].write('<!DOCTYPE html> '+richHtml);
+                        $temp_html[0].close();
+
+                        if($temp_html.find('body')[0]){
+                            html = $temp_html.find('body').html();
+                        }else{
+                            html = richHtml;
+                        }
+
+                        richEditor.trumbowyg('html', html);
+                    }
+                }
+
+                function setupFrame() {
+                    var page = $('.pageForm [name="page_body"]').val();
+
+                    $temp_html[0].open();
+                    $temp_html[0].write(page);
+                    $temp_html[0].close();
+
+                    editor.setValue(`<!DOCTYPE html>${$temp_html.find('html')[0].outerHTML}`, 1);
+
+                    var template = $temp_html.find('body').html();
+
+                    template = replaceAll(template,"<script", "<!--<notscript");
+                    template = replaceAll(template,"</script>", "</notscript>-->");
+
+                    richEditor.trumbowyg('html',template);
+                }
+
+                var formSubmit = false;
+                $('.pageForm').on('submit',function (e) {
+                    e.preventDefault();
+                    updateFrame();
+                    var $this = $(this),
+                        template = `<!DOCTYPE html>${$temp_html.find('html')[0].outerHTML}`;
+                    $this.find('[name="page_body"]').val(template);
+                    if(!formSubmit) $this[0].submit();
+                    formSubmit = true;
+                })
+
             }
         }
 

@@ -39,6 +39,7 @@
         </div>
     </div>
     <script src="{{ asset('_source/vendors/trumbowyg-master/dist/trumbowyg.js')}}"></script>
+    <script src="{{ asset('_source/vendors/ace-builds/src-noconflict/ace.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('_source/vendors/dataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('_source/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('_source/vendors/magnific-popup/magnific-popup.min.js') }}"></script>

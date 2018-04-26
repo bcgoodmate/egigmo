@@ -13,12 +13,23 @@
                                          name="default_template" {{ old('default_template') ? 'checked' : $template && $template->default_template ? 'checked' : $content }}>
         Default Template</label>
 </div>
+<br>
+<br>
 <hr>
 <div class="form-group">
-    <label for="body">Content</label>
-    <textarea name="body" cols="30" rows="10" class="rich_editor form-control"
-              id="body">{!! old('body') != '' ? old('body') : $template ? $template -> body : $content !!}</textarea>
+    <label>Content</label>
+    <div class="rich-editor">
+        <div class="rich_editor">
+            <textarea id="page_rich_body"></textarea>
+        </div>
+        <iframe id="temp_html" class="hide"></iframe>
+        <div class="code_editor">
+            <pre id="page_code_body"></pre>
+        </div>
+    </div>
+    <textarea name="page_body" class="hide">{{$template ? $template->content_html: null}}</textarea>
+
 </div>
-<button type="submit" class="btn btn-primary btn-default">Submit</button>
+<button class="btn btn-primary btn-default btn-submit">Submit</button>
 <a href="#" class="btn btn-danger" onclick="event.preventDefault();
                                                      document.getElementById('page-form-delete').submit();">Delete</a>
