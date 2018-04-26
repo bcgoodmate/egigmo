@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Form;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\HelperController;
 
-class FormBuilderController extends Controller
+class FormBuilderController extends HelperController
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +37,10 @@ class FormBuilderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form = new Form;
+        $form->name = $request->name;
+        $form->save();
+        return redirect()->route('admin.formbuilder.index')->with('status','Form created!');
     }
 
     /**

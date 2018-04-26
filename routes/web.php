@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     ]);
     Route::resource('pagebuilder', 'PageBuilderController');
     Route::resource('pagetemplatebuilder', 'PageTemplateBuilderController');
-
     Route::resource('formbuilder', 'FormBuilderController');
     Route::resource('webform', 'WebformController');
 });
@@ -39,8 +38,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
 /*frontend routes*/
 Route::group(['as' => 'app.', 'namespace' => 'App'], function () {
     Route::get('/{path}', 'RouteHandlerController@index');
-    //Route::get('{path}/{any?}', 'App\RouteHandlerController@index')->where('any', '(.*)');
+    Route::get('{path}/{any?}', 'App\RouteHandlerController@index')->where('any', '(.*)');
 });
-/*Route::get('{path}/{any?}', 'App\TestController@index')->where('any', '(.*)');*/
+Route::get('{path}/{any?}', 'App\TestController@index')->where('any', '(.*)');
 
 

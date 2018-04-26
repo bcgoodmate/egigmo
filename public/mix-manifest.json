@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/_source/vendors/formBuilder/form-builder.min.js": "/_source/vendors/formBuilder/form-builder.min.js",
+    "/_source/vendors/formBuilder/form-render.min.js": "/_source/vendors/formBuilder/form-render.min.js"
 }

@@ -10,8 +10,8 @@
     <div class="list-tre">
         <ul>
             <li class="has-dropdown">
-                <a href="#">Site Manager</a>
-                <div class="drop">
+                <a href="#" class="open">Site Manager</a>
+                <div class="drop" style="display:block;">
                     <ul>
                         <li><a href="{{route('admin.pagebuilder.index')}}" class="{{active_class(if_route(['admin.pagebuilder.index']))}}">Pages</a></li>
                         <li><a href="{{route('admin.pagetemplatebuilder.index')}}"  class="{{active_class(if_route(['admin.pagetemplatebuilder.index']))}}">Page Templates</a></li>
