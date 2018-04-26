@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 
 class setupForeverBC extends Command
 {
@@ -37,8 +38,14 @@ class setupForeverBC extends Command
      */
     public function handle()
     {
-        $this->call('migrate');
-        $this->call('db:seed');
-        $this->info('forever BC has been setup');
+        if (!Schema::hasTable('users'))
+        {
+            $this->call('migrate');
+            $this->call('db:seed');
+            $this->info('forever BC has been setup');
+        }else{
+            $this->error('forever BC has been initialized setup.');
+        }
+
     }
 }
