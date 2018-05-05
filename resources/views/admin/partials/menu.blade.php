@@ -15,6 +15,7 @@
                     <ul>
                         <li><a href="{{route('admin.pagebuilder.index')}}" class="{{active_class(if_route(['admin.pagebuilder.index']))}}">Pages</a></li>
                         <li><a href="{{route('admin.pagetemplatebuilder.index')}}"  class="{{active_class(if_route(['admin.pagetemplatebuilder.index']))}}">Page Templates</a></li>
+                        <li><a href="{{route('admin.formbuilder.index')}}"  class="{{active_class(if_route(['admin.formbuilder.index']))}}">Form Builder</a></li>
                         <li><a href="/admin/contentholders-index">Content Holders</a></li>
                         <li><a href="{{route('admin.webform.index')}}"  class="{{active_class(if_route(['admin.webform.index']))}}">Web Forms</a></li>
                         <li><a href="/admin/menus-index">Menus</a></li>                       

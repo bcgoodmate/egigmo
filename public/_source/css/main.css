@@ -372,7 +372,7 @@ ul {
     color: rgb(204, 204, 204);
 }
 
-#custom-fields ul#create li a {
+#custom-fields ul li a {
     border-width: 1px;
     border-style: solid;
     border-color: rgb(136, 136, 136);
@@ -389,7 +389,7 @@ ul {
     color: rgb(204, 204, 204);
 }
 
-#custom-fields ul#create li {
+#custom-fields ul li {
     display: block;
 }
 
@@ -516,7 +516,7 @@ ul {
     display: none;
 }
 
-#custom-fields ul#create li a:hover {
+#custom-fields ul li a:hover {
     background: #bbb;
 }
 

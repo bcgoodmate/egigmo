@@ -1,108 +1,197 @@
 /* jQuery livequery Version: 1.1.1 */
-(function (e) {
-    e.extend(e.fn, {
-        livequery: function (t, n, r) {
-            var i = this, s;
-            if (e.isFunction(t))r = n, n = t, t = undefined;
-            e.each(e.livequery.queries, function (e, o) {
-                if (i.selector == o.selector && i.context == o.context && t == o.type && (!n || n.$lqguid == o.fn.$lqguid) && (!r || r.$lqguid == o.fn2.$lqguid))return (s = o) && false
-            });
-            s = s || new e.livequery(this.selector, this.context, t, n, r);
-            s.stopped = false;
-            s.run();
-            return this
-        }, expire: function (t, n, r) {
-            var i = this;
-            if (e.isFunction(t))r = n, n = t, t = undefined;
-            e.each(e.livequery.queries, function (s, o) {
-                if (i.selector == o.selector && i.context == o.context && (!t || t == o.type) && (!n || n.$lqguid == o.fn.$lqguid) && (!r || r.$lqguid == o.fn2.$lqguid) && !this.stopped)e.livequery.stop(o.id)
-            });
-            return this
-        }
-    });
-    e.livequery = function (t, n, r, i, s) {
-        this.selector = t;
-        this.context = n;
-        this.type = r;
-        this.fn = i;
-        this.fn2 = s;
-        this.elements = [];
-        this.stopped = false;
-        this.id = e.livequery.queries.push(this) - 1;
-        i.$lqguid = i.$lqguid || e.livequery.guid++;
-        if (s)s.$lqguid = s.$lqguid || e.livequery.guid++;
-        return this
-    };
-    e.livequery.prototype = {
-        stop: function () {
-            var e = this;
-            if (this.type)this.elements.unbind(this.type, this.fn); else if (this.fn2)this.elements.each(function (t, n) {
-                e.fn2.apply(n)
-            });
-            this.elements = [];
-            this.stopped = true
-        }, run: function () {
-            if (this.stopped)return;
-            var t = this;
-            var n = this.elements, r = e(this.selector, this.context), i = r.not(n);
-            this.elements = r;
-            if (this.type) {
-                i.bind(this.type, this.fn);
-                if (n.length > 0)e.each(n, function (n, i) {
-                    if (e.inArray(i, r) < 0)e.event.remove(i, t.type, t.fn)
-                })
-            } else {
-                i.each(function () {
-                    t.fn.apply(this)
-                });
-                if (this.fn2 && n.length > 0)e.each(n, function (n, i) {
-                    if (e.inArray(i, r) < 0)t.fn2.apply(i)
-                })
-            }
-        }
-    };
-    e.extend(e.livequery, {
-        guid: 0, queries: [], queue: [], running: false, timeout: null, checkQueue: function () {
-            if (e.livequery.running && e.livequery.queue.length) {
-                var t = e.livequery.queue.length;
-                while (t--)e.livequery.queries[e.livequery.queue.shift()].run()
-            }
-        }, pause: function () {
-            e.livequery.running = false
-        }, play: function () {
-            e.livequery.running = true;
-            e.livequery.run()
-        }, registerPlugin: function () {
-            e.each(arguments, function (t, n) {
-                if (!e.fn[n])return;
-                var r = e.fn[n];
-                e.fn[n] = function () {
-                    var t = r.apply(this, arguments);
-                    e.livequery.run();
-                    return t
+!function(e){e.extend(e.fn,{livequery:function(i,t,u){var n,r=this;return e.isFunction(i)&&(u=t,t=i,i=void 0),e.each(e.livequery.queries,function(e,s){if(!(r.selector!=s.selector||r.context!=s.context||i!=s.type||t&&t.$lqguid!=s.fn.$lqguid||u&&u.$lqguid!=s.fn2.$lqguid))return(n=s)&&!1}),(n=n||new e.livequery(this.selector,this.context,i,t,u)).stopped=!1,n.run(),this},expire:function(i,t,u){var n=this;return e.isFunction(i)&&(u=t,t=i,i=void 0),e.each(e.livequery.queries,function(r,s){n.selector!=s.selector||n.context!=s.context||i&&i!=s.type||t&&t.$lqguid!=s.fn.$lqguid||u&&u.$lqguid!=s.fn2.$lqguid||this.stopped||e.livequery.stop(s.id)}),this}}),e.livequery=function(i,t,u,n,r){return this.selector=i,this.context=t,this.type=u,this.fn=n,this.fn2=r,this.elements=[],this.stopped=!1,this.id=e.livequery.queries.push(this)-1,n.$lqguid=n.$lqguid||e.livequery.guid++,r&&(r.$lqguid=r.$lqguid||e.livequery.guid++),this},e.livequery.prototype={stop:function(){var e=this;this.type?this.elements.unbind(this.type,this.fn):this.fn2&&this.elements.each(function(i,t){e.fn2.apply(t)}),this.elements=[],this.stopped=!0},run:function(){if(!this.stopped){var i=this,t=this.elements,u=e(this.selector,this.context),n=u.not(t);this.elements=u,this.type?(n.bind(this.type,this.fn),t.length>0&&e.each(t,function(t,n){e.inArray(n,u)<0&&e.event.remove(n,i.type,i.fn)})):(n.each(function(){i.fn.apply(this)}),this.fn2&&t.length>0&&e.each(t,function(t,n){e.inArray(n,u)<0&&i.fn2.apply(n)}))}}},e.extend(e.livequery,{guid:0,queries:[],queue:[],running:!1,timeout:null,checkQueue:function(){if(e.livequery.running&&e.livequery.queue.length)for(var i=e.livequery.queue.length;i--;)e.livequery.queries[e.livequery.queue.shift()].run()},pause:function(){e.livequery.running=!1},play:function(){e.livequery.running=!0,e.livequery.run()},registerPlugin:function(){e.each(arguments,function(i,t){if(e.fn[t]){var u=e.fn[t];e.fn[t]=function(){var i=u.apply(this,arguments);return e.livequery.run(),i}}})},run:function(i){null!=i?e.inArray(i,e.livequery.queue)<0&&e.livequery.queue.push(i):e.each(e.livequery.queries,function(i){e.inArray(i,e.livequery.queue)<0&&e.livequery.queue.push(i)}),e.livequery.timeout&&clearTimeout(e.livequery.timeout),e.livequery.timeout=setTimeout(e.livequery.checkQueue,20)},stop:function(i){null!=i?e.livequery.queries[i].stop():e.each(e.livequery.queries,function(i){e.livequery.queries[i].stop()})}}),e.livequery.registerPlugin("append","prepend","after","before","wrap","attr","removeAttr","addClass","removeClass","toggleClass","empty","remove","html"),e(function(){e.livequery.play()})}(jQuery);
+(function($){
+    var FormBuilder = (function () {
+        // private static
+        var settings = {};
+
+        // constructor
+        var cls = function () {
+            // public (this instance only)
+            this.setOptions = function (opts) { settings = opts; };
+        };
+
+        // public static
+        cls.fieldType = function(field) {
+            var types = {
+                'text': function(obj) {
+                    return $('<input type="'+ field.type +'" />').attr({
+                        name: obj.name,
+                        id: obj.name,
+                        class: 'form-control'
+                    });
+                },
+                'textarea': function(obj) {
+                    return $('<textarea />').attr({
+                        name: obj.name,
+                        id: obj.name,
+                        class: 'form-control'
+                    });
+                },
+                'select': function(obj) {
+                    let $select = $('<select />');
+                    let options = $select.prop('options'), o, selected;
+
+                    for (var i = 0, len = obj.options.length; i < len; ++i) {
+                        o = obj.options[i];
+                        selected = !!o.selected;
+                        options[i] = new Option(o.text, o.value, selected, selected);
+                    }
+
+                    if(obj.subtype == 'multipleselect') $select.attr({multiple: true});
+
+                    return $select.attr({
+                        name: obj.name,
+                        id: obj.name,
+                        class: 'form-control'
+                    });
+                },
+                'multipleselect': function(obj) {
+                    obj.subtype = obj.type;
+
+                    let select = types['select'];
+                    if (typeof select === 'function') return select(obj);
+                },
+                'radio': function(obj) {
+                    let radio = [], o, checked;
+
+                    for (var i = 0, len = obj.options.length; i < len; ++i) {
+                        o = obj.options[i];
+                        checked = !!o.checked;
+                        radio.push($('<input type="'+ field.type +'" />').attr({
+                            name: obj.name,
+                            id: obj.name,
+                            value: o.value,
+                            checked: checked
+                        })[0].outerHTML + o.text);
+                    }
+
+                    return radio.join('<br />');
+                },
+                'checkbox': function(obj) {
+                    let checkbox = [], o, checked;
+
+                    for (var i = 0, len = obj.options.length; i < len; ++i) {
+                        o = obj.options[i];
+                        checked = !!o.checked;
+                        checkbox.push($('<input type="checkbox" />').attr({
+                                name: obj.name,
+                                id: obj.name,
+                                value: o.value,
+                                checked: checked
+                            })[0].outerHTML + (o.text != undefined ? o.text : ''));
+                    }
+
+                    return checkbox.join('<br />');
+                },
+                'boolean': function(obj) {
+                    obj.subtype = obj.type;
+                    obj.options = [{value: '1'}];
+
+                    let checkbox = types['checkbox'];
+                    if (typeof checkbox === 'function') return checkbox(obj);
+                },
+                'date': function(obj) {
+                    return $('<input type="text" />').attr({
+                        name: obj.name,
+                        id: obj.name,
+                        class: 'form-control datepicker'
+                    });
                 }
-            })
-        }, run: function (t) {
-            if (t != undefined) {
-                if (e.inArray(t, e.livequery.queue) < 0)e.livequery.queue.push(t)
-            } else e.each(e.livequery.queries, function (t) {
-                if (e.inArray(t, e.livequery.queue) < 0)e.livequery.queue.push(t)
+            };
+
+            let fieldTypeFunc = types[field.type];
+            if (typeof fieldTypeFunc === 'function') return fieldTypeFunc(field);
+        };
+
+        cls.fieldActions = function () {
+            return '<div class="field-actions"><a href="#" class="edit" title="Edit "><i class="icon far fa-edit"></i></a><a href="#" class="delete" title="delete"><i class="icon fas fa-minus-circle"></i></a></div>';
+        };
+
+        // public (shared across instances)
+        cls.prototype = {
+            loadControls: function () {
+                for(let i = 0; i < settings.controls.length; i++) {
+                    for(let c = 0; c < settings.controls[i].fields.length; c++) {
+                        let control = settings.controls[i].fields[c];
+                        let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
+                        if(field != undefined) $(settings.controls[i].element).append('<li class="fieldselsection" data-control="'+ control +'"><a href="#">'+ field.label +'</a></li>');
+                    }
+                }
+            },
+            loadFields: function (fieldSets) {
+                let fields = (fieldSets != undefined) ? fieldSets.fields : settings.fields.filter(function(obj) { return obj.defaultAssign == true; });
+                let $li = $('<li />').attr({class: 'multiplefields'}).append(FormBuilder.fieldActions);
+
+                for(let i = 0; i < fields.length; i++) {
+                    if(fields[i].type != 'fieldSets') {
+                        if(fieldSets == undefined) $li = $('<li />').attr({class: 'singlefield'}).append(FormBuilder.fieldActions);
+
+                        let $div = $('<div />');
+                        $div.append('<label for="'+ fields[i].name +'">'+ fields[i].label +'</label>')
+                            .append((fields[i].required == true) ? ' <span class="req">*</span>' : '')
+                            .append(FormBuilder.fieldType(fields[i]));
+
+                        $(settings.previewArea).append($li.append($div));
+                    } else {
+                        cls.prototype.loadFields(fields[i]);
+                    }
+                }
+            },
+            eventHandlers: function () {
+                $('.fieldselsection').livequery('click', function (e) {
+                    var $this = $(this);
+
+                    let control = $this.data('control');
+                    let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
+
+                    if(field != undefined) {
+                        console.log(field);
+                    }
+                    e.preventDefault();
+                });
+            }
+        };
+
+        return cls;
+    })();
+
+    var methods = {
+        init : function(options) {
+            // Default options
+            var settings = $.extend({
+                fields: [],
+                controls: [],
+                sortableControls: true,
+                previewArea: '#form-system-field'
+            }, options );
+
+            var formBuilder = new FormBuilder();
+
+            // Apply options
+            return this.each(function() {
+                formBuilder.setOptions(settings);
+                formBuilder.loadControls();
+                formBuilder.loadFields();
+                formBuilder.eventHandlers();
             });
-            if (e.livequery.timeout)clearTimeout(e.livequery.timeout);
-            e.livequery.timeout = setTimeout(e.livequery.checkQueue, 20)
-        }, stop: function (t) {
-            if (t != undefined)e.livequery.queries[t].stop(); else e.each(e.livequery.queries, function (t) {
-                e.livequery.queries[t].stop()
-            })
+        },
+        show : function( ) {    },// IS
+        hide : function( ) {  },// GOOD
+        update : function( content ) {  }// !!!
+    };
+
+    $.fn.formBuilder = function(methodOrOptions) {
+        if ( methods[methodOrOptions] ) {
+            return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
+            // Default to "init"
+            return methods.init.apply( this, arguments );
+        } else {
+            $.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.formBuilder' );
         }
-    });
-    e.livequery.registerPlugin("append", "prepend", "after", "before", "wrap", "attr", "removeAttr", "addClass", "removeClass", "toggleClass", "empty", "remove", "html");
-    e(function () {
-        e.livequery.play()
-    })
-})(jQuery);
-
-
+    };
+})( jQuery );
 (function ($) {
     var utils = {
 
@@ -374,6 +463,380 @@
 
     $(document).ready(function () {
         utils.init();
+
+        $('#webform-builder').formBuilder({
+            controls: [
+                {
+                    label: 'Contacts',
+                    element: '#fieldgrougcontacts',
+                    fields: ['fieldSetsFullName', 'EmailAddress',  'fieldSetsHomeAddress',  'HomePhone',  'HomeFax', 'fieldSetsWorkAddress',  'WorkPhone',  'WorkFax',  'CellPhone',  'WebAddress',  'Company', 'DOB']
+                },
+                {
+                    label: 'Misc',
+                    element: '#fieldgrougmisc',
+                    fields: ['CaptchaV2', 'ReCaptcha', 'Security']
+                },
+                {
+                    label: 'Custom Fields',
+                    element: '#fieldgrougcustom',
+                    fields: ['customFieldDateTime', 'customFieldCheckbox', 'customFieldDropdown', 'customFieldListbox', 'customFieldRadio', 'customFieldMultiline', 'customFieldSingleline', 'customFieldBoolean']
+                }
+            ],
+            fields: [
+                {
+                    type: 'checkbox',
+                    label: 'Gender',
+                    name: 'Gender',
+                    defaultAssign: true,
+                    options: [{
+                        text: 'Male',
+                        value: 'Male',
+                        checked: true
+                    }, {
+                        text: 'Female',
+                        value: 'Female',
+                        checked: true
+                    }]
+                },
+                {
+                    type: 'multipleselect',
+                    label: 'List (Listbox List)',
+                    name: 'Nation',
+                    defaultAssign: true,
+                    options: [{
+                        text: 'Male',
+                        value: 'Male'
+                    }, {
+                        text: 'Female',
+                        value: 'Female',
+                        checked: true
+                    }]
+                },
+                {
+                    type: 'radio',
+                    label: 'Gender',
+                    name: 'Gender',
+                    defaultAssign: true,
+                    options: [{
+                        text: 'Male',
+                        value: 'Male'
+                    }, {
+                        text: 'Female',
+                        value: 'Female',
+                        checked: true
+                    }]
+                },
+                {
+                    type: 'fieldSets',
+                    label: 'Full Name',
+                    name: 'fieldSetsFullName',
+                    defaultAssign: true,
+                    fields: [{
+                        type: 'select',
+                        label: 'Title',
+                        name: 'Title',
+                        options: [{
+                            text: 'Dr',
+                            value: 'Dr'
+                        }, {
+                            text: 'Miss',
+                            value: 'Miss'
+                        }, {
+                            text: 'Mr',
+                            value: 'Mr',
+                            selected: true
+                        }, {
+                            text: 'Mrs',
+                            value: 'Mrs'
+                        }, {
+                            text: 'Ms',
+                            value: 'Ms'
+                        }]
+                    }, {
+                        type: 'text',
+                        label: 'First Name',
+                        name: 'FirstName',
+                        required: true
+                    }, {
+                        type: 'text',
+                        label: 'Last Name',
+                        name: 'LastName',
+                        required: true
+                    }]
+                },
+                {
+                    type: 'text',
+                    label: 'Email Address',
+                    name: 'EmailAddress',
+                    defaultAssign: true,
+                    required: true,
+                    removable: false
+                },
+                {
+                    type: 'text',
+                    label: 'Home Phone Number',
+                    name: 'HomePhone',
+                    defaultAssign: true,
+                },
+                {
+                    type: 'text',
+                    label: 'Home Fax Number',
+                    name: 'HomeFax',
+                    defaultAssign: true,
+                },
+                {
+                    type: 'text',
+                    label: 'Work Phone Number',
+                    name: 'WorkPhone'
+                },
+                {
+                    type: 'text',
+                    label: 'Work Fax Number',
+                    name: 'WorkFax'
+                },
+                {
+                    type: 'text',
+                    label: 'Cell Phone Number',
+                    name: 'CellPhone'
+                },
+                {
+                    type: 'text',
+                    label: 'Web Address',
+                    name: 'WebAddress'
+                },
+                {
+                    type: 'text',
+                    label: 'Company',
+                    name: 'Company'
+                },
+                {
+                    type: 'date',
+                    label: 'Date of Birth',
+                    name: 'DOB',
+                    defaultAssign: true
+                },
+                {
+                    type: 'text',
+                    label: 'Username',
+                    name: 'Username',
+                    required: true
+                },
+                {
+                    type: 'fieldSets',
+                    label: 'Home Address',
+                    name: 'fieldSetsHomeAddress', // optional
+                    defaultAssign: true,
+                    fields: [{
+                        type: 'text',
+                        label: 'Address',
+                        name: 'HomeAddress'
+                    }, {
+                        type: 'text',
+                        label: 'City',
+                        name: 'HomeCity'
+                    }, {
+                        type: 'text',
+                        label: 'State',
+                        name: 'HomeState'
+                    }, {
+                        type: 'text',
+                        label: 'Postcode',
+                        name: 'HomeZip'
+                    }, {
+                        type: 'select',
+                        label: 'Country',
+                        name: 'HomeCountry',
+                        options: [{
+                            text: 'Australia',
+                            value: 'AU'
+                        }, {
+                            text: 'United States',
+                            value: 'US'
+                        }]
+                    }]
+                },
+                {
+                    type: 'fieldSets',
+                    label: 'Work Address',
+                    name: 'fieldSetsWorkAddress', // optional
+                    fields: [{
+                        type: 'text',
+                        label: 'Address',
+                        name: 'WorkAddress'
+                    }, {
+                        type: 'text',
+                        label: 'City',
+                        name: 'WorkCity'
+                    }, {
+                        type: 'text',
+                        label: 'State',
+                        name: 'WorkState'
+                    }, {
+                        type: 'text',
+                        label: 'Postcode',
+                        name: 'WorkZip'
+                    }, {
+                        type: 'select',
+                        label: 'Country',
+                        name: 'WorkCountry',
+                        options: [{
+                            text: 'Australia',
+                            value: 'AU'
+                        }, {
+                            text: 'United States',
+                            value: 'US'
+                        }]
+                    }]
+                },
+                {
+                    type: 'fieldSets',
+                    label: 'Shipping Address',
+                    name: 'fieldSetsShippingAddress', // optional
+                    fields: [{
+                        type: 'text',
+                        label: 'Address',
+                        name: 'ShippingAddress'
+                    }, {
+                        type: 'text',
+                        label: 'City',
+                        name: 'ShippingCity'
+                    }, {
+                        type: 'text',
+                        label: 'State',
+                        name: 'ShippingState'
+                    }, {
+                        type: 'text',
+                        label: 'Postcode',
+                        name: 'ShippingZip'
+                    }, {
+                        type: 'select',
+                        label: 'Country',
+                        name: 'ShippingCountry',
+                        options: [{
+                            text: 'Australia',
+                            value: 'AU'
+                        }, {
+                            text: 'United States',
+                            value: 'US'
+                        }]
+                    }]
+                },
+                {
+                    type: 'fieldSets',
+                    label: 'Billing Address',
+                    name: 'fieldSetsBillingAddress', // optional
+                    fields: [{
+                        type: 'text',
+                        label: 'Address',
+                        name: 'BillingAddress'
+                    }, {
+                        type: 'text',
+                        label: 'City',
+                        name: 'BillingCity'
+                    }, {
+                        type: 'text',
+                        label: 'State',
+                        name: 'BillingState'
+                    }, {
+                        type: 'text',
+                        label: 'Postcode',
+                        name: 'BillingZip'
+                    }, {
+                        type: 'select',
+                        label: 'Country',
+                        name: 'BillingCountry',
+                        options: [{
+                            text: 'Australia',
+                            value: 'AU'
+                        }, {
+                            text: 'United States',
+                            value: 'US'
+                        }]
+                    }]
+                },
+                {
+                    type: 'fieldSets',
+                    label: 'Password',
+                    name: 'fieldSetsPassword', // optional
+                    fields: [{
+                        type: 'text',
+                        label: 'Password',
+                        name: 'Password',
+                        required: true
+                    }, {
+                        type: 'text',
+                        label: 'Confirm Password',
+                        name: 'PasswordConfirm',
+                        required: true
+                    }]
+                },
+                {
+                    type: 'text',
+                    label: 'CaptchaV2',
+                    name: 'CaptchaV2'
+                },
+                {
+                    type: 'text',
+                    label: 'ReCaptcha',
+                    name: 'ReCaptcha'
+                },
+                {
+                    type: 'text',
+                    label: 'Security',
+                    name: 'Security'
+                },
+                {
+                    type: 'date',
+                    label: 'DateTime',
+                    name: 'customFieldDateTime',
+                    generateName: true
+                },
+                {
+                    type: 'checkbox',
+                    label: 'List (Checkbox List)',
+                    name: 'customFieldCheckbox',
+                    generateName: true
+                },
+                {
+                    type: 'select',
+                    label: 'List (Dropdown List)',
+                    name: 'customFieldDropdown',
+                    generateName: true
+                },
+                {
+                    type: 'multipleselect',
+                    label: 'List (Listbox List)',
+                    name: 'customFieldListbox',
+                    generateName: true
+                },
+                {
+                    type: 'radio',
+                    label: 'List (Radio List)',
+                    name: 'customFieldRadio',
+                    generateName: true
+                },
+                {
+                    type: 'textarea',
+                    label: 'Text (Multiline)',
+                    name: 'customFieldMultiline',
+                    generateName: true,
+                    defaultAssign: true
+                },
+                {
+                    type: 'text',
+                    label: 'Text (String)',
+                    name: 'customFieldSingleline',
+                    generateName: true
+                },
+                {
+                    type: 'boolean',
+                    label: 'True/False (Boolean)',
+                    name: 'customFieldBoolean',
+                    generateName: true,
+                    defaultAssign: true
+                }
+            ]
+        });
     });
 
 })(jQuery);
