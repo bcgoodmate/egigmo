@@ -10,12 +10,56 @@
 (function($){
     var FormBuilder = (function () {
         // private static
-        var settings = {};
+        var settings = {},
+            fieldCounter = 0;
 
         // constructor
         var cls = function () {
             // public (this instance only)
             this.setOptions = function (opts) { settings = opts; };
+        };
+
+        cls.loadControls = function () {
+            for(let i = 0; i < settings.controls.length; i++) {
+                for(let c = 0; c < settings.controls[i].fields.length; c++) {
+                    let control = settings.controls[i].fields[c];
+                    let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
+
+                    if(field != undefined) $(settings.controls[i].element).find('.row').append('<div class="col-md-6"><div class="fieldselsection" data-control="'+ control +'"><a href="#" class="form-control">'+ field.label +'</a></div></div>');
+                }
+            }
+        };
+        
+        cls.loadFields = function (jsonFields) {
+            let fields = jsonFields.fields;
+            let $li = $('<li />').attr({class: 'dd-item multiplefields', 'data-id': fieldCounter}).append($('<div class="dd-handle">').html(FormBuilder.fieldActions()));
+
+            for(let i = 0; i < fields.length; i++) {
+                if(fields[i].type != 'fieldSets') {
+                    let selectedField = fields[i].name;
+
+                    if(jsonFields.type == undefined) {
+                        fieldCounter++;
+                        $li = $('<li />').attr({class: 'dd-item singlefield', 'data-id': fieldCounter}).append($('<div class="dd-handle">').html(FormBuilder.fieldActions()));
+                    } else {
+                        selectedField = jsonFields.name;
+                    }
+
+                    let $div = $('<div />');
+                    $div.append('<label for="'+ fields[i].name +'">'+ fields[i].label +'</label>')
+                        .append((fields[i].required == true) ? ' <span class="req">*</span>' : '')
+                        .append(FormBuilder.fieldType(fields[i]));
+                    $li.find('.dd-handle').append($div)
+
+                    $(settings.previewArea).append($li);
+
+                    // Set active state to the selected control
+                    $('.fieldselsection[data-control="'+ selectedField +'"] a').addClass('used');
+                } else {
+                    fieldCounter++;
+                    FormBuilder.loadFields(fields[i]);
+                }
+            }
         };
 
         // public static
@@ -117,52 +161,20 @@
 
         // public (shared across instances)
         cls.prototype = {
-            loadControls: function () {
-                for(let i = 0; i < settings.controls.length; i++) {
-                    for(let c = 0; c < settings.controls[i].fields.length; c++) {
-                        let control = settings.controls[i].fields[c];
-                        let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
+            render: function () {
+                FormBuilder.loadControls();
 
-                        if(field != undefined) $(settings.controls[i].element).find('.row').append('<div class="col-md-6"><div class="fieldselsection" data-control="'+ control +'"><a href="#" class="form-control">'+ field.label +'</a></div></div>');
-                    }
-                }
+                // Load default fields
+                FormBuilder.loadFields({fields: settings.fields.filter(function(obj) { return obj.defaultAssign == true; })});
 
-                $('#nestable').nestable({
-                    group: 1
-                }).on('change', function(e) {
-                    console.log(e);
-                });
-            },
-            loadFields: function (fieldSets) {
-                let fields = (fieldSets != undefined) ? fieldSets.fields : settings.fields.filter(function(obj) { return obj.defaultAssign == true; });
-                let $li = $('<li />').attr({class: 'dd-item multiplefields', 'data-id': 1}).append($('<div class="dd-handle">').html(FormBuilder.fieldActions));
-
-                for(let i = 0; i < fields.length; i++) {
-                    if(fields[i].type != 'fieldSets') {
-                        if(fieldSets == undefined) $li = $('<li />').attr({class: 'dd-item singlefield', 'data-id': 1}).append($('<div class="dd-handle">').html(FormBuilder.fieldActions));
-
-                        let $div = $('<div />');
-                        $div.append('<label for="'+ fields[i].name +'">'+ fields[i].label +'</label>')
-                            .append((fields[i].required == true) ? ' <span class="req">*</span>' : '')
-                            .append(FormBuilder.fieldType(fields[i]));
-                        $li.find('.dd-handle').append($div)
-
-                        $(settings.previewArea).append($li);
-                    } else {
-                        cls.prototype.loadFields(fields[i]);
-                    }
-                }
-            },
-            eventHandlers: function () {
                 $('.fieldselsection').livequery('click', function (e) {
                     var $this = $(this);
 
                     let control = $this.data('control');
                     let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
 
-                    if(field != undefined) {
-                        console.log(field);
-                    }
+                    if(field != undefined) FormBuilder.loadFields({fields: [field]});
+
                     e.preventDefault();
                 });
             }
@@ -186,9 +198,19 @@
             // Apply options
             return this.each(function() {
                 formBuilder.setOptions(settings);
-                formBuilder.loadControls();
-                formBuilder.loadFields();
-                formBuilder.eventHandlers();
+                formBuilder.render();
+
+                $('#nestable').nestable({
+                    listNodeName : 'ul'
+                }).on('change', function(e) {
+                    var list = e.length ? e : $(e.target);
+                    if (window.JSON) {
+                        console.log(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+                    } else {
+                        console.log('JSON browser support required for this demo.');
+                    }
+                });
+                // console.log($('#nestable').nestable('serialize'));
             });
         },
         show : function( ) {    },// IS
