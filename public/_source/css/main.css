@@ -299,7 +299,7 @@ ul {
 }
 
 .popup-content-wrapper {
-    width: 583px;
+    width: 650px;
     height: auto;
     background-repeat: no-repeat;
     background-position: right center;
@@ -749,9 +749,6 @@ a.delete {
     margin-bottom: 8px;
 }
 
-
-/* Start: Nestable jQuery Plugin */
-
 .dd {
     position: relative;
     display: block;
@@ -891,5 +888,33 @@ a.delete {
 
 .sortable>li.singlefield label {
     display: block;
+}
+
+
+.tab-wrapper .tab-row a {
+    display:  block;
+}
+
+.tab-wrapper .tab-row a:hover h3{
+    color: #c9bfbf;
+}
+.icon-drop:after{
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f30b";
+    color: #1E86E3;
+    font-size: 20px;
+    
+}
+.icon-drop{
+    float: left;
+    margin-right: 10px;
 }
 

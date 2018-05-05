@@ -119,17 +119,21 @@
 						    </div>
 						    <div class="form-group">
 							    <div class="row">
-							    	<div class="col-sm-4">
-							    		<label for="name">Select file to upload to server:</label>
-							    	</div>
-							    	<div class="col-sm-8">
+							    	<div class="col-sm-12">
+							    		<label for="name">Select file to upload to server:</label>							    	
 							    		<input type="file" class="form-control" name="">
+							    		<input type="file" class="form-control" name="">
+									    <br>
+							    		<input type="button" class="btn btn-default" name="" value="Add">
+							    		<span class="warning">(250MB limit applies to each file)</span>
 							    	</div>
 							    </div>
 						    </div>
 						   
+						    <p> Tip: you can also use SFTP to upload web pages and files! <a href="#" class="blue">[Learn More]</a> <a href="#" class="blue">[See Details]</a></p>
+						   
 						   <hr>
-						   <input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+						   <input type="button" id="btnSaveForm" value="Upload" class="btn btn-primary btn-default">
 
 						</form>
 					</div>
