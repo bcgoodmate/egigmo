@@ -328,6 +328,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('filemanager-index', function () {
         return view('admin.filemanager.index');
     });
+    Route::get('sitebillings-index', function () {
+        return view('admin.sitebillings.index');
+    });
 
 
 
