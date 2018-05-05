@@ -2,7 +2,7 @@
 
 @section('content')
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-inner">
 	   	
 	        <div class="list-btr">
 	            <h2>New Web Form</h2>
@@ -15,9 +15,6 @@
 		            <li><a id="" class="" href="#">Edit Properties</a></li>
 		        </ul>
 		    </div>
-
-
-	        
 
 			<div id="webform-builder">
 

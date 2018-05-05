@@ -3,7 +3,7 @@
 @section('content')
 
 	   	<div class="row">
-	   		<div class="col-sm-8">
+	   		<div class="col-inner">
 		        <div class="list-btr">
 		            <h2>Menus</h2>
 		        	<h5><em>Title Page Name</em></h5>

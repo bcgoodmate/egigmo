@@ -16,7 +16,7 @@
     @endif
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-inner">
             <div class="card">
                 <div class="card-header"><h1>New Page</h1></div>
                 <hr>

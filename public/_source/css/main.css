@@ -883,7 +883,7 @@ a.delete {
 }
 
 #table-anchor tr td a {
-    display: block;
+    display: inline-block;
 }
 
 .sortable>li.singlefield label {
@@ -917,4 +917,11 @@ a.delete {
     float: left;
     margin-right: 10px;
 }
-
+.col-inner {
+    width: 966px;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: #ffffff;
+}
