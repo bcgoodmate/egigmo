@@ -318,7 +318,7 @@ ul {
 
 #field-buttons {
     background-color: rgb(214, 234, 245);
-    padding: 9px;
+    padding: 20px;
     vertical-align: top;
     width: 100%;
 }
@@ -381,7 +381,7 @@ ul {
     font-weight: bold;
     float: left;
     line-height: 24px;
-    width: 238px;
+    width: 48%;
     background: #f7f7f7;
     border-radius: 5px;
     padding: 5px 10px;
@@ -389,7 +389,8 @@ ul {
     color: rgb(204, 204, 204);
 }
 
-#custom-fields ul li {
+#custom-fields ul#create li {
+    position: relative;
     display: block;
 }
 
@@ -493,7 +494,7 @@ ul {
     padding-bottom: 10px;
 }
 
-.ui-sortable > li {
+.sortable > li {
     display: block;
     position: relative;
     padding-bottom: 10px;
@@ -501,7 +502,7 @@ ul {
     border-bottom: 1px dotted #d7d7d7;
 }
 
-.ui-sortable {
+.sortable {
     border: 1px dotted #d7d7d7;
 }
 
@@ -509,7 +510,7 @@ ul {
     font-weight: normal;
 }
 
-.ui-sortable .field-actions {
+.sortable .field-actions {
     position: absolute;
     top: 0;
     right: 0;
@@ -520,11 +521,11 @@ ul {
     background: #bbb;
 }
 
-.ui-sortable > li div {
-    padding: 15px 15px 0 15px;
+.sortable > li > div {
+    padding: 15px;
 }
 
-.ui-sortable li:hover .field-actions {
+.sortable li:hover .field-actions {
     display: block;
 }
 
@@ -684,4 +685,67 @@ a.blue {
 }
 .tab-wrapper .tab-row > div.open{
     display: block;
+}
+
+.new-field-settings{
+    display: none;
+    position: absolute;
+    background:#d6eaf5;
+    z-index: 10;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+    border: 1px dotted #949494;
+    top: 40px;
+    left: 40px;
+}
+.open .new-field-settings{
+    display: block;
+}
+#system-fields > div > .row {
+    margin-bottom:  8px;
+}
+#system-fields .list-tab a {
+    display:  block;
+}
+#system-fields #tabs {
+    margin-bottom: 25px;
+}
+#custom-fields a{
+    display: block;
+}
+#custom-fields {
+    position:  relative;
+}
+
+#custom-fields > .row {
+    margin-bottom:  8px;
+}
+#custom-fields .new-field-settings a {
+    display:  inline-block;
+}
+.new-field-settings:before {
+    border-bottom: 12px solid #e0f0fa;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20px;
+
+}
+#system-fields a.used {
+    background-color: #1E85E3;
+    color: #fff;
+}
+
+#custom-fields > .row > div{
+    margin-bottom: 8px;
+}
+
+a.delete {
+    color: red;
 }

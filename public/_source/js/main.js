@@ -277,6 +277,7 @@
                 this.webformCreate();
                 this.oppurtunity();
                 this.menus();
+                this.fieldSettingPopover();
             },
             webform: function(){
 
@@ -319,6 +320,25 @@
                  });
 
 
+            },
+
+            fieldSettingPopover: function(){
+                
+                $('#custom-fields a.target').on('click', function(e){
+                    e.preventDefault();    
+                    var $parents = $(this).closest('#custom-fields > .row > div');
+                    $parents.addClass('open');
+                    $parents.siblings('.open').removeClass('open');
+                });
+                $('.new-field-settings .cancel').on('click', function(){
+                    $parents = $(this).parents('.new-field-settings');
+                    $parents.parents('.open').removeClass('open');
+                });
+                $('.field-actions a.edit').on('click', function(){
+                    var $closest = $(this).closest('.sortable li');
+                    $closest.addClass('open'); 
+                    $closest.siblings('.open').removeClass('open');           
+                })
             }
 
 
