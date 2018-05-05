@@ -749,3 +749,6 @@ a.blue {
 a.delete {
     color: red;
 }
+#system-fields .row > div{
+    margin-bottom: 8px;
+}

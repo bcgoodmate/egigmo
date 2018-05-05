@@ -72,54 +72,42 @@
 							        	<div class="col-md-6">
 							        		<div class="form-control"><a href="#" >Email Address</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							       
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Home Address</a></div>
 							        	</div>
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Home Phone</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							       
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Work Address</a></div>
 							        	</div>
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Home Fax</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Work Phone</a></div>
 							        	</div>
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Work Fax</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							       
 							        	<div class="col-md-6">
 							        		<div ><a href="#" class="form-control">Cell Phone</a></div>
 							        	</div>
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Web Address</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Company Details</a></div>
 							        	</div>
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Date of Birth</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Username</a></div>
 							        	</div>
@@ -141,9 +129,7 @@
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Credit Card Processing</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div>
 							        			<a href="#" class="form-control">Credit Card (Existing Orders)</a>							        			
@@ -152,9 +138,7 @@
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Update Credit Card details</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div>
 							        			<a href="#" class="form-control">Billing Address</a>							        			
@@ -163,9 +147,7 @@
 							        	<div class="col-md-6">
 							        		<div><a href="#" class="form-control">Shipping Address</a></div>
 							        	</div>
-							        </div>
-
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div>
 							        			<a href="#" class="form-control">Shipping Details</a>							        			
@@ -190,8 +172,7 @@
 							        			<a href="#"  class="form-control">Anniversary 1 Date</a>
 							        		</div>
 							        	</div>
-							        </div>							    
-									<div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div>
 							        			<a href="#" class="form-control">Anniversary 2 Date</a>							        			
@@ -202,8 +183,7 @@
 							        			<a href="#" class="form-control">Anniversary 3 Date</a>
 							        		</div>
 							        	</div>
-							        </div>
-							        <div class="row">
+							       
 							        	<div class="col-md-6">
 							        		<div>
 							        			<a href="#" class="form-control">Anniversary 4 Date</a>							        			
@@ -229,8 +209,7 @@
 							        			<a href="#" class="form-control">Image Verification</a>
 							        		</div>
 							        	</div>
-							        </div>
-							        <div class="row">
+							        
 							        	<div class="col-md-6">
 							        		<div>
 							        			<a href="#" class="form-control">Recaptcha V2</a>							        			
