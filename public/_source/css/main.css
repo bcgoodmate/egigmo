@@ -752,3 +752,9 @@ a.delete {
 #system-fields .row > div{
     margin-bottom: 8px;
 }
+#table-anchor tr td a {
+    display:  block;
+}
+.sortable > li.singlefield label {
+    display:  block;
+}
