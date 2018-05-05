@@ -753,7 +753,6 @@ a.delete {
     margin-bottom: 8px;
 }
 
-
 /* Start: Nestable jQuery Plugin */
 .dd { position: relative; display: block; margin: 0; padding: 0; max-width: 600px; list-style: none; font-size: 13px; line-height: 20px; }
 
@@ -819,3 +818,10 @@ a.delete {
 
 .dd-hover > .dd-handle { background: #2ea8e5 !important; }
 /* End: Nestable jQuery Plugin */
+=======
+#table-anchor tr td a {
+    display:  block;
+}
+.sortable > li.singlefield label {
+    display:  block;
+}
