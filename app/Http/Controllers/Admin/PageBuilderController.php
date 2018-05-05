@@ -10,10 +10,12 @@ use Purifier;
 Use File;
 use View;
 use Validator;
+use DirectoryIterator;
 use App\Helpers\SiteDirectory;
 
 class PageBuilderController extends HelperController
 {
+    private $treeDir = array();
 
     public function __construct()
     {
@@ -25,6 +27,50 @@ class PageBuilderController extends HelperController
         $pages = Page::getActivePage()->get();
         return view("admin.pagebuilder.pages.index", compact('pages'));
     }
+
+    /**
+     * @return array|View
+     */
+    public function treeview(){
+
+
+        $directories = glob('site/*');
+
+        array_unshift($directories, 'site/');
+
+        //return $directories;
+
+        //$dir_files = [];
+
+        //$this->treeIterator($directories);
+
+
+        $dir_files = $this->treeDir;
+
+        return view("admin.pagebuilder.pages.tree",compact('dir_files'));
+    }
+
+    public function treeIterator($directories){
+
+        foreach($directories as $directory){
+
+            if(is_dir($directory)){
+                $subdirectories = glob($directory);
+                $this->treeIterator($subdirectories);
+            }
+
+            /*$dir = 'site/'.$directory;
+
+            $dirs = array_map(function ($item){
+                $n = explode("/", $item);
+                return $n[count($n)-1];
+            }, glob($dir."/*.html"));*/
+
+            $this->treeDir[$directory] = $directory;
+        }
+        return;
+    }
+
 
     /**
      * Show the form for creating a new resource.

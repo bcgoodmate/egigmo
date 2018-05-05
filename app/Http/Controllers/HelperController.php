@@ -40,7 +40,7 @@ class HelperController extends Controller
     }
     public function recursiveDirectoryFilePath($dirs){
         foreach($dirs as $key => $val) {
-            if(!strrpos($key,'.html') && !strrpos($key,'.htm') ){
+            if(!strrpos($key,'.html') && !strrpos($key,'.htm') && !strrpos($key,'.css') && !strrpos($key,'.js')){
                 $this->recursiveFilePathIterator($key,$val);
             }else{
                 array_push($this->path_files, $key);

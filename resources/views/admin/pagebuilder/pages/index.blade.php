@@ -2,20 +2,12 @@
 
 @section('content')
 
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-            {{ session('status') }}
-        </div>
-    @endif
-
+    @include('admin.pagebuilder.pages.partials.alert')
     <div class="list-btr">
         <h2>Pages</h2>
     </div>
     <div class="list-view">
-        <ul>
-            <li class="active"><a href="#">List View</a></li>
-        </ul>
+        @include('admin.pagebuilder.pages.partials.menu')
     </div>
     <div class="btn-add">
         <ul>

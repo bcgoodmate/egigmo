@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
         'as' => 'pagebuilder.folder.store',
         'uses' => 'PageBuilderController@folderStore'
     ]);
+    Route::get('pagebuilder/treeview', [
+        'as' => 'pagebuilder.treeview',
+        'uses' => 'PageBuilderController@treeview'
+    ]);
     Route::resource('pagebuilder', 'PageBuilderController');
     Route::resource('pagetemplatebuilder', 'PageTemplateBuilderController');
     Route::resource('formbuilder', 'FormBuilderController');
