@@ -325,6 +325,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('betafeatures-index', function () {
         return view('admin.betafeatures.index');
     });
+    Route::get('filemanager-index', function () {
+        return view('admin.filemanager.index');
+    });
 
 
 
