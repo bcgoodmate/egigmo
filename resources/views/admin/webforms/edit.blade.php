@@ -4,7 +4,7 @@
 
 		
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-inner">
 
 	   	
 		        <div class="list-btr">
@@ -35,9 +35,6 @@
 			        </ul>
 
 			    </div>
-
-
-		        
 
 				<div id="webform-builder">
 

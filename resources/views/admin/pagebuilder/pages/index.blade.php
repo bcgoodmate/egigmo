@@ -40,8 +40,10 @@
                             @endif
                         @endif
                     </td>
-                    <td><a href="{{str_replace_last('.html', '', $page->content_path)}}" target="_blank" class="blue">Preview</a> | <a
-                                href="{{route('admin.pagebuilder.edit', $page->id)}}" class="blue"> Edit</a></td>
+                    <td>
+                        <a href="{{str_replace_last('.html', '', $page->content_path)}}" target="_blank" class="blue">Preview</a> | 
+                        <a href="{{route('admin.pagebuilder.edit', $page->id)}}" class="blue"> Edit</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

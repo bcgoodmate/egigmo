@@ -898,6 +898,7 @@
                 $('.tab-wrapper .tab-row a').on('click', function(e){
                     e.preventDefault();
                     $(this).next().slideToggle();
+                    $(this).toggleClass('down');
                 })
             }
            
