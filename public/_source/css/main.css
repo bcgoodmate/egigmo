@@ -684,7 +684,6 @@ a.blue {
 }
 
 .new-field-settings{
-    display: none;
     position: absolute;
     background:#d6eaf5;
     z-index: 10;
@@ -749,6 +748,9 @@ a.delete {
     margin-bottom: 8px;
 }
 
+.fieldoption {
+    display: table;
+}
 
 /* Start: Nestable jQuery Plugin */
 
@@ -775,6 +777,7 @@ a.delete {
 }
 
 .dd-handle {
+    background: #fff;
     padding: 15px;
     margin: 8px 0;
     display: block;
@@ -886,10 +889,6 @@ a.delete {
 }
 
 #table-anchor tr td a {
-    display: block;
-}
-
-.sortable>li.singlefield label {
     display: block;
 }
 

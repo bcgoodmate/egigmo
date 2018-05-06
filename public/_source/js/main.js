@@ -5,7 +5,496 @@
  * Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - https://github.com/dbushell/Nestable
  * Dual-licensed under the BSD or MIT licenses
  */
-!function(t,e,s,i){var a="ontouchstart"in s,o=function(){var t=s.createElement("div"),i=s.documentElement;if(!("pointerEvents"in t.style))return!1;t.style.pointerEvents="auto",t.style.pointerEvents="x",i.appendChild(t);var a=e.getComputedStyle&&"auto"===e.getComputedStyle(t,"").pointerEvents;return i.removeChild(t),!!a}(),l={listNodeName:"ol",itemNodeName:"li",rootClass:"dd",listClass:"dd-list",itemClass:"dd-item",dragClass:"dd-dragel",handleClass:"dd-handle",collapsedClass:"dd-collapsed",placeClass:"dd-placeholder",noDragClass:"dd-nodrag",emptyClass:"dd-empty",expandBtnHTML:'<button data-action="expand" type="button">Expand</button>',collapseBtnHTML:'<button data-action="collapse" type="button">Collapse</button>',group:0,maxDepth:5,threshold:20};function n(e,i){this.w=t(s),this.el=t(e),this.options=t.extend({},l,i),this.init()}n.prototype={init:function(){var s=this;s.reset(),s.el.data("nestable-group",this.options.group),s.placeEl=t('<div class="'+s.options.placeClass+'"/>'),t.each(this.el.find(s.options.itemNodeName),function(e,i){s.setParent(t(i))}),s.el.on("click","button",function(e){if(!s.dragEl){var i=t(e.currentTarget),a=i.data("action"),o=i.parent(s.options.itemNodeName);"collapse"===a&&s.collapseItem(o),"expand"===a&&s.expandItem(o)}});var i=function(e){var i=t(e.target);if(!i.hasClass(s.options.handleClass)){if(i.closest("."+s.options.noDragClass).length)return;i=i.closest("."+s.options.handleClass)}i.length&&!s.dragEl&&(s.isTouch=/^touch/.test(e.type),s.isTouch&&1!==e.touches.length||(e.preventDefault(),s.dragStart(e.touches?e.touches[0]:e)))},o=function(t){s.dragEl&&(t.preventDefault(),s.dragMove(t.touches?t.touches[0]:t))},l=function(t){s.dragEl&&(t.preventDefault(),s.dragStop(t.touches?t.touches[0]:t))};a&&(s.el[0].addEventListener("touchstart",i,!1),e.addEventListener("touchmove",o,!1),e.addEventListener("touchend",l,!1),e.addEventListener("touchcancel",l,!1)),s.el.on("mousedown",i),s.w.on("mousemove",o),s.w.on("mouseup",l)},serialize:function(){var e=this;return step=function(s,i){var a=[];return s.children(e.options.itemNodeName).each(function(){var s=t(this),o=t.extend({},s.data()),l=s.children(e.options.listNodeName);l.length&&(o.children=step(l,i+1)),a.push(o)}),a},step(e.el.find(e.options.listNodeName).first(),0)},serialise:function(){return this.serialize()},reset:function(){this.mouse={offsetX:0,offsetY:0,startX:0,startY:0,lastX:0,lastY:0,nowX:0,nowY:0,distX:0,distY:0,dirAx:0,dirX:0,dirY:0,lastDirX:0,lastDirY:0,distAxX:0,distAxY:0},this.isTouch=!1,this.moving=!1,this.dragEl=null,this.dragRootEl=null,this.dragDepth=0,this.hasNewRoot=!1,this.pointEl=null},expandItem:function(t){t.removeClass(this.options.collapsedClass),t.children('[data-action="expand"]').hide(),t.children('[data-action="collapse"]').show(),t.children(this.options.listNodeName).show()},collapseItem:function(t){t.children(this.options.listNodeName).length&&(t.addClass(this.options.collapsedClass),t.children('[data-action="collapse"]').hide(),t.children('[data-action="expand"]').show(),t.children(this.options.listNodeName).hide())},expandAll:function(){var e=this;e.el.find(e.options.itemNodeName).each(function(){e.expandItem(t(this))})},collapseAll:function(){var e=this;e.el.find(e.options.itemNodeName).each(function(){e.collapseItem(t(this))})},setParent:function(e){e.children(this.options.listNodeName).length&&(e.prepend(t(this.options.expandBtnHTML)),e.prepend(t(this.options.collapseBtnHTML))),e.children('[data-action="expand"]').hide()},unsetParent:function(t){t.removeClass(this.options.collapsedClass),t.children("[data-action]").remove(),t.children(this.options.listNodeName).remove()},dragStart:function(e){var a=this.mouse,o=t(e.target),l=o.closest(this.options.itemNodeName);this.placeEl.css("height",l.height()),a.offsetX=e.offsetX!==i?e.offsetX:e.pageX-o.offset().left,a.offsetY=e.offsetY!==i?e.offsetY:e.pageY-o.offset().top,a.startX=a.lastX=e.pageX,a.startY=a.lastY=e.pageY,this.dragRootEl=this.el,this.dragEl=t(s.createElement(this.options.listNodeName)).addClass(this.options.listClass+" "+this.options.dragClass),this.dragEl.css("width",l.width()),l.after(this.placeEl),l[0].parentNode.removeChild(l[0]),l.appendTo(this.dragEl),t(s.body).append(this.dragEl),this.dragEl.css({left:e.pageX-a.offsetX,top:e.pageY-a.offsetY});var n,d,h=this.dragEl.find(this.options.itemNodeName);for(n=0;n<h.length;n++)(d=t(h[n]).parents(this.options.listNodeName).length)>this.dragDepth&&(this.dragDepth=d)},dragStop:function(t){var e=this.dragEl.children(this.options.itemNodeName).first();e[0].parentNode.removeChild(e[0]),this.placeEl.replaceWith(e),this.dragEl.remove(),this.el.trigger("change"),this.hasNewRoot&&this.dragRootEl.trigger("change"),this.reset()},dragMove:function(i){var a,l,n,d=this.options,h=this.mouse;this.dragEl.css({left:i.pageX-h.offsetX,top:i.pageY-h.offsetY}),h.lastX=h.nowX,h.lastY=h.nowY,h.nowX=i.pageX,h.nowY=i.pageY,h.distX=h.nowX-h.lastX,h.distY=h.nowY-h.lastY,h.lastDirX=h.dirX,h.lastDirY=h.dirY,h.dirX=0===h.distX?0:h.distX>0?1:-1,h.dirY=0===h.distY?0:h.distY>0?1:-1;var r=Math.abs(h.distX)>Math.abs(h.distY)?1:0;if(!h.moving)return h.dirAx=r,void(h.moving=!0);h.dirAx!==r?(h.distAxX=0,h.distAxY=0):(h.distAxX+=Math.abs(h.distX),0!==h.dirX&&h.dirX!==h.lastDirX&&(h.distAxX=0),h.distAxY+=Math.abs(h.distY),0!==h.dirY&&h.dirY!==h.lastDirY&&(h.distAxY=0)),h.dirAx=r,h.dirAx&&h.distAxX>=d.threshold&&(h.distAxX=0,n=this.placeEl.prev(d.itemNodeName),h.distX>0&&n.length&&!n.hasClass(d.collapsedClass)&&(a=n.find(d.listNodeName).last(),this.placeEl.parents(d.listNodeName).length+this.dragDepth<=d.maxDepth&&(a.length?(a=n.children(d.listNodeName).last()).append(this.placeEl):((a=t("<"+d.listNodeName+"/>").addClass(d.listClass)).append(this.placeEl),n.append(a),this.setParent(n)))),h.distX<0&&(this.placeEl.next(d.itemNodeName).length||(l=this.placeEl.parent(),this.placeEl.closest(d.itemNodeName).after(this.placeEl),l.children().length||this.unsetParent(l.parent()))));var p=!1;if(o||(this.dragEl[0].style.visibility="hidden"),this.pointEl=t(s.elementFromPoint(i.pageX-s.body.scrollLeft,i.pageY-(e.pageYOffset||s.documentElement.scrollTop))),o||(this.dragEl[0].style.visibility="visible"),this.pointEl.hasClass(d.handleClass)&&(this.pointEl=this.pointEl.parent(d.itemNodeName)),this.pointEl.hasClass(d.emptyClass))p=!0;else if(!this.pointEl.length||!this.pointEl.hasClass(d.itemClass))return;var c=this.pointEl.closest("."+d.rootClass),g=this.dragRootEl.data("nestable-id")!==c.data("nestable-id");if(!h.dirAx||g||p){if(g&&d.group!==c.data("nestable-group"))return;if(this.dragDepth-1+this.pointEl.parents(d.listNodeName).length>d.maxDepth)return;var f=i.pageY<this.pointEl.offset().top+this.pointEl.height()/2;l=this.placeEl.parent(),p?((a=t(s.createElement(d.listNodeName)).addClass(d.listClass)).append(this.placeEl),this.pointEl.replaceWith(a)):f?this.pointEl.before(this.placeEl):this.pointEl.after(this.placeEl),l.children().length||this.unsetParent(l.parent()),this.dragRootEl.find(d.itemNodeName).length||this.dragRootEl.append('<div class="'+d.emptyClass+'"/>'),g&&(this.dragRootEl=c,this.hasNewRoot=this.el[0]!==this.dragRootEl[0])}}},t.fn.nestable=function(e){var s=this;return this.each(function(){var i=t(this).data("nestable");i?"string"==typeof e&&"function"==typeof i[e]&&(s=i[e]()):(t(this).data("nestable",new n(this,e)),t(this).data("nestable-id",(new Date).getTime()))}),s||this}}(window.jQuery||window.Zepto,window,document);
+/*!
+ * Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
+ * Dual-licensed under the BSD or MIT licenses
+ */
+;(function($, window, document, undefined)
+{
+    var hasTouch = 'ontouchstart' in document;
+
+    /**
+     * Detect CSS pointer-events property
+     * events are normally disabled on the dragging element to avoid conflicts
+     * https://github.com/ausi/Feature-detection-technique-for-pointer-events/blob/master/modernizr-pointerevents.js
+     */
+    var hasPointerEvents = (function()
+    {
+        var el    = document.createElement('div'),
+            docEl = document.documentElement;
+        if (!('pointerEvents' in el.style)) {
+            return false;
+        }
+        el.style.pointerEvents = 'auto';
+        el.style.pointerEvents = 'x';
+        docEl.appendChild(el);
+        var supports = window.getComputedStyle && window.getComputedStyle(el, '').pointerEvents === 'auto';
+        docEl.removeChild(el);
+        return !!supports;
+    })();
+
+    var defaults = {
+        listNodeName    : 'ol',
+        itemNodeName    : 'li',
+        rootClass       : 'dd',
+        listClass       : 'dd-list',
+        itemClass       : 'dd-item',
+        dragClass       : 'dd-dragel',
+        handleClass     : 'dd-handle',
+        collapsedClass  : 'dd-collapsed',
+        placeClass      : 'dd-placeholder',
+        noDragClass     : 'dd-nodrag',
+        emptyClass      : 'dd-empty',
+        expandBtnHTML   : '<button data-action="expand" type="button">Expand</button>',
+        collapseBtnHTML : '<button data-action="collapse" type="button">Collapse</button>',
+        group           : 0,
+        maxDepth        : 5,
+        threshold       : 20
+    };
+
+    function Plugin(element, options)
+    {
+        this.w  = $(document);
+        this.el = $(element);
+        this.options = $.extend({}, defaults, options);
+        this.init();
+    }
+
+    Plugin.prototype = {
+
+        init: function()
+        {
+            var list = this;
+
+            list.reset();
+
+            list.el.data('nestable-group', this.options.group);
+
+            list.placeEl = $('<div class="' + list.options.placeClass + '"/>');
+
+            $.each(this.el.find(list.options.itemNodeName), function(k, el) {
+                list.setParent($(el));
+            });
+
+            list.el.on('click', 'button', function(e) {
+                if (list.dragEl) {
+                    return;
+                }
+                var target = $(e.currentTarget),
+                    action = target.data('action'),
+                    item   = target.parent(list.options.itemNodeName);
+                if (action === 'collapse') {
+                    list.collapseItem(item);
+                }
+                if (action === 'expand') {
+                    list.expandItem(item);
+                }
+            });
+
+            var onStartEvent = function(e)
+            {
+                var handle = $(e.target);
+
+                if (!handle.hasClass('grabbing')) {
+                    return;
+                }
+
+                if (!handle.hasClass(list.options.handleClass)) {
+                    if (handle.closest('.' + list.options.noDragClass).length) {
+                        return;
+                    }
+                    handle = handle.closest('.' + list.options.handleClass);
+                }
+
+                if (!handle.length || list.dragEl) {
+                    return;
+                }
+
+                list.isTouch = /^touch/.test(e.type);
+                if (list.isTouch && e.touches.length !== 1) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                list.dragStart(e.touches ? e.touches[0] : e);
+            };
+
+            var onMoveEvent = function(e)
+            {
+                if (list.dragEl) {
+                    e.preventDefault();
+                    list.dragMove(e.touches ? e.touches[0] : e);
+                }
+            };
+
+            var onEndEvent = function(e)
+            {
+                if (list.dragEl) {
+                    e.preventDefault();
+                    list.dragStop(e.touches ? e.touches[0] : e);
+                }
+            };
+
+            if (hasTouch) {
+                list.el[0].addEventListener('touchstart', onStartEvent, false);
+                window.addEventListener('touchmove', onMoveEvent, false);
+                window.addEventListener('touchend', onEndEvent, false);
+                window.addEventListener('touchcancel', onEndEvent, false);
+            }
+
+            list.el.on('mousedown', onStartEvent);
+            list.w.on('mousemove', onMoveEvent);
+            list.w.on('mouseup', onEndEvent);
+
+        },
+
+        serialize: function()
+        {
+            var data,
+                depth = 0,
+                list  = this;
+            step  = function(level, depth)
+            {
+                var array = [ ],
+                    items = level.children(list.options.itemNodeName);
+                items.each(function()
+                {
+                    var li   = $(this),
+                        item = $.extend({}, li.data()),
+                        sub  = li.children(list.options.listNodeName);
+                    if (sub.length) {
+                        item.children = step(sub, depth + 1);
+                    }
+                    array.push(item);
+                });
+                return array;
+            };
+            data = step(list.el.find(list.options.listNodeName).first(), depth);
+            return data;
+        },
+
+        serialise: function()
+        {
+            return this.serialize();
+        },
+
+        reset: function()
+        {
+            this.mouse = {
+                offsetX   : 0,
+                offsetY   : 0,
+                startX    : 0,
+                startY    : 0,
+                lastX     : 0,
+                lastY     : 0,
+                nowX      : 0,
+                nowY      : 0,
+                distX     : 0,
+                distY     : 0,
+                dirAx     : 0,
+                dirX      : 0,
+                dirY      : 0,
+                lastDirX  : 0,
+                lastDirY  : 0,
+                distAxX   : 0,
+                distAxY   : 0
+            };
+            this.isTouch    = false;
+            this.moving     = false;
+            this.dragEl     = null;
+            this.dragRootEl = null;
+            this.dragDepth  = 0;
+            this.hasNewRoot = false;
+            this.pointEl    = null;
+        },
+
+        expandItem: function(li)
+        {
+            li.removeClass(this.options.collapsedClass);
+            li.children('[data-action="expand"]').hide();
+            li.children('[data-action="collapse"]').show();
+            li.children(this.options.listNodeName).show();
+        },
+
+        collapseItem: function(li)
+        {
+            var lists = li.children(this.options.listNodeName);
+            if (lists.length) {
+                li.addClass(this.options.collapsedClass);
+                li.children('[data-action="collapse"]').hide();
+                li.children('[data-action="expand"]').show();
+                li.children(this.options.listNodeName).hide();
+            }
+        },
+
+        expandAll: function()
+        {
+            var list = this;
+            list.el.find(list.options.itemNodeName).each(function() {
+                list.expandItem($(this));
+            });
+        },
+
+        collapseAll: function()
+        {
+            var list = this;
+            list.el.find(list.options.itemNodeName).each(function() {
+                list.collapseItem($(this));
+            });
+        },
+
+        setParent: function(li)
+        {
+            if (li.children(this.options.listNodeName).length) {
+                li.prepend($(this.options.expandBtnHTML));
+                li.prepend($(this.options.collapseBtnHTML));
+            }
+            li.children('[data-action="expand"]').hide();
+        },
+
+        unsetParent: function(li)
+        {
+            li.removeClass(this.options.collapsedClass);
+            li.children('[data-action]').remove();
+            li.children(this.options.listNodeName).remove();
+        },
+
+        dragStart: function(e)
+        {
+            var mouse    = this.mouse,
+                target   = $(e.target),
+                dragItem = target.closest(this.options.itemNodeName);
+
+            this.placeEl.css('height', dragItem.height());
+
+            mouse.offsetX = e.offsetX !== undefined ? e.offsetX : e.pageX - target.offset().left;
+            mouse.offsetY = e.offsetY !== undefined ? e.offsetY : e.pageY - target.offset().top;
+            mouse.startX = mouse.lastX = e.pageX;
+            mouse.startY = mouse.lastY = e.pageY;
+
+            this.dragRootEl = this.el;
+
+            this.dragEl = $(document.createElement(this.options.listNodeName)).addClass(this.options.listClass + ' ' + this.options.dragClass);
+            this.dragEl.css('width', dragItem.width());
+
+            dragItem.after(this.placeEl);
+            dragItem[0].parentNode.removeChild(dragItem[0]);
+            dragItem.appendTo(this.dragEl);
+
+            $(document.body).append(this.dragEl);
+            this.dragEl.css({
+                'left' : e.pageX - mouse.offsetX,
+                'top'  : e.pageY - mouse.offsetY
+            });
+            // total depth of dragging item
+            var i, depth,
+                items = this.dragEl.find(this.options.itemNodeName);
+            for (i = 0; i < items.length; i++) {
+                depth = $(items[i]).parents(this.options.listNodeName).length;
+                if (depth > this.dragDepth) {
+                    this.dragDepth = depth;
+                }
+            }
+        },
+
+        dragStop: function(e)
+        {
+            var el = this.dragEl.children(this.options.itemNodeName).first();
+            el[0].parentNode.removeChild(el[0]);
+            this.placeEl.replaceWith(el);
+
+            this.dragEl.remove();
+            this.el.trigger('change');
+            if (this.hasNewRoot) {
+                this.dragRootEl.trigger('change');
+            }
+            this.reset();
+        },
+
+        dragMove: function(e)
+        {
+            var list, parent, prev, next, depth,
+                opt   = this.options,
+                mouse = this.mouse;
+
+            this.dragEl.css({
+                'left' : e.pageX - mouse.offsetX,
+                'top'  : e.pageY - mouse.offsetY
+            });
+
+            // mouse position last events
+            mouse.lastX = mouse.nowX;
+            mouse.lastY = mouse.nowY;
+            // mouse position this events
+            mouse.nowX  = e.pageX;
+            mouse.nowY  = e.pageY;
+            // distance mouse moved between events
+            mouse.distX = mouse.nowX - mouse.lastX;
+            mouse.distY = mouse.nowY - mouse.lastY;
+            // direction mouse was moving
+            mouse.lastDirX = mouse.dirX;
+            mouse.lastDirY = mouse.dirY;
+            // direction mouse is now moving (on both axis)
+            mouse.dirX = mouse.distX === 0 ? 0 : mouse.distX > 0 ? 1 : -1;
+            mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
+            // axis mouse is now moving on
+            var newAx   = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
+
+            // do nothing on first move
+            if (!mouse.moving) {
+                mouse.dirAx  = newAx;
+                mouse.moving = true;
+                return;
+            }
+
+            // calc distance moved on this axis (and direction)
+            if (mouse.dirAx !== newAx) {
+                mouse.distAxX = 0;
+                mouse.distAxY = 0;
+            } else {
+                mouse.distAxX += Math.abs(mouse.distX);
+                if (mouse.dirX !== 0 && mouse.dirX !== mouse.lastDirX) {
+                    mouse.distAxX = 0;
+                }
+                mouse.distAxY += Math.abs(mouse.distY);
+                if (mouse.dirY !== 0 && mouse.dirY !== mouse.lastDirY) {
+                    mouse.distAxY = 0;
+                }
+            }
+            mouse.dirAx = newAx;
+
+            /**
+             * move horizontal
+             */
+            if (mouse.dirAx && mouse.distAxX >= opt.threshold) {
+                // reset move distance on x-axis for new phase
+                mouse.distAxX = 0;
+                prev = this.placeEl.prev(opt.itemNodeName);
+                // increase horizontal level if previous sibling exists and is not collapsed
+                if (mouse.distX > 0 && prev.length && !prev.hasClass(opt.collapsedClass)) {
+                    // cannot increase level when item above is collapsed
+                    list = prev.find(opt.listNodeName).last();
+                    // check if depth limit has reached
+                    depth = this.placeEl.parents(opt.listNodeName).length;
+                    if (depth + this.dragDepth <= opt.maxDepth) {
+                        // create new sub-level if one doesn't exist
+                        if (!list.length) {
+                            list = $('<' + opt.listNodeName + '/>').addClass(opt.listClass);
+                            list.append(this.placeEl);
+                            prev.append(list);
+                            this.setParent(prev);
+                        } else {
+                            // else append to next level up
+                            list = prev.children(opt.listNodeName).last();
+                            list.append(this.placeEl);
+                        }
+                    }
+                }
+                // decrease horizontal level
+                if (mouse.distX < 0) {
+                    // we can't decrease a level if an item preceeds the current one
+                    next = this.placeEl.next(opt.itemNodeName);
+                    if (!next.length) {
+                        parent = this.placeEl.parent();
+                        this.placeEl.closest(opt.itemNodeName).after(this.placeEl);
+                        if (!parent.children().length) {
+                            this.unsetParent(parent.parent());
+                        }
+                    }
+                }
+            }
+
+            var isEmpty = false;
+
+            // find list item under cursor
+            if (!hasPointerEvents) {
+                this.dragEl[0].style.visibility = 'hidden';
+            }
+            this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
+            if (!hasPointerEvents) {
+                this.dragEl[0].style.visibility = 'visible';
+            }
+            if (this.pointEl.hasClass(opt.handleClass)) {
+                this.pointEl = this.pointEl.parent(opt.itemNodeName);
+            }
+            if (this.pointEl.hasClass(opt.emptyClass)) {
+                isEmpty = true;
+            }
+            else if (!this.pointEl.length || !this.pointEl.hasClass(opt.itemClass)) {
+                return;
+            }
+
+            // find parent list of item under cursor
+            var pointElRoot = this.pointEl.closest('.' + opt.rootClass),
+                isNewRoot   = this.dragRootEl.data('nestable-id') !== pointElRoot.data('nestable-id');
+
+            /**
+             * move vertical
+             */
+            if (!mouse.dirAx || isNewRoot || isEmpty) {
+                // check if groups match if dragging over new root
+                if (isNewRoot && opt.group !== pointElRoot.data('nestable-group')) {
+                    return;
+                }
+                // check depth limit
+                depth = this.dragDepth - 1 + this.pointEl.parents(opt.listNodeName).length;
+                if (depth > opt.maxDepth) {
+                    return;
+                }
+                var before = e.pageY < (this.pointEl.offset().top + this.pointEl.height() / 2);
+                parent = this.placeEl.parent();
+                // if empty create new list to replace empty placeholder
+                if (isEmpty) {
+                    list = $(document.createElement(opt.listNodeName)).addClass(opt.listClass);
+                    list.append(this.placeEl);
+                    this.pointEl.replaceWith(list);
+                }
+                else if (before) {
+                    this.pointEl.before(this.placeEl);
+                }
+                else {
+                    this.pointEl.after(this.placeEl);
+                }
+                if (!parent.children().length) {
+                    this.unsetParent(parent.parent());
+                }
+                if (!this.dragRootEl.find(opt.itemNodeName).length) {
+                    this.dragRootEl.append('<div class="' + opt.emptyClass + '"/>');
+                }
+                // parent root list has changed
+                if (isNewRoot) {
+                    this.dragRootEl = pointElRoot;
+                    this.hasNewRoot = this.el[0] !== this.dragRootEl[0];
+                }
+            }
+        }
+
+    };
+
+    $.fn.nestable = function(params)
+    {
+        var lists  = this,
+            retval = this;
+
+        lists.each(function()
+        {
+            var plugin = $(this).data("nestable");
+
+            if (!plugin) {
+                $(this).data("nestable", new Plugin(this, params));
+                $(this).data("nestable-id", new Date().getTime());
+            } else {
+                if (typeof params === 'string' && typeof plugin[params] === 'function') {
+                    retval = plugin[params]();
+                }
+            }
+        });
+
+        return retval || lists;
+    };
+
+})(window.jQuery || window.Zepto, window, document);
 
 (function($){
     var FormBuilder = (function () {
@@ -25,14 +514,14 @@
                     let control = settings.controls[i].fields[c];
                     let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
 
-                    if(field != undefined) $(settings.controls[i].element).find('.row').append('<div class="col-md-6"><div class="fieldselsection" data-control="'+ control +'"><a href="#" class="form-control">'+ field.label +'</a></div></div>');
+                    if(field != undefined) $(settings.controls[i].element).find('.row').append('<div class="col-md-6"><div class="fieldselsection" data-control="'+ control +'"><a href="javascript:void(0)" class="form-control">'+ field.label +'</a></div></div>');
                 }
             }
         };
         
         cls.loadFields = function (jsonFields) {
             let fields = jsonFields.fields;
-            let $li = $('<li />').attr({class: 'dd-item multiplefields', 'data-id': fieldCounter}).append($('<div class="dd-handle">').html(FormBuilder.fieldActions()));
+            let $li = $('<li />').attr({class: 'dd-item multiplefields', 'data-id': fieldCounter}).append($('<div class="dd-handle grabbing">').html(FormBuilder.fieldActions()));
 
             for(let i = 0; i < fields.length; i++) {
                 if(fields[i].type != 'fieldSets') {
@@ -40,12 +529,12 @@
 
                     if(jsonFields.type == undefined) {
                         fieldCounter++;
-                        $li = $('<li />').attr({class: 'dd-item singlefield', 'data-id': fieldCounter}).append($('<div class="dd-handle">').html(FormBuilder.fieldActions()));
+                        $li = $('<li />').attr({class: 'dd-item singlefield', 'data-id': fieldCounter}).append($('<div class="dd-handle grabbing">').html(FormBuilder.fieldActions()));
                     } else {
                         selectedField = jsonFields.name;
                     }
 
-                    let $div = $('<div />');
+                    let $div = $('<div class="grabbing" />');
                     $div.append('<label for="'+ fields[i].name +'">'+ fields[i].label +'</label>')
                         .append((fields[i].required == true) ? ' <span class="req">*</span>' : '')
                         .append(FormBuilder.fieldType(fields[i]));
@@ -54,7 +543,7 @@
                     $(settings.previewArea).append($li);
 
                     // Set active state to the selected control
-                    $('.fieldselsection[data-control="'+ selectedField +'"] a').addClass('used');
+                    if(fields[i].custom == undefined) $('.fieldselsection[data-control="'+ selectedField +'"] a').addClass('used');
                 } else {
                     fieldCounter++;
                     FormBuilder.loadFields(fields[i]);
@@ -109,15 +598,16 @@
                     for (var i = 0, len = obj.options.length; i < len; ++i) {
                         o = obj.options[i];
                         checked = !!o.checked;
-                        radio.push($('<input type="'+ field.type +'" />').attr({
+                        let div = $('<div class="fieldoption"/>').html($('<input type="'+ field.type +'" />').attr({
                             name: obj.name,
                             id: obj.name,
                             value: o.value,
                             checked: checked
-                        })[0].outerHTML + o.text);
+                        })[0].outerHTML + ' ' + o.text);
+                        radio.push(div[0].outerHTML);
                     }
 
-                    return radio.join('<br />');
+                    return radio.join('\n');
                 },
                 'checkbox': function(obj) {
                     let checkbox = [], o, checked;
@@ -125,15 +615,16 @@
                     for (var i = 0, len = obj.options.length; i < len; ++i) {
                         o = obj.options[i];
                         checked = !!o.checked;
-                        checkbox.push($('<input type="checkbox" />').attr({
-                                name: obj.name,
-                                id: obj.name,
-                                value: o.value,
-                                checked: checked
-                            })[0].outerHTML + (o.text != undefined ? o.text : ''));
+                        let div = $('<div class="fieldoption" />').html($('<input type="checkbox" />').attr({
+                            name: obj.name,
+                            id: obj.name,
+                            value: o.value,
+                            checked: checked
+                        })[0].outerHTML + ' ' + (o.text != undefined ? o.text : ''));
+                        checkbox.push(div[0].outerHTML);
                     }
 
-                    return checkbox.join('<br />');
+                    return checkbox.join('\n');
                 },
                 'boolean': function(obj) {
                     obj.subtype = obj.type;
@@ -159,6 +650,34 @@
             return '<div class="field-actions"><a href="#" class="edit" title="Edit "><i class="icon far fa-edit"></i></a><a href="#" class="delete" title="delete"><i class="icon fas fa-minus-circle"></i></a></div>';
         };
 
+        cls.template = function (tpl, data) {
+            let arr = [];
+
+            switch(tpl) {
+                case 'popup-addfield':
+                    var typeWithOptions = ['checkbox','select','multipleselect','radio'];
+                    var fieldoption = '<div class="form-group"><label>+</label><input type="text" class="fieldoption"></div>';
+
+                    arr = ['<div class="new-field-settings" data-control="'+ data.name +'">',
+                        '<div class="form-group">',
+                            '<label>Field Name</label>',
+                            '<input type="text" name="fieldlabel" class="form-control">',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>Required?</label>',
+                            '<input type="checkbox" name="fieldrequire" value="1">',
+                        '</div>',
+                        (typeWithOptions.indexOf(data.type) != -1) ? fieldoption : '',
+                        '<hr>',
+                        '<a href="#" class="btn btn-primary save">save</a>',
+                        '<a href="#" class="btn btn-default cancel">cancel</a>',
+                    '</div>'];
+                    break;
+            }
+
+            return arr.join('\n');
+        };
+
         // public (shared across instances)
         cls.prototype = {
             render: function () {
@@ -167,13 +686,103 @@
                 // Load default fields
                 FormBuilder.loadFields({fields: settings.fields.filter(function(obj) { return obj.defaultAssign == true; })});
 
-                $('.fieldselsection').livequery('click', function (e) {
-                    var $this = $(this);
+                $('#nestable').nestable({
+                    listNodeName : 'ul'
+                }).on('change', function(e) {
+                    var list = e.length ? e : $(e.target);
+                    if (window.JSON) {
+                        // console.log(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+                    } else {
+                        // console.log('JSON browser support required for this demo.');
+                    }
+                });
+                // console.log($('#nestable').nestable('serialize'));
+
+                var $popupAddField = $('.new-field-settings');
+                var $fieldActions = $('.field-actions');
+
+                $('.fieldselsection > a:not(.used)').livequery('click', function (e) {
+                    var $this = $(this).parent();
 
                     let control = $this.data('control');
                     let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
 
-                    if(field != undefined) FormBuilder.loadFields({fields: [field]});
+                    if($('.new-field-settings')[0]) $('.new-field-settings').remove();
+                    if(field != undefined) {
+                        if(field.custom) {
+                            $this.append(FormBuilder.template('popup-addfield', field));
+                        } else {
+                            FormBuilder.loadFields({fields: [field]});
+                        }
+                    }
+
+                    e.preventDefault();
+                });
+
+                $popupAddField.find('.save').livequery('click', function (e) {
+                    var typeWithOptions = ['checkbox','select','multipleselect','radio'],
+                        err = [];
+                    var $parents = $(this).parents('.new-field-settings'),
+                        label = $parents.find('input[name="fieldlabel"]').val(),
+                        $options = $parents.find('input.fieldoption'),
+                        require = $parents.find('input[name="fieldrequire"]').is(':checked');
+
+                    let control = $parents.data('control');
+                    let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
+
+                    if(label == '') err.push('- Please enter Field Name');
+                    if(typeWithOptions.indexOf(field.type) != -1) {
+                        var str = '';
+
+                        $options.each(function () {
+                            str += $(this).val();
+                        });
+
+                        if(str == '') err.push('- Please add Field Items');
+                    }
+
+                    if(err.length > 0) {
+                        alert(err.join('\n'));
+                    } else {
+                        field.label = label;
+                        field.required = require;
+
+                        if(typeWithOptions.indexOf(field.type) != -1) {
+                            var arr = [];
+                            $options.each(function () {
+                                var val = $(this).val();
+
+                                if(val != '') {
+                                    arr.push({
+                                        text: val,
+                                        value: val
+                                    });
+                                }
+                            });
+                            field.options = arr;
+                        }
+
+                        FormBuilder.loadFields({fields: [field]});
+
+                        $parents.remove();
+                    }
+
+                    e.preventDefault();
+                });
+
+                $popupAddField.find('.cancel').livequery('click', function (e) {
+                    $(this).parents('.new-field-settings').remove();
+
+                    e.preventDefault();
+                });
+
+                $fieldActions.find('.edit').livequery('click', function (e) {
+                    e.preventDefault();
+                });
+
+                $fieldActions.find('.delete').livequery('click', function (e) {
+                    var r = confirm('Are you sure you wish to delete this item[s] permanently?');
+                    if (r == true) $(this).parents('li').remove();
 
                     e.preventDefault();
                 });
@@ -199,18 +808,6 @@
             return this.each(function() {
                 formBuilder.setOptions(settings);
                 formBuilder.render();
-
-                $('#nestable').nestable({
-                    listNodeName : 'ul'
-                }).on('change', function(e) {
-                    var list = e.length ? e : $(e.target);
-                    if (window.JSON) {
-                        console.log(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
-                    } else {
-                        console.log('JSON browser support required for this demo.');
-                    }
-                });
-                // console.log($('#nestable').nestable('serialize'));
             });
         },
         show : function( ) {    },// IS
@@ -231,13 +828,11 @@
 })( jQuery );
 (function ($) {
     var utils = {
-
         init: function () {
             this.ui.init();
             this.route.init();
             this.components.init();
         },
-
         ui: {
 
             init: function () {
@@ -360,25 +955,12 @@
             },
 
             fieldSettingPopover: function(){
-                
-                $('#custom-fields a.target').on('click', function(e){
-                    e.preventDefault();    
-                    var $parents = $(this).closest('#custom-fields > .row > div');
-                    $parents.addClass('open');
-                    $parents.siblings('.open').removeClass('open');
-                });
-                $('.new-field-settings .cancel').on('click', function(){
-                    $parents = $(this).parents('.new-field-settings');
-                    $parents.parents('.open').removeClass('open');
-                });
                 $('.field-actions a.edit').on('click', function(){
                     var $closest = $(this).closest('.sortable li');
                     $closest.addClass('open'); 
                     $closest.siblings('.open').removeClass('open');           
                 })
             }
-
-
         },
         route: {
             init: function () {
@@ -515,7 +1097,6 @@
 
             }
         }
-
     }
 
     $(document).ready(function () {
@@ -544,7 +1125,6 @@
                     type: 'checkbox',
                     label: 'Gender',
                     name: 'Gender',
-                    defaultAssign: true,
                     options: [{
                         text: 'Male',
                         value: 'Male',
@@ -559,7 +1139,6 @@
                     type: 'multipleselect',
                     label: 'List (Listbox List)',
                     name: 'Nation',
-                    defaultAssign: true,
                     options: [{
                         text: 'Male',
                         value: 'Male'
@@ -612,13 +1191,11 @@
                     }, {
                         type: 'text',
                         label: 'First Name',
-                        name: 'FirstName',
-                        required: true
+                        name: 'FirstName'
                     }, {
                         type: 'text',
                         label: 'Last Name',
-                        name: 'LastName',
-                        required: true
+                        name: 'LastName'
                     }]
                 },
                 {
@@ -632,14 +1209,12 @@
                 {
                     type: 'text',
                     label: 'Home Phone Number',
-                    name: 'HomePhone',
-                    defaultAssign: true,
+                    name: 'HomePhone'
                 },
                 {
                     type: 'text',
                     label: 'Home Fax Number',
-                    name: 'HomeFax',
-                    defaultAssign: true,
+                    name: 'HomeFax'
                 },
                 {
                     type: 'text',
@@ -669,8 +1244,7 @@
                 {
                     type: 'date',
                     label: 'Date of Birth',
-                    name: 'DOB',
-                    defaultAssign: true
+                    name: 'DOB'
                 },
                 {
                     type: 'text',
@@ -682,7 +1256,6 @@
                     type: 'fieldSets',
                     label: 'Home Address',
                     name: 'fieldSetsHomeAddress', // optional
-                    defaultAssign: true,
                     fields: [{
                         type: 'text',
                         label: 'Address',
@@ -846,55 +1419,52 @@
                     type: 'date',
                     label: 'DateTime',
                     name: 'customFieldDateTime',
-                    generateName: true
+                    custom: true
                 },
                 {
                     type: 'checkbox',
                     label: 'List (Checkbox List)',
                     name: 'customFieldCheckbox',
-                    generateName: true
+                    custom: true
                 },
                 {
                     type: 'select',
                     label: 'List (Dropdown List)',
                     name: 'customFieldDropdown',
-                    generateName: true
+                    custom: true
                 },
                 {
                     type: 'multipleselect',
                     label: 'List (Listbox List)',
                     name: 'customFieldListbox',
-                    generateName: true
+                    custom: true
                 },
                 {
                     type: 'radio',
                     label: 'List (Radio List)',
                     name: 'customFieldRadio',
-                    generateName: true
+                    custom: true
                 },
                 {
                     type: 'textarea',
                     label: 'Text (Multiline)',
                     name: 'customFieldMultiline',
-                    generateName: true,
-                    defaultAssign: true
+                    custom: true
                 },
                 {
                     type: 'text',
                     label: 'Text (String)',
                     name: 'customFieldSingleline',
-                    generateName: true
+                    custom: true
                 },
                 {
                     type: 'boolean',
                     label: 'True/False (Boolean)',
                     name: 'customFieldBoolean',
-                    generateName: true,
-                    defaultAssign: true
+                    custom: true
                 }
             ]
         });
     });
-
 })(jQuery);
 

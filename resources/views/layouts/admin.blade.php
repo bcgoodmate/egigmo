@@ -19,10 +19,6 @@
     <link href="{{ asset('_source/css/main.css') }}" rel="stylesheet">
 
     <script src="{{ asset('_source/js/jquery.min.js') }}"></script>
-
-    <!-- Start: formBuilder -->
-    <link href="{{ asset('_source/vendors/formBuilder/demo/assets/css/demo.css')}}" rel="stylesheet">
-    <!-- End: formBuilder -->
 </head>
 <body>
 <div id="app">
@@ -44,13 +40,6 @@
     <script src="{{ asset('_source/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('_source/vendors/magnific-popup/magnific-popup.min.js') }}"></script>
     <script src="{{ asset('_source/js/main.js') }}"></script>
-
-    <!-- Start: formBuilder -->
-    <script src="{{ asset('_source/vendors/formBuilder/demo/assets/js/vendor.js')}} "></script>
-    <script src="{{ asset('_source/vendors/formBuilder/demo/assets/js/form-builder.min.js')}}"></script>
-    <script src="{{ asset('_source/vendors/formBuilder/demo/assets/js/form-render.min.js')}}"></script>
-    <script src="{{ asset('_source/vendors/formBuilder/demo/assets/js/test.js')}}"></script>
-    <!-- End: formBuilder -->
 </div>
 </body>
 </html>
