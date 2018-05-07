@@ -656,7 +656,7 @@
             switch(tpl) {
                 case 'popup-addfield':
                     var typeWithOptions = ['checkbox','select','multipleselect','radio'];
-                    var fieldoption = '<div class="form-group"><label>+</label><input type="text" class="fieldoption"></div>';
+                    var fieldoption = '<div class="form-group radio-add"><input type="radio"><input type="text" class="fieldoption form-control"><div><a href="#" class="add-field"><i class="fas fa-plus-circle"></i></i></a><a href="#" class="del-field"><i class="fas fa-minus-circle"></i></a></div></div>';
 
                     arr = ['<div class="new-field-settings" data-control="'+ data.name +'" data-action="'+ data.action +'">',
                         '<div class="form-group">',
