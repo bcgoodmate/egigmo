@@ -520,6 +520,7 @@
         };
         
         cls.loadFields = function (jsonFields) {
+            let $container = $('<div />');
             let fields = jsonFields.fields;
             let $li = $('<li />').data('info', jsonFields).attr({class: 'dd-item multiplefields', 'data-id': 'CAT_Custom_' + fieldCounter}).append($('<div class="dd-handle grabbing">').html((jsonFields.removable == false) ? '' : FormBuilder.fieldActions()));
 
@@ -540,15 +541,17 @@
                         .append(FormBuilder.fieldType(fields[i]));
                     $li.find('.dd-handle').append($div)
 
-                    $(settings.previewArea).append($li);
+                    $container.append($li);
 
                     // Set active state to the selected control
                     if(fields[i].custom == undefined) $('.fieldselsection[data-control="'+ selectedField +'"] a').addClass('used');
                 } else {
                     fieldCounter++;
-                    FormBuilder.loadFields(fields[i]);
+                    $container.append(FormBuilder.loadFields(fields[i]));
                 }
             }
+
+            return $container.children();
         };
 
         // public static
@@ -684,7 +687,7 @@
                 FormBuilder.loadControls();
 
                 // Load default fields
-                FormBuilder.loadFields({fields: settings.fields.filter(function(obj) { return obj.defaultAssign == true; })});
+                $(settings.previewArea).append(FormBuilder.loadFields({fields: settings.fields.filter(function(obj) { return obj.defaultAssign == true; })}));
 
                 $('#nestable').nestable({
                     listNodeName : 'ul'
@@ -716,7 +719,7 @@
                                 field.action = 'save';
                                 $this.append(FormBuilder.template('popup-addfield', field));
                             } else {
-                                FormBuilder.loadFields({fields: [field]});
+                                $(settings.previewArea).append(FormBuilder.loadFields({fields: [field]}));
                             }
                         }
                     }
@@ -766,7 +769,7 @@
                             field.options = arr;
                         }
 
-                        FormBuilder.loadFields({fields: [field]});
+                        $(settings.previewArea).append(FormBuilder.loadFields({fields: [field]}));
 
                         $parents.remove();
                     }
@@ -782,6 +785,7 @@
 
                 $fieldActions.find('.edit').livequery('click', function (e) {
                     var $this = $(this), $li = $this.parents('li'),
+                        info = $li.data().info;
                         $parents = $this.parents('.dd-handle');
 
                     if($li.data('info').custom == true) {
@@ -796,7 +800,25 @@
                         if($('.new-field-settings')[0]) $('.new-field-settings').remove();
 
                         var c = confirm('Do you want to change the mandatory option?');
-                        if (c == true) console.log($li.data().info);
+                        if (c == true) {
+                            if(info.type == 'fieldSets') {
+                                $.each(info.fields, function (k, v) {
+                                    if(v.required == undefined || v.required == false) {
+                                        v.required = true;
+                                    } else {
+                                        v.required = false;
+                                    }
+                                });
+                            } else {
+                                if(info.required == undefined || info.required == false) {
+                                    info.required = true;
+                                } else {
+                                    info.required = false;
+                                }
+                            }
+
+                            $li.replaceWith(FormBuilder.loadFields({fields: [info]}));
+                        }
                     }
 
                     e.preventDefault();
