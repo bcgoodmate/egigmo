@@ -521,7 +521,7 @@
         
         cls.loadFields = function (jsonFields) {
             let fields = jsonFields.fields;
-            let $li = $('<li />').attr({class: 'dd-item multiplefields', 'data-id': fieldCounter}).append($('<div class="dd-handle grabbing">').html(FormBuilder.fieldActions()));
+            let $li = $('<li />').data('info', jsonFields).attr({class: 'dd-item multiplefields', 'data-id': 'CAT_Custom_' + fieldCounter}).append($('<div class="dd-handle grabbing">').html((jsonFields.removable == false) ? '' : FormBuilder.fieldActions()));
 
             for(let i = 0; i < fields.length; i++) {
                 if(fields[i].type != 'fieldSets') {
@@ -529,7 +529,7 @@
 
                     if(jsonFields.type == undefined) {
                         fieldCounter++;
-                        $li = $('<li />').attr({class: 'dd-item singlefield', 'data-id': fieldCounter}).append($('<div class="dd-handle grabbing">').html(FormBuilder.fieldActions()));
+                        $li = $('<li />').data('info', fields[i]).attr({class: 'dd-item singlefield', 'data-id': 'CAT_Custom_' + fieldCounter}).append($('<div class="dd-handle grabbing">').html((fields[i].removable == false) ? '' : FormBuilder.fieldActions()));
                     } else {
                         selectedField = jsonFields.name;
                     }
@@ -658,10 +658,10 @@
                     var typeWithOptions = ['checkbox','select','multipleselect','radio'];
                     var fieldoption = '<div class="form-group"><label>+</label><input type="text" class="fieldoption"></div>';
 
-                    arr = ['<div class="new-field-settings" data-control="'+ data.name +'">',
+                    arr = ['<div class="new-field-settings" data-control="'+ data.name +'" data-action="'+ data.action +'">',
                         '<div class="form-group">',
                             '<label>Field Name</label>',
-                            '<input type="text" name="fieldlabel" class="form-control">',
+                            '<input type="text" name="fieldlabel" class="form-control" value="'+ ((data.action == 'update') ? data.fieldlabel : '')  +'">',
                         '</div>',
                         '<div class="form-group">',
                             '<label>Required?</label>',
@@ -704,15 +704,20 @@
                 $('.fieldselsection > a:not(.used)').livequery('click', function (e) {
                     var $this = $(this).parent();
 
-                    let control = $this.data('control');
-                    let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
+                    if($this.find('.new-field-settings')[0]) {
+                        $this.find('.new-field-settings').remove();
+                    } else {
+                        let control = $this.data('control');
+                        let field = settings.fields.filter(function(obj) { return obj.name == control; })[0];
 
-                    if($('.new-field-settings')[0]) $('.new-field-settings').remove();
-                    if(field != undefined) {
-                        if(field.custom) {
-                            $this.append(FormBuilder.template('popup-addfield', field));
-                        } else {
-                            FormBuilder.loadFields({fields: [field]});
+                        if($('.new-field-settings')[0]) $('.new-field-settings').remove();
+                        if(field != undefined) {
+                            if(field.custom) {
+                                field.action = 'save';
+                                $this.append(FormBuilder.template('popup-addfield', field));
+                            } else {
+                                FormBuilder.loadFields({fields: [field]});
+                            }
                         }
                     }
 
@@ -720,8 +725,7 @@
                 });
 
                 $popupAddField.find('.save').livequery('click', function (e) {
-                    var typeWithOptions = ['checkbox','select','multipleselect','radio'],
-                        err = [];
+                    var typeWithOptions = ['checkbox','select','multipleselect','radio'], err = [];
                     var $parents = $(this).parents('.new-field-settings'),
                         label = $parents.find('input[name="fieldlabel"]').val(),
                         $options = $parents.find('input.fieldoption'),
@@ -777,12 +781,30 @@
                 });
 
                 $fieldActions.find('.edit').livequery('click', function (e) {
+                    var $this = $(this), $li = $this.parents('li'),
+                        $parents = $this.parents('.dd-handle');
+
+                    if($li.data('info').custom == true) {
+                        if($parents.find('.new-field-settings')[0]) {
+                            $parents.find('.new-field-settings').remove();
+                        } else {
+                            if($('.new-field-settings')[0]) $('.new-field-settings').remove();
+
+                            $parents.append(FormBuilder.template('popup-addfield', {fieldlabel: $li.data('info').label, action: 'update'}));
+                        }
+                    } else {
+                        if($('.new-field-settings')[0]) $('.new-field-settings').remove();
+
+                        var c = confirm('Do you want to change the mandatory option?');
+                        if (c == true) console.log($li.data().info);
+                    }
+
                     e.preventDefault();
                 });
 
                 $fieldActions.find('.delete').livequery('click', function (e) {
-                    var r = confirm('Are you sure you wish to delete this item[s] permanently?');
-                    if (r == true) $(this).parents('li').remove();
+                    var c = confirm('Are you sure you wish to delete this item[s] permanently?');
+                    if (c == true) $(this).parents('li').remove();
 
                     e.preventDefault();
                 });
@@ -1153,7 +1175,6 @@
                     type: 'radio',
                     label: 'Gender',
                     name: 'Gender',
-                    defaultAssign: true,
                     options: [{
                         text: 'Male',
                         value: 'Male'

@@ -892,11 +892,6 @@ a.delete {
     display: inline-block;
 }
 
-.sortable>li.singlefield label {
-    display: block;
-}
-
-
 .tab-wrapper .tab-row a {
     display:  block;
 }
