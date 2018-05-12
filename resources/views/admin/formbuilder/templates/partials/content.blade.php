@@ -3,12 +3,12 @@
         <h2>{{$form->name or "New Form Builders"}}</h2>
     </div>
     <br>
+    <div class="btn-add">
+        @include('admin.formbuilder.templates.partials.buttons')
+    </div>
     <div class="row">
         <div class="col-inner">
 
-            <div class="btn-add">
-                @include('admin.formbuilder.templates.partials.buttons')
-            </div>
 
             <div id="webform-builder">
                 @include('admin.formbuilder.templates.partials.canvas')

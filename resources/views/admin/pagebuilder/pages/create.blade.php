@@ -15,11 +15,10 @@
         </div>
     @endif
 
+    <div class="card-header"><h1>New Page</h1></div>
     <div class="row">
-        <div class="col-inner">
+        <div class="">
             <div class="card">
-                <div class="card-header"><h1>New Page</h1></div>
-                <hr>
                 <div class="card-body">
                     <form action="{{route('admin.pagebuilder.store')}}" method="post" class="pageForm">
                     {{csrf_field()}}
