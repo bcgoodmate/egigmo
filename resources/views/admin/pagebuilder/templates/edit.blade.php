@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="row">
+    <div class="row" data-module="templatebuilder">
         <div class="col-inner">
             <div class="card">
                 <div class="card-header"><h1>Edit Template</h1></div>
                 <hr>
 
                 <div class="card-body">
-                    <form action="{{route('admin.pagetemplatebuilder.update',$template->id)}}" method="post" class="pageForm">
+                    <form action="{{route('admin.pagetemplatebuilder.update',$template->id)}}" method="post">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="patch" />
                         @include('admin.pagebuilder.templates.partials.form',array('content' => '{tag_pagecontent}'))
