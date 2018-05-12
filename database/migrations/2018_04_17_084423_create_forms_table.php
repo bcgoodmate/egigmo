@@ -24,10 +24,11 @@ class CreateFormsTable extends Migration
             $table->uuid('stage_type_id')->index()->nullable(); // opportunity stage ID
             $table->decimal('probability', 8, 2)->default(0.00); // default probability
             $table->decimal('amount', 8, 2)->default(0.00); // the estimated value of this sale opportunity
-            $table->uuid('cycle_type_id')->default(0); // 0 - createOpportunity is false, 3 - In a week, 4 - In a fortnight, 5 - In a month, 6 - In 3 months, 7 - In 6 months, 8 - In 1 year
+            $table->integer('cycle_type_id')->default(0); // 0 - createOpportunity is false, 3 - In a week, 4 - In a fortnight, 5 - In a month, 6 - In 3 months, 7 - In 6 months, 8 - In 1 year
             $table->boolean('set_wholesale')->default(0); // wholesale subscription enabled
             $table->boolean('send_autoresponder')->default(0); // to send or not the autoresponder email to the customer filling out the web form
-            $table->uuid('send_autoresponder_id')->nullable();
+            $table->uuid('send_autoresponder_id')->index()->nullable();
+            $table->longText('fields')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

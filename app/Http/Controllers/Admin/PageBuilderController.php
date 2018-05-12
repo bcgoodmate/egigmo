@@ -93,7 +93,6 @@ class PageBuilderController extends HelperController
      */
     public function store(Request $request)
     {
-
         $page = new Page();
 
         $validator = Validator::make($request->all(), $page->rules());
@@ -108,12 +107,11 @@ class PageBuilderController extends HelperController
 
         $name = $request->name;
         $page_title = $request->page_title;
-        $is_start_page = $request->start_page;
+        $is_start_page = ($request->start_page == 1) ? 1 : 0;
         $page_body = $request->page_body;
         $page_desc = $request->page_desc;
         $folder = $request->folder;
         $template = $request->template;
-        return $is_start_page;
         $page_url = $folder . '/' . str_slug($name, '-');
         $page_name = str_slug($name, '-') . '.html';
         $relative_file_path = $folder . '/' . $page_name;

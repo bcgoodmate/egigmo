@@ -27,8 +27,6 @@ class CreatePageTemplatesTable extends Migration
         Schema::table('pages', function (Blueprint $table) {
             $table->foreign('page_template_id')->references('id')->on('page_templates');
         });
-
-
     }
 
     /**

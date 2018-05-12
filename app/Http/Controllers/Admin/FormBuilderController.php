@@ -40,7 +40,12 @@ class FormBuilderController extends HelperController
         $form = new Form;
         $form->name = $request->name;
         $form->save();
-        return redirect()->route('admin.formbuilder.index')->with('status','Form created!');
+
+        // Beware that if the id is NOT autoincrement, this will always return 0.
+        // In my case the id was a string (UUID) and for this to work I had to add public $incrementing = false; in my model.
+        $last_insert_id = $form->id;
+
+        return redirect()->route('admin.formbuilder.edit', $last_insert_id);
     }
 
     /**
@@ -62,7 +67,8 @@ class FormBuilderController extends HelperController
      */
     public function edit($id)
     {
-        return view('admin.formbuilder.templates.edit');
+        $form = Form::where('id', $id)->firstOrFail();
+        return view('admin.formbuilder.templates.edit', compact('form'));
     }
 
     /**
@@ -74,7 +80,12 @@ class FormBuilderController extends HelperController
      */
     public function update(Request $request, $id)
     {
-        //
+        $form = Form::where('id', $id)->firstOrFail();
+        $form->name = $request->name;
+        $form->fields = $request->fields;
+        $form->save();
+
+        return redirect()->route('admin.formbuilder.edit', $id)->with('status', 'Form Updated!');
     }
 
     /**

@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::resource('pagetemplatebuilder', 'PageTemplateBuilderController');
     Route::resource('formbuilder', 'FormBuilderController');
     Route::resource('webform', 'WebformController');
+    Route::resource('systememails', 'SystemEmailsController');
 
     /*new link page*/
     Route::get('contentholders-index', function () {

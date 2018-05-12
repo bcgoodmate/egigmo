@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class WebformController extends Controller
+class SystemEmailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class WebformController extends Controller
      */
     public function index()
     {
-        return view('admin.webforms.index');
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class WebformController extends Controller
      */
     public function create()
     {
-        return view('admin.webforms.create');
+        //
     }
 
     /**
@@ -35,7 +35,7 @@ class WebformController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo 'Test';
     }
 
     /**
@@ -57,7 +57,7 @@ class WebformController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.webforms.edit');
+        //
     }
 
     /**

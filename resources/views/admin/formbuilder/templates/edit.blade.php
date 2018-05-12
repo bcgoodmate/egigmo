@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Edit</h1>
-
+    @include('admin.formbuilder.templates.partials.content', ['action' => "edit", 'form' => $form])
 @endsection

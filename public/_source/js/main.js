@@ -1,3 +1,77 @@
+/*jshint curly:true, eqeqeq:true, laxbreak:true, noempty:false */
+/*
+ https://github.com/Andr3as/Codiad-Beautify
+
+ The MIT License (MIT)
+
+ Copyright (c) 2007-2013 Einar Lielmanis and contributors.
+
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation files
+ (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge,
+ publish, distribute, sublicense, and/or sell copies of the Software,
+ and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+
+ Style HTML
+ ---------------
+
+ Written by Nochum Sossonko, (nsossonko@hotmail.com)
+
+ Based on code initially developed by: Einar Lielmanis, <einar@jsbeautifier.org>
+ http://jsbeautifier.org/
+
+ Usage:
+ style_html(html_source);
+
+ style_html(html_source, options);
+
+ The options are:
+ indent_inner_html (default false)  — indent <head> and <body> sections,
+ indent_size (default 4)          — indentation size,
+ indent_char (default space)      — character to indent with,
+ wrap_line_length (default 250)            -  maximum amount of characters per line (0 = disable)
+ brace_style (default "collapse") - "collapse" | "expand" | "end-expand" | "none"
+ put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are.
+ unformatted (defaults to inline tags) - list of tags, that shouldn't be reformatted
+ indent_scripts (default normal)  - "keep"|"separate"|"normal"
+ preserve_newlines (default true) - whether existing line breaks before elements should be preserved
+ Only works before elements, not inside tags or for text.
+ max_preserve_newlines (default unlimited) - maximum number of line breaks to be preserved in one chunk
+ indent_handlebars (default false) - format and indent {{#foo}} and {{/foo}}
+ end_with_newline (false)          - end with a newline
+
+
+ e.g.
+
+ style_html(html_source, {
+ 'indent_inner_html': false,
+ 'indent_size': 2,
+ 'indent_char': ' ',
+ 'wrap_line_length': 78,
+ 'brace_style': 'expand',
+ 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u'],
+ 'preserve_newlines': true,
+ 'max_preserve_newlines': 5,
+ 'indent_handlebars': false
+ });
+ */
+function trim(t){return t.replace(/^\s+|\s+$/g,"")}function ltrim(t){return t.replace(/^\s+/g,"")}function rtrim(t){return t.replace(/\s+$/g,"")}function style_html(t,e,i,n){var s,r,h,a,_,o,u,p,l,c,g,f,d;for(void 0!==(e=e||{}).wrap_line_length&&0!==parseInt(e.wrap_line_length,10)||void 0===e.max_char||0===parseInt(e.max_char,10)||(e.wrap_line_length=e.max_char),r=void 0!==e.indent_inner_html&&e.indent_inner_html,h=void 0===e.indent_size?4:parseInt(e.indent_size,10),a=void 0===e.indent_char?" ":e.indent_char,o=void 0===e.brace_style?"collapse":e.brace_style,_=0===parseInt(e.wrap_line_length,10)?32786:parseInt(e.wrap_line_length||250,10),u=e.unformatted||["a","span","img","bdo","em","strong","dfn","code","samp","kbd","var","cite","abbr","acronym","q","sub","sup","tt","i","b","big","small","u","s","strike","font","ins","del","pre","address","dt","h1","h2","h3","h4","h5","h6"],p=void 0===e.preserve_newlines||e.preserve_newlines,l=p?isNaN(parseInt(e.max_preserve_newlines,10))?32786:parseInt(e.max_preserve_newlines,10):0,c=void 0!==e.indent_handlebars&&e.indent_handlebars,g=void 0===e.wrap_attributes?"auto":e.wrap_attributes,f=void 0===e.wrap_attributes_indent_size?h:parseInt(e.wrap_attributes_indent_size,10)||h,d=void 0!==e.end_with_newline&&e.end_with_newline,(s=new function(){return this.pos=0,this.token="",this.current_mode="CONTENT",this.tags={parent:"parent1",parentcount:1,parent1:""},this.tag_type="",this.token_text=this.last_token=this.last_text=this.token_type="",this.newlines=0,this.indent_content=r,this.Utils={whitespace:"\n\r\t ".split(""),single_token:"br,input,link,meta,!doctype,basefont,base,area,hr,wbr,param,img,isindex,?xml,embed,?php,?,?=".split(","),extra_liners:"head,body,/html".split(","),in_array:function(t,e){for(var i=0;i<e.length;i++)if(t===e[i])return!0;return!1}},this.is_whitespace=function(t){for(;0<t.length;t++)if(!this.Utils.in_array(t.charAt(0),this.Utils.whitespace))return!1;return!0},this.traverse_whitespace=function(){var t="";if(t=this.input.charAt(this.pos),this.Utils.in_array(t,this.Utils.whitespace)){for(this.newlines=0;this.Utils.in_array(t,this.Utils.whitespace);)p&&"\n"===t&&this.newlines<=l&&(this.newlines+=1),this.pos++,t=this.input.charAt(this.pos);return!0}return!1},this.space_or_wrap=function(t){this.line_char_count>=this.wrap_line_length?(this.print_newline(!1,t),this.print_indentation(t)):(this.line_char_count++,t.push(" "))},this.get_content=function(){for(var t="",e=[];"<"!==this.input.charAt(this.pos);){if(this.pos>=this.input.length)return e.length?e.join(""):["","TK_EOF"];if(this.traverse_whitespace())this.space_or_wrap(e);else{if(c){var i=this.input.substr(this.pos,3);if("{{#"===i||"{{/"===i)break;if("{{"===this.input.substr(this.pos,2)&&"{{else}}"===this.get_tag(!0))break}t=this.input.charAt(this.pos),this.pos++,this.line_char_count++,e.push(t)}}return e.length?e.join(""):""},this.get_contents_to=function(t){if(this.pos===this.input.length)return["","TK_EOF"];var e="",i=new RegExp("</"+t+"\\s*>","igm");i.lastIndex=this.pos;var n=i.exec(this.input),s=n?n.index:this.input.length;return this.pos<s&&(e=this.input.substring(this.pos,s),this.pos=s),e},this.record_tag=function(t){this.tags[t+"count"]?(this.tags[t+"count"]++,this.tags[t+this.tags[t+"count"]]=this.indent_level):(this.tags[t+"count"]=1,this.tags[t+this.tags[t+"count"]]=this.indent_level),this.tags[t+this.tags[t+"count"]+"parent"]=this.tags.parent,this.tags.parent=t+this.tags[t+"count"]},this.retrieve_tag=function(t){if(this.tags[t+"count"]){for(var e=this.tags.parent;e&&t+this.tags[t+"count"]!==e;)e=this.tags[e+"parent"];e&&(this.indent_level=this.tags[t+this.tags[t+"count"]],this.tags.parent=this.tags[e+"parent"]),delete this.tags[t+this.tags[t+"count"]+"parent"],delete this.tags[t+this.tags[t+"count"]],1===this.tags[t+"count"]?delete this.tags[t+"count"]:this.tags[t+"count"]--}},this.indent_to_tag=function(t){if(this.tags[t+"count"]){for(var e=this.tags.parent;e&&t+this.tags[t+"count"]!==e;)e=this.tags[e+"parent"];e&&(this.indent_level=this.tags[t+this.tags[t+"count"]])}},this.get_tag=function(t){var e,i,n="",s=[],r="",h=!1,_=!0,o=this.pos,p=this.line_char_count;t=void 0!==t&&t;do{if(this.pos>=this.input.length)return t&&(this.pos=o,this.line_char_count=p),s.length?s.join(""):["","TK_EOF"];if(n=this.input.charAt(this.pos),this.pos++,this.Utils.in_array(n,this.Utils.whitespace))h=!0;else{if("'"!==n&&'"'!==n||(n+=this.get_unformatted(n),h=!0),"="===n&&(h=!1),s.length&&"="!==s[s.length-1]&&">"!==n&&h){if(this.space_or_wrap(s),h=!1,!_&&"force"===g&&"/"!==n){this.print_newline(!0,s),this.print_indentation(s);for(var l=0;l<f;l++)s.push(a)}for(var d=0;d<s.length;d++)if(" "===s[d]){_=!1;break}}if(c&&"<"===i&&n+this.input.charAt(this.pos)==="{{"&&(n+=this.get_unformatted("}}"),s.length&&" "!==s[s.length-1]&&"<"!==s[s.length-1]&&(n=" "+n),h=!0),"<"!==n||i||(e=this.pos-1,i="<"),c&&!i&&s.length>=2&&"{"===s[s.length-1]&&"{"===s[s.length-2]&&(e="#"===n||"/"===n?this.pos-3:this.pos-2,i="{"),this.line_char_count++,s.push(n),s[1]&&"!"===s[1]){s=[this.get_comment(e)];break}if(c&&"{"===i&&s.length>2&&"}"===s[s.length-2]&&"}"===s[s.length-1])break}}while(">"!==n);var w,y,v=s.join("");w=-1!==v.indexOf(" ")?v.indexOf(" "):"{"===v[0]?v.indexOf("}"):v.indexOf(">"),y="<"!==v[0]&&c?"#"===v[2]?3:2:1;var b=v.substring(y,w).toLowerCase();return"/"===v.charAt(v.length-2)||this.Utils.in_array(b,this.Utils.single_token)?t||(this.tag_type="SINGLE"):c&&"{"===v[0]&&"else"===b?t||(this.indent_to_tag("if"),this.tag_type="HANDLEBARS_ELSE",this.indent_content=!0,this.traverse_whitespace()):this.is_unformatted(b,u)?(r=this.get_unformatted("</"+b+">",v),s.push(r),this.pos,this.tag_type="SINGLE"):"script"===b&&(-1===v.search("type")||v.search("type")>-1&&v.search(/\b(text|application)\/(x-)?(javascript|ecmascript|jscript|livescript)/)>-1)?t||(this.record_tag(b),this.tag_type="SCRIPT"):"style"===b&&(-1===v.search("type")||v.search("type")>-1&&v.search("text/css")>-1)?t||(this.record_tag(b),this.tag_type="STYLE"):"!"===b.charAt(0)?t||(this.tag_type="SINGLE",this.traverse_whitespace()):t||("/"===b.charAt(0)?(this.retrieve_tag(b.substring(1)),this.tag_type="END"):(this.record_tag(b),"html"!==b.toLowerCase()&&(this.indent_content=!0),this.tag_type="START"),this.traverse_whitespace()&&this.space_or_wrap(s),this.Utils.in_array(b,this.Utils.extra_liners)&&(this.print_newline(!1,this.output),this.output.length&&"\n"!==this.output[this.output.length-2]&&this.print_newline(!0,this.output))),t&&(this.pos=o,this.line_char_count=p),s.join("")},this.get_comment=function(t){var e="",i=">",n=!1;for(this.pos=t,input_char=this.input.charAt(this.pos),this.pos++;this.pos<=this.input.length&&((e+=input_char)[e.length-1]!==i[i.length-1]||-1===e.indexOf(i));)!n&&e.length<10&&(0===e.indexOf("<![if")?(i="<![endif]>",n=!0):0===e.indexOf("<![cdata[")?(i="]]>",n=!0):0===e.indexOf("<![")?(i="]>",n=!0):0===e.indexOf("\x3c!--")&&(i="--\x3e",n=!0)),input_char=this.input.charAt(this.pos),this.pos++;return e},this.get_unformatted=function(t,e){if(e&&-1!==e.toLowerCase().indexOf(t))return"";var i="",n="",s=0,r=!0;do{if(this.pos>=this.input.length)return n;if(i=this.input.charAt(this.pos),this.pos++,this.Utils.in_array(i,this.Utils.whitespace)){if(!r){this.line_char_count--;continue}if("\n"===i||"\r"===i){n+="\n",this.line_char_count=0;continue}}n+=i,this.line_char_count++,r=!0,c&&"{"===i&&n.length&&"{"===n[n.length-2]&&(s=(n+=this.get_unformatted("}}")).length)}while(-1===n.toLowerCase().indexOf(t,s));return n},this.get_token=function(){var t;if("TK_TAG_SCRIPT"===this.last_token||"TK_TAG_STYLE"===this.last_token){var e=this.last_token.substr(7);return"string"!=typeof(t=this.get_contents_to(e))?t:[t,"TK_"+e]}return"CONTENT"===this.current_mode?"string"!=typeof(t=this.get_content())?t:[t,"TK_CONTENT"]:"TAG"===this.current_mode?"string"!=typeof(t=this.get_tag())?t:[t,"TK_TAG_"+this.tag_type]:void 0},this.get_full_indent=function(t){return(t=this.indent_level+t||0)<1?"":Array(t+1).join(this.indent_string)},this.is_unformatted=function(t,e){if(!this.Utils.in_array(t,e))return!1;if("a"!==t.toLowerCase()||!this.Utils.in_array("a",e))return!0;var i=(this.get_tag(!0)||"").match(/^\s*<\s*\/?([a-z]*)\s*[^>]*>\s*$/);return!(i&&!this.Utils.in_array(i,e))},this.printer=function(t,e,i,n,s){this.input=t||"",this.output=[],this.indent_character=e,this.indent_string="",this.indent_size=i,this.brace_style=s,this.indent_level=0,this.wrap_line_length=n,this.line_char_count=0;for(var r=0;r<this.indent_size;r++)this.indent_string+=this.indent_character;this.print_newline=function(t,e){this.line_char_count=0,e&&e.length&&(t||"\n"!==e[e.length-1])&&("\n"!==e[e.length-1]&&(e[e.length-1]=rtrim(e[e.length-1])),e.push("\n"))},this.print_indentation=function(t){for(var e=0;e<this.indent_level;e++)t.push(this.indent_string),this.line_char_count+=this.indent_string.length},this.print_token=function(t){this.is_whitespace(t)&&!this.output.length||((t||""!==t)&&this.output.length&&"\n"===this.output[this.output.length-1]&&(this.print_indentation(this.output),t=ltrim(t)),this.print_token_raw(t))},this.print_token_raw=function(t){this.newlines>0&&(t=rtrim(t)),t&&""!==t&&(t.length>1&&"\n"===t[t.length-1]?(this.output.push(t.slice(0,-1)),this.print_newline(!1,this.output)):this.output.push(t));for(var e=0;e<this.newlines;e++)this.print_newline(e>0,this.output);this.newlines=0},this.indent=function(){this.indent_level++},this.unindent=function(){this.indent_level>0&&this.indent_level--}},this}).printer(t,a,h,_,o);;){var w=s.get_token();if(s.token_text=w[0],s.token_type=w[1],"TK_EOF"===s.token_type)break;switch(s.token_type){case"TK_TAG_START":s.print_newline(!1,s.output),s.print_token(s.token_text),s.indent_content&&(s.indent(),s.indent_content=!1),s.current_mode="CONTENT";break;case"TK_TAG_STYLE":case"TK_TAG_SCRIPT":s.print_newline(!1,s.output),s.print_token(s.token_text),s.current_mode="CONTENT";break;case"TK_TAG_END":if("TK_CONTENT"===s.last_token&&""===s.last_text){var y=s.token_text.match(/\w+/)[0],v=null;s.output.length&&(v=s.output[s.output.length-1].match(/(?:<|{{#)\s*(\w+)/)),(null===v||v[1]!==y&&!s.Utils.in_array(v[1],u))&&s.print_newline(!1,s.output)}s.print_token(s.token_text),s.current_mode="CONTENT";break;case"TK_TAG_SINGLE":var b=s.token_text.match(/^\s*<([a-z-]+)/i);b&&s.Utils.in_array(b[1],u)||s.print_newline(!1,s.output),s.print_token(s.token_text),s.current_mode="CONTENT";break;case"TK_TAG_HANDLEBARS_ELSE":s.print_token(s.token_text),s.indent_content&&(s.indent(),s.indent_content=!1),s.current_mode="CONTENT";break;case"TK_CONTENT":s.print_token(s.token_text),s.current_mode="TAG";break;case"TK_STYLE":case"TK_SCRIPT":if(""!==s.token_text){s.print_newline(!1,s.output);var T,m=s.token_text,k=1;"TK_SCRIPT"===s.token_type?T="function"==typeof i&&i:"TK_STYLE"===s.token_type&&(T="function"==typeof n&&n),"keep"===e.indent_scripts?k=0:"separate"===e.indent_scripts&&(k=-s.indent_level);var x=s.get_full_indent(k);if(T)m=T(m.replace(/^\s*/,x),e);else{var A=m.match(/^\s*/)[0].match(/[^\n\r]*$/)[0].split(s.indent_string).length-1,E=s.get_full_indent(k-A);m=m.replace(/^\s*/,x).replace(/\r\n|\r|\n/g,"\n"+E).replace(/\s+$/,"")}m&&(s.print_token_raw(m),s.print_newline(!0,s.output))}s.current_mode="TAG";break;default:""!==s.token_text&&s.print_token(s.token_text)}s.last_token=s.token_type,s.last_text=s.token_text}var N=s.output.join("").replace(/[\r\n\t ]+$/,"");return d&&(N+="\n"),N}if("function"==typeof define&&define.amd)define(["require","./beautify","./beautify-css"],function(t){var e=t("./beautify"),i=t("./beautify-css");return{html_beautify:function(t,n){return style_html(t,n,e.js_beautify,i.css_beautify)}}});else if("undefined"!=typeof exports){var js_beautify=require("./beautify.js"),css_beautify=require("./beautify-css.js");exports.html_beautify=function(t,e){return style_html(t,e,js_beautify.js_beautify,css_beautify.css_beautify)}}else"undefined"!=typeof window?window.html_beautify=function(t,e){return style_html(t,e,window.js_beautify,window.css_beautify)}:"undefined"!=typeof global&&(global.html_beautify=function(t,e){return style_html(t,e,global.js_beautify,global.css_beautify)});
+
 /* jQuery livequery Version: 1.1.1 */
 !function(e){e.extend(e.fn,{livequery:function(i,t,u){var n,r=this;return e.isFunction(i)&&(u=t,t=i,i=void 0),e.each(e.livequery.queries,function(e,s){if(!(r.selector!=s.selector||r.context!=s.context||i!=s.type||t&&t.$lqguid!=s.fn.$lqguid||u&&u.$lqguid!=s.fn2.$lqguid))return(n=s)&&!1}),(n=n||new e.livequery(this.selector,this.context,i,t,u)).stopped=!1,n.run(),this},expire:function(i,t,u){var n=this;return e.isFunction(i)&&(u=t,t=i,i=void 0),e.each(e.livequery.queries,function(r,s){n.selector!=s.selector||n.context!=s.context||i&&i!=s.type||t&&t.$lqguid!=s.fn.$lqguid||u&&u.$lqguid!=s.fn2.$lqguid||this.stopped||e.livequery.stop(s.id)}),this}}),e.livequery=function(i,t,u,n,r){return this.selector=i,this.context=t,this.type=u,this.fn=n,this.fn2=r,this.elements=[],this.stopped=!1,this.id=e.livequery.queries.push(this)-1,n.$lqguid=n.$lqguid||e.livequery.guid++,r&&(r.$lqguid=r.$lqguid||e.livequery.guid++),this},e.livequery.prototype={stop:function(){var e=this;this.type?this.elements.unbind(this.type,this.fn):this.fn2&&this.elements.each(function(i,t){e.fn2.apply(t)}),this.elements=[],this.stopped=!0},run:function(){if(!this.stopped){var i=this,t=this.elements,u=e(this.selector,this.context),n=u.not(t);this.elements=u,this.type?(n.bind(this.type,this.fn),t.length>0&&e.each(t,function(t,n){e.inArray(n,u)<0&&e.event.remove(n,i.type,i.fn)})):(n.each(function(){i.fn.apply(this)}),this.fn2&&t.length>0&&e.each(t,function(t,n){e.inArray(n,u)<0&&i.fn2.apply(n)}))}}},e.extend(e.livequery,{guid:0,queries:[],queue:[],running:!1,timeout:null,checkQueue:function(){if(e.livequery.running&&e.livequery.queue.length)for(var i=e.livequery.queue.length;i--;)e.livequery.queries[e.livequery.queue.shift()].run()},pause:function(){e.livequery.running=!1},play:function(){e.livequery.running=!0,e.livequery.run()},registerPlugin:function(){e.each(arguments,function(i,t){if(e.fn[t]){var u=e.fn[t];e.fn[t]=function(){var i=u.apply(this,arguments);return e.livequery.run(),i}}})},run:function(i){null!=i?e.inArray(i,e.livequery.queue)<0&&e.livequery.queue.push(i):e.each(e.livequery.queries,function(i){e.inArray(i,e.livequery.queue)<0&&e.livequery.queue.push(i)}),e.livequery.timeout&&clearTimeout(e.livequery.timeout),e.livequery.timeout=setTimeout(e.livequery.checkQueue,20)},stop:function(i){null!=i?e.livequery.queries[i].stop():e.each(e.livequery.queries,function(i){e.livequery.queries[i].stop()})}}),e.livequery.registerPlugin("append","prepend","after","before","wrap","attr","removeAttr","addClass","removeClass","toggleClass","empty","remove","html"),e(function(){e.livequery.play()})}(jQuery);
 
@@ -659,21 +733,41 @@
             switch(tpl) {
                 case 'popup-addfield':
                     var typeWithOptions = ['checkbox','select','multipleselect','radio'];
-                    var fieldoption = '<div class="form-group radio-add"><input type="radio"><input type="text" class="fieldoption form-control"><div><a href="#" class="add-field"><i class="fas fa-plus-circle"></i></i></a><a href="#" class="del-field"><i class="fas fa-minus-circle"></i></a></div></div>';
+                    var fieldoption = '';
+
+                    if(typeWithOptions.indexOf(data.type) != -1) {
+                        if(data.options == undefined) {
+                            fieldoption = FormBuilder.template('popup-fieldoption', {value: ''});
+                        } else {
+                            $.each(data.options, function (k, v) {
+                                fieldoption += FormBuilder.template('popup-fieldoption', v);
+                            });
+                        }
+                    }
 
                     arr = ['<div class="new-field-settings" data-control="'+ data.name +'" data-action="'+ data.action +'">',
                         '<div class="form-group">',
                             '<label>Field Name</label>',
-                            '<input type="text" name="fieldlabel" class="form-control" value="'+ ((data.action == 'update') ? data.fieldlabel : '')  +'">',
+                            '<input type="text" name="fieldlabel" class="form-control" value="'+ ((data.action == 'update') ? data.label : '')  +'">',
                         '</div>',
                         '<div class="form-group">',
                             '<label>Required?</label>',
-                            '<input type="checkbox" name="fieldrequire" value="1">',
+                            '<input type="checkbox" name="fieldrequire" value="1" '+ ((data.required == true) ? 'checked' : '') +'>',
                         '</div>',
-                        (typeWithOptions.indexOf(data.type) != -1) ? fieldoption : '',
+                        fieldoption,
                         '<hr>',
                         '<a href="#" class="btn btn-primary save">save</a>',
                         '<a href="#" class="btn btn-default cancel">cancel</a>',
+                    '</div>'];
+                    break;
+                case 'popup-fieldoption':
+                    arr = ['<div class="form-group radio-add">',
+                        '<input type="radio">',
+                        '<input type="text" class="fieldoption form-control" value="'+ data.value +'">',
+                        '<div>',
+                            '<a href="#" class="add-field"><i class="fas fa-plus-circle"></i></i></a>',
+                            '<a href="#" class="del-field"><i class="fas fa-minus-circle"></i></a>' +
+                        '</div>',
                     '</div>'];
                     break;
             }
@@ -687,7 +781,7 @@
                 FormBuilder.loadControls();
 
                 // Load default fields
-                $(settings.previewArea).append(FormBuilder.loadFields({fields: settings.fields.filter(function(obj) { return obj.defaultAssign == true; })}));
+                $(settings.previewArea).append(FormBuilder.loadFields({fields: settings.defaults}));
 
                 $('#nestable').nestable({
                     listNodeName : 'ul'
@@ -722,6 +816,22 @@
                                 $(settings.previewArea).append(FormBuilder.loadFields({fields: [field]}));
                             }
                         }
+                    }
+
+                    e.preventDefault();
+                });
+
+                $popupAddField.find('.radio-add .add-field').livequery('click', function (e) {
+                    $(FormBuilder.template('popup-fieldoption', {value: ''})).insertAfter($(this).parents('.radio-add'));
+
+                    e.preventDefault();
+                });
+
+                $popupAddField.find('.radio-add .del-field').livequery('click', function (e) {
+                    if($('.radio-add').length > 1) {
+                        $(this).parents('.radio-add').remove();
+                    } else {
+                        $(this).parents('.radio-add').find('.fieldoption').val('');
                     }
 
                     e.preventDefault();
@@ -769,7 +879,11 @@
                             field.options = arr;
                         }
 
-                        $(settings.previewArea).append(FormBuilder.loadFields({fields: [field]}));
+                        if($parents.parents('li').data() != undefined && $parents.parents('li').data('info').action == 'update') {
+                            $parents.parents('li').replaceWith(FormBuilder.loadFields({fields: [field]}));
+                        } else {
+                            $(settings.previewArea).append(FormBuilder.loadFields({fields: [field]}));
+                        }
 
                         $parents.remove();
                     }
@@ -793,8 +907,8 @@
                             $parents.find('.new-field-settings').remove();
                         } else {
                             if($('.new-field-settings')[0]) $('.new-field-settings').remove();
-
-                            $parents.append(FormBuilder.template('popup-addfield', {fieldlabel: $li.data('info').label, action: 'update'}));
+                            info.action = 'update';
+                            $parents.append(FormBuilder.template('popup-addfield', info));
                         }
                     } else {
                         if($('.new-field-settings')[0]) $('.new-field-settings').remove();
@@ -826,7 +940,10 @@
 
                 $fieldActions.find('.delete').livequery('click', function (e) {
                     var c = confirm('Are you sure you wish to delete this item[s] permanently?');
-                    if (c == true) $(this).parents('li').remove();
+                    if (c == true) {
+                        $('.fieldselsection[data-control="'+ $(this).parents('li').data('info').name +'"]').find('a').removeClass('used');
+                        $(this).parents('li').remove();
+                    }
 
                     e.preventDefault();
                 });
@@ -957,16 +1074,22 @@
                 this.fieldSettingPopover();
             },
             webform: function(){
+                if($('.form-builders').data('action') != 'create') return;
 
-                if(!$('#popup-content')[0]) return;
                 $.magnificPopup.open({
+                    closeOnBgClick: false,
                     items: {
-                        src: $('#popup-content').html(),
-                        type: 'inline'                        
+                        src: $('#popup-properties'),
+                        type: 'inline'
+                    },
+                    callbacks: {
+                        open: function () {
+                            $.magnificPopup.instance.close = function () {
+                                window.location.href = '/admin/formbuilder';
+                            };
+                        }
                     }
                 });
-
-
             },
 
             webformCreate: function(){
@@ -1010,6 +1133,7 @@
         route: {
             init: function () {
                 this.addpage();
+                this.formBuilder();
             },
             addpage: function () {
 
@@ -1079,6 +1203,7 @@
 
                     if($parent.hasClass('inactive')){
                         richHtml = richEditor.trumbowyg('html');
+
                         if($temp_html.find('body')[0]){
                             $temp_html.find('body').html(richHtml);
                         }else{
@@ -1087,11 +1212,22 @@
                             $temp_html[0].close();
                         }
 
-                        var template = `<!DOCTYPE html>${$temp_html.find('html')[0].outerHTML}`;
+                        var template = '<!DOCTYPE html>' + $temp_html.find('html')[0].outerHTML;
 
                         template = replaceAll(template,"<!--<notscript", "<script");
                         template = replaceAll(template,"</notscript>-->", "</script>");
-                        editor.setValue(template);
+
+                        editor.setValue(style_html(template, {
+                            'indent_inner_html': true,
+                            'indent_size': 2,
+                            'indent_char': ' ',
+                            'wrap_line_length': 78,
+                            'brace_style': 'expand',
+                            'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u'],
+                            'preserve_newlines': true,
+                            'max_preserve_newlines': 5,
+                            'indent_handlebars': false
+                        }));
                     }else{
                         richHtml = editor.getValue();
 
@@ -1130,6 +1266,7 @@
                 }
 
                 var formSubmit = false;
+
                 $('.pageForm').on('submit',function (e) {
                     e.preventDefault();
                     updateFrame();
@@ -1139,376 +1276,400 @@
                     if(!formSubmit) $this[0].submit();
                     formSubmit = true;
                 })
+            },
+            formBuilder: function () {
+                if(!~window.location.pathname.indexOf('/formbuilder')) return;
 
+                var $popupproperties = $('#popup-properties')
+                var $jsonFields = $('textarea[name="fields"]');
+                var defaultFields = [
+                    {
+                        type: 'fieldSets',
+                        label: 'Full Name',
+                        name: 'fieldSetsFullName',
+                        fields: [{
+                            type: 'select',
+                            label: 'Title',
+                            name: 'Title',
+                            options: [{
+                                text: 'Dr',
+                                value: 'Dr'
+                            }, {
+                                text: 'Miss',
+                                value: 'Miss'
+                            }, {
+                                text: 'Mr',
+                                value: 'Mr',
+                                selected: true
+                            }, {
+                                text: 'Mrs',
+                                value: 'Mrs'
+                            }, {
+                                text: 'Ms',
+                                value: 'Ms'
+                            }]
+                        }, {
+                            type: 'text',
+                            label: 'First Name',
+                            name: 'FirstName'
+                        }, {
+                            type: 'text',
+                            label: 'Last Name',
+                            name: 'LastName'
+                        }]
+                    },
+                    {
+                        type: 'text',
+                        label: 'Email Address',
+                        name: 'EmailAddress',
+                        required: true,
+                        removable: false
+                    }
+                ];
+
+                if($jsonFields[0] != undefined && $jsonFields.val() != '') defaultFields = $.parseJSON($jsonFields.val())
+
+                $('#webform-builder').formBuilder({
+                    controls: [
+                        {
+                            label: 'Contacts',
+                            element: '#fieldgrougcontacts',
+                            fields: ['fieldSetsFullName', 'EmailAddress',  'fieldSetsHomeAddress',  'HomePhone',  'HomeFax', 'fieldSetsWorkAddress',  'WorkPhone',  'WorkFax',  'CellPhone',  'WebAddress',  'Company', 'DOB']
+                        },
+                        {
+                            label: 'Misc',
+                            element: '#fieldgrougmisc',
+                            fields: ['CaptchaV2', 'ReCaptcha', 'Security']
+                        },
+                        {
+                            label: 'Custom Fields',
+                            element: '#custom-fields',
+                            fields: ['customFieldDateTime', 'customFieldCheckbox', 'customFieldDropdown', 'customFieldListbox', 'customFieldRadio', 'customFieldMultiline', 'customFieldSingleline', 'customFieldBoolean']
+                        }
+                    ],
+                    defaults: defaultFields,
+                    fields: [
+                        {
+                            type: 'fieldSets',
+                            label: 'Full Name',
+                            name: 'fieldSetsFullName',
+                            fields: [{
+                                type: 'select',
+                                label: 'Title',
+                                name: 'Title',
+                                options: [{
+                                    text: 'Dr',
+                                    value: 'Dr'
+                                }, {
+                                    text: 'Miss',
+                                    value: 'Miss'
+                                }, {
+                                    text: 'Mr',
+                                    value: 'Mr',
+                                    selected: true
+                                }, {
+                                    text: 'Mrs',
+                                    value: 'Mrs'
+                                }, {
+                                    text: 'Ms',
+                                    value: 'Ms'
+                                }]
+                            }, {
+                                type: 'text',
+                                label: 'First Name',
+                                name: 'FirstName'
+                            }, {
+                                type: 'text',
+                                label: 'Last Name',
+                                name: 'LastName'
+                            }]
+                        },
+                        {
+                            type: 'text',
+                            label: 'Email Address',
+                            name: 'EmailAddress',
+                            required: true,
+                            removable: false
+                        },
+                        {
+                            type: 'text',
+                            label: 'Home Phone Number',
+                            name: 'HomePhone'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Home Fax Number',
+                            name: 'HomeFax'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Work Phone Number',
+                            name: 'WorkPhone'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Work Fax Number',
+                            name: 'WorkFax'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Cell Phone Number',
+                            name: 'CellPhone'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Web Address',
+                            name: 'WebAddress'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Company',
+                            name: 'Company'
+                        },
+                        {
+                            type: 'date',
+                            label: 'Date of Birth',
+                            name: 'DOB'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Username',
+                            name: 'Username',
+                            required: true
+                        },
+                        {
+                            type: 'fieldSets',
+                            label: 'Home Address',
+                            name: 'fieldSetsHomeAddress', // optional
+                            fields: [{
+                                type: 'text',
+                                label: 'Address',
+                                name: 'HomeAddress'
+                            }, {
+                                type: 'text',
+                                label: 'City',
+                                name: 'HomeCity'
+                            }, {
+                                type: 'text',
+                                label: 'State',
+                                name: 'HomeState'
+                            }, {
+                                type: 'text',
+                                label: 'Postcode',
+                                name: 'HomeZip'
+                            }, {
+                                type: 'select',
+                                label: 'Country',
+                                name: 'HomeCountry',
+                                options: [{
+                                    text: 'Australia',
+                                    value: 'AU'
+                                }, {
+                                    text: 'United States',
+                                    value: 'US'
+                                }]
+                            }]
+                        },
+                        {
+                            type: 'fieldSets',
+                            label: 'Work Address',
+                            name: 'fieldSetsWorkAddress', // optional
+                            fields: [{
+                                type: 'text',
+                                label: 'Address',
+                                name: 'WorkAddress'
+                            }, {
+                                type: 'text',
+                                label: 'City',
+                                name: 'WorkCity'
+                            }, {
+                                type: 'text',
+                                label: 'State',
+                                name: 'WorkState'
+                            }, {
+                                type: 'text',
+                                label: 'Postcode',
+                                name: 'WorkZip'
+                            }, {
+                                type: 'select',
+                                label: 'Country',
+                                name: 'WorkCountry',
+                                options: [{
+                                    text: 'Australia',
+                                    value: 'AU'
+                                }, {
+                                    text: 'United States',
+                                    value: 'US'
+                                }]
+                            }]
+                        },
+                        {
+                            type: 'fieldSets',
+                            label: 'Shipping Address',
+                            name: 'fieldSetsShippingAddress', // optional
+                            fields: [{
+                                type: 'text',
+                                label: 'Address',
+                                name: 'ShippingAddress'
+                            }, {
+                                type: 'text',
+                                label: 'City',
+                                name: 'ShippingCity'
+                            }, {
+                                type: 'text',
+                                label: 'State',
+                                name: 'ShippingState'
+                            }, {
+                                type: 'text',
+                                label: 'Postcode',
+                                name: 'ShippingZip'
+                            }, {
+                                type: 'select',
+                                label: 'Country',
+                                name: 'ShippingCountry',
+                                options: [{
+                                    text: 'Australia',
+                                    value: 'AU'
+                                }, {
+                                    text: 'United States',
+                                    value: 'US'
+                                }]
+                            }]
+                        },
+                        {
+                            type: 'fieldSets',
+                            label: 'Billing Address',
+                            name: 'fieldSetsBillingAddress', // optional
+                            fields: [{
+                                type: 'text',
+                                label: 'Address',
+                                name: 'BillingAddress'
+                            }, {
+                                type: 'text',
+                                label: 'City',
+                                name: 'BillingCity'
+                            }, {
+                                type: 'text',
+                                label: 'State',
+                                name: 'BillingState'
+                            }, {
+                                type: 'text',
+                                label: 'Postcode',
+                                name: 'BillingZip'
+                            }, {
+                                type: 'select',
+                                label: 'Country',
+                                name: 'BillingCountry',
+                                options: [{
+                                    text: 'Australia',
+                                    value: 'AU'
+                                }, {
+                                    text: 'United States',
+                                    value: 'US'
+                                }]
+                            }]
+                        },
+                        {
+                            type: 'fieldSets',
+                            label: 'Password',
+                            name: 'fieldSetsPassword', // optional
+                            fields: [{
+                                type: 'text',
+                                label: 'Password',
+                                name: 'Password',
+                                required: true
+                            }, {
+                                type: 'text',
+                                label: 'Confirm Password',
+                                name: 'PasswordConfirm',
+                                required: true
+                            }]
+                        },
+                        {
+                            type: 'text',
+                            label: 'CaptchaV2',
+                            name: 'CaptchaV2'
+                        },
+                        {
+                            type: 'text',
+                            label: 'ReCaptcha',
+                            name: 'ReCaptcha'
+                        },
+                        {
+                            type: 'text',
+                            label: 'Security',
+                            name: 'Security'
+                        },
+                        {
+                            type: 'date',
+                            label: 'DateTime',
+                            name: 'customFieldDateTime',
+                            custom: true
+                        },
+                        {
+                            type: 'checkbox',
+                            label: 'List (Checkbox List)',
+                            name: 'customFieldCheckbox',
+                            custom: true
+                        },
+                        {
+                            type: 'select',
+                            label: 'List (Dropdown List)',
+                            name: 'customFieldDropdown',
+                            custom: true
+                        },
+                        {
+                            type: 'multipleselect',
+                            label: 'List (Listbox List)',
+                            name: 'customFieldListbox',
+                            custom: true
+                        },
+                        {
+                            type: 'radio',
+                            label: 'List (Radio List)',
+                            name: 'customFieldRadio',
+                            custom: true
+                        },
+                        {
+                            type: 'textarea',
+                            label: 'Text (Multiline)',
+                            name: 'customFieldMultiline',
+                            custom: true
+                        },
+                        {
+                            type: 'text',
+                            label: 'Text (String)',
+                            name: 'customFieldSingleline',
+                            custom: true
+                        },
+                        {
+                            type: 'boolean',
+                            label: 'True/False (Boolean)',
+                            name: 'customFieldBoolean',
+                            custom: true
+                        }
+                    ]
+                });
+
+                $('input[type="button"][value="Update"]').livequery('click', function () {
+                    var arr = [];
+
+                    $('ul#form-system-field li').each(function () {
+                        arr.push($(this).data('info'));
+                    });
+
+                    $jsonFields.val(JSON.stringify(arr));
+
+                    $.post($popupproperties.find('form').attr('action'), $popupproperties.find('form').serialize(), function () {
+                        alert('Form Updated');
+                    });
+                });
             }
         }
     }
 
     $(document).ready(function () {
         utils.init();
-
-        $('#webform-builder').formBuilder({
-            controls: [
-                {
-                    label: 'Contacts',
-                    element: '#fieldgrougcontacts',
-                    fields: ['fieldSetsFullName', 'EmailAddress',  'fieldSetsHomeAddress',  'HomePhone',  'HomeFax', 'fieldSetsWorkAddress',  'WorkPhone',  'WorkFax',  'CellPhone',  'WebAddress',  'Company', 'DOB']
-                },
-                {
-                    label: 'Misc',
-                    element: '#fieldgrougmisc',
-                    fields: ['CaptchaV2', 'ReCaptcha', 'Security']
-                },
-                {
-                    label: 'Custom Fields',
-                    element: '#custom-fields',
-                    fields: ['customFieldDateTime', 'customFieldCheckbox', 'customFieldDropdown', 'customFieldListbox', 'customFieldRadio', 'customFieldMultiline', 'customFieldSingleline', 'customFieldBoolean']
-                }
-            ],
-            fields: [
-                {
-                    type: 'checkbox',
-                    label: 'Gender',
-                    name: 'Gender',
-                    options: [{
-                        text: 'Male',
-                        value: 'Male',
-                        checked: true
-                    }, {
-                        text: 'Female',
-                        value: 'Female',
-                        checked: true
-                    }]
-                },
-                {
-                    type: 'multipleselect',
-                    label: 'List (Listbox List)',
-                    name: 'Nation',
-                    options: [{
-                        text: 'Male',
-                        value: 'Male'
-                    }, {
-                        text: 'Female',
-                        value: 'Female',
-                        checked: true
-                    }]
-                },
-                {
-                    type: 'radio',
-                    label: 'Gender',
-                    name: 'Gender',
-                    options: [{
-                        text: 'Male',
-                        value: 'Male'
-                    }, {
-                        text: 'Female',
-                        value: 'Female',
-                        checked: true
-                    }]
-                },
-                {
-                    type: 'fieldSets',
-                    label: 'Full Name',
-                    name: 'fieldSetsFullName',
-                    defaultAssign: true,
-                    fields: [{
-                        type: 'select',
-                        label: 'Title',
-                        name: 'Title',
-                        options: [{
-                            text: 'Dr',
-                            value: 'Dr'
-                        }, {
-                            text: 'Miss',
-                            value: 'Miss'
-                        }, {
-                            text: 'Mr',
-                            value: 'Mr',
-                            selected: true
-                        }, {
-                            text: 'Mrs',
-                            value: 'Mrs'
-                        }, {
-                            text: 'Ms',
-                            value: 'Ms'
-                        }]
-                    }, {
-                        type: 'text',
-                        label: 'First Name',
-                        name: 'FirstName'
-                    }, {
-                        type: 'text',
-                        label: 'Last Name',
-                        name: 'LastName'
-                    }]
-                },
-                {
-                    type: 'text',
-                    label: 'Email Address',
-                    name: 'EmailAddress',
-                    defaultAssign: true,
-                    required: true,
-                    removable: false
-                },
-                {
-                    type: 'text',
-                    label: 'Home Phone Number',
-                    name: 'HomePhone'
-                },
-                {
-                    type: 'text',
-                    label: 'Home Fax Number',
-                    name: 'HomeFax'
-                },
-                {
-                    type: 'text',
-                    label: 'Work Phone Number',
-                    name: 'WorkPhone'
-                },
-                {
-                    type: 'text',
-                    label: 'Work Fax Number',
-                    name: 'WorkFax'
-                },
-                {
-                    type: 'text',
-                    label: 'Cell Phone Number',
-                    name: 'CellPhone'
-                },
-                {
-                    type: 'text',
-                    label: 'Web Address',
-                    name: 'WebAddress'
-                },
-                {
-                    type: 'text',
-                    label: 'Company',
-                    name: 'Company'
-                },
-                {
-                    type: 'date',
-                    label: 'Date of Birth',
-                    name: 'DOB'
-                },
-                {
-                    type: 'text',
-                    label: 'Username',
-                    name: 'Username',
-                    required: true
-                },
-                {
-                    type: 'fieldSets',
-                    label: 'Home Address',
-                    name: 'fieldSetsHomeAddress', // optional
-                    fields: [{
-                        type: 'text',
-                        label: 'Address',
-                        name: 'HomeAddress'
-                    }, {
-                        type: 'text',
-                        label: 'City',
-                        name: 'HomeCity'
-                    }, {
-                        type: 'text',
-                        label: 'State',
-                        name: 'HomeState'
-                    }, {
-                        type: 'text',
-                        label: 'Postcode',
-                        name: 'HomeZip'
-                    }, {
-                        type: 'select',
-                        label: 'Country',
-                        name: 'HomeCountry',
-                        options: [{
-                            text: 'Australia',
-                            value: 'AU'
-                        }, {
-                            text: 'United States',
-                            value: 'US'
-                        }]
-                    }]
-                },
-                {
-                    type: 'fieldSets',
-                    label: 'Work Address',
-                    name: 'fieldSetsWorkAddress', // optional
-                    fields: [{
-                        type: 'text',
-                        label: 'Address',
-                        name: 'WorkAddress'
-                    }, {
-                        type: 'text',
-                        label: 'City',
-                        name: 'WorkCity'
-                    }, {
-                        type: 'text',
-                        label: 'State',
-                        name: 'WorkState'
-                    }, {
-                        type: 'text',
-                        label: 'Postcode',
-                        name: 'WorkZip'
-                    }, {
-                        type: 'select',
-                        label: 'Country',
-                        name: 'WorkCountry',
-                        options: [{
-                            text: 'Australia',
-                            value: 'AU'
-                        }, {
-                            text: 'United States',
-                            value: 'US'
-                        }]
-                    }]
-                },
-                {
-                    type: 'fieldSets',
-                    label: 'Shipping Address',
-                    name: 'fieldSetsShippingAddress', // optional
-                    fields: [{
-                        type: 'text',
-                        label: 'Address',
-                        name: 'ShippingAddress'
-                    }, {
-                        type: 'text',
-                        label: 'City',
-                        name: 'ShippingCity'
-                    }, {
-                        type: 'text',
-                        label: 'State',
-                        name: 'ShippingState'
-                    }, {
-                        type: 'text',
-                        label: 'Postcode',
-                        name: 'ShippingZip'
-                    }, {
-                        type: 'select',
-                        label: 'Country',
-                        name: 'ShippingCountry',
-                        options: [{
-                            text: 'Australia',
-                            value: 'AU'
-                        }, {
-                            text: 'United States',
-                            value: 'US'
-                        }]
-                    }]
-                },
-                {
-                    type: 'fieldSets',
-                    label: 'Billing Address',
-                    name: 'fieldSetsBillingAddress', // optional
-                    fields: [{
-                        type: 'text',
-                        label: 'Address',
-                        name: 'BillingAddress'
-                    }, {
-                        type: 'text',
-                        label: 'City',
-                        name: 'BillingCity'
-                    }, {
-                        type: 'text',
-                        label: 'State',
-                        name: 'BillingState'
-                    }, {
-                        type: 'text',
-                        label: 'Postcode',
-                        name: 'BillingZip'
-                    }, {
-                        type: 'select',
-                        label: 'Country',
-                        name: 'BillingCountry',
-                        options: [{
-                            text: 'Australia',
-                            value: 'AU'
-                        }, {
-                            text: 'United States',
-                            value: 'US'
-                        }]
-                    }]
-                },
-                {
-                    type: 'fieldSets',
-                    label: 'Password',
-                    name: 'fieldSetsPassword', // optional
-                    fields: [{
-                        type: 'text',
-                        label: 'Password',
-                        name: 'Password',
-                        required: true
-                    }, {
-                        type: 'text',
-                        label: 'Confirm Password',
-                        name: 'PasswordConfirm',
-                        required: true
-                    }]
-                },
-                {
-                    type: 'text',
-                    label: 'CaptchaV2',
-                    name: 'CaptchaV2'
-                },
-                {
-                    type: 'text',
-                    label: 'ReCaptcha',
-                    name: 'ReCaptcha'
-                },
-                {
-                    type: 'text',
-                    label: 'Security',
-                    name: 'Security'
-                },
-                {
-                    type: 'date',
-                    label: 'DateTime',
-                    name: 'customFieldDateTime',
-                    custom: true
-                },
-                {
-                    type: 'checkbox',
-                    label: 'List (Checkbox List)',
-                    name: 'customFieldCheckbox',
-                    custom: true
-                },
-                {
-                    type: 'select',
-                    label: 'List (Dropdown List)',
-                    name: 'customFieldDropdown',
-                    custom: true
-                },
-                {
-                    type: 'multipleselect',
-                    label: 'List (Listbox List)',
-                    name: 'customFieldListbox',
-                    custom: true
-                },
-                {
-                    type: 'radio',
-                    label: 'List (Radio List)',
-                    name: 'customFieldRadio',
-                    custom: true
-                },
-                {
-                    type: 'textarea',
-                    label: 'Text (Multiline)',
-                    name: 'customFieldMultiline',
-                    custom: true
-                },
-                {
-                    type: 'text',
-                    label: 'Text (String)',
-                    name: 'customFieldSingleline',
-                    custom: true
-                },
-                {
-                    type: 'boolean',
-                    label: 'True/False (Boolean)',
-                    name: 'customFieldBoolean',
-                    custom: true
-                }
-            ]
-        });
     });
 })(jQuery);
 
