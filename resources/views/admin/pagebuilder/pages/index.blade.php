@@ -27,7 +27,7 @@
             <tbody>
             @foreach($pages as $page)
                 <tr>
-                    <td>{{$page->name}} {{$page->is_start_page ? '(Start Page)' : ''}}</td>
+                    <td><a href="{{route('admin.pagebuilder.edit', $page->id)}}">{{$page->name}} {{$page->is_start_page ? '(Start Page)' : ''}}</a></td>
                     <td>{{$page->page_url}}</td>
                     <td>
                         @if($page->default_template)
@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         <a href="{{str_replace_last('.html', '', $page->content_path)}}" target="_blank" class="blue">Preview</a> | 
-                        <a href="{{route('admin.pagebuilder.edit', $page->id)}}" class="blue"> Edit</a>
+                        <a href="{{route('admin.pagebuilder.edit', $page->id)}}"> Edit</a>
                     </td>
                 </tr>
             @endforeach

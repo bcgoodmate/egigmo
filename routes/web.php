@@ -316,7 +316,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     });
     Route::get('mobilesupport-index', function () {
         return view('admin.mobilesupport.index');
-    });
+    });gei stagi
     Route::get('sitemanagement-index', function () {
         return view('admin.sitemanagement.index');
     });

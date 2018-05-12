@@ -18,22 +18,24 @@
             <li><a id="" class="" href="{{route('admin.pagetemplatebuilder.create')}}">Add Templates</a></li>
         </ul>
     </div>
-    <div class="table-main">
-        <table id="table-anchor" class="display" style="width:100%">
-            <thead>
-            <tr class="">
-                <th>Templates</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($templates as $template)
-                <tr>
-                    <td>{{$template -> name}} @if($template->default_template)(default template)@endif </td>
-                    <td><a href="{{route('admin.pagetemplatebuilder.edit',$template->id)}}" class="blue">Edit</a></td>
+    <div class="table-wrapper">
+        <div class="table-main">
+            <table id="table-anchor" class="display" style="width:100%">
+                <thead>
+                <tr class="">
+                    <th>Templates</th>
+                    <th style="width: 200px;">Actions</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($templates as $template)
+                    <tr>
+                        <td><a href="{{route('admin.pagetemplatebuilder.edit',$template->id)}}">{{$template -> name}} @if($template->default_template)(default template)@endif </td>
+                        <td><a href="{{route('admin.pagetemplatebuilder.edit',$template->id)}}">Edit</a></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
