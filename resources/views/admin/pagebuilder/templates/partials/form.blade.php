@@ -102,15 +102,13 @@
             <div class="rich_editor">
                 <textarea id="page_rich_body"></textarea>
             </div>
-            <iframe id="temp_html" class="hide"></iframe>
             <div class="code_editor">
                 <pre id="page_code_body">{{$template_file_content}}</pre>
             </div>
         </div>
-        <textarea name="page_body" class="hide">{!! $template_file_content !!}</textarea>
 
+        <textarea name="html_code" class="hide">{!! $template_file_content !!}</textarea>
     </div>
     <button class="btn btn-primary btn-default btn-submit">Submit</button>
-    <a href="#" class="btn btn-default" onclick="event.preventDefault();
-                                                         document.getElementById('page-form-delete').submit();">Delete</a>
+    <a href="#" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('page-form-delete').submit();">Delete</a>
 </div>

@@ -1051,7 +1051,7 @@
                     $closest.siblings('.open').removeClass('open');           
                 })
             },
-            editor: function () {
+            aceEditor: function () {
                 if(!$('#page_code_body')[0]) return;
 
                 var editor = ace.edit('page_code_body');
@@ -1080,30 +1080,33 @@
         route: {
             init: function () {
                 this.templateBuilder();
-                this.addpage();
                 this.formBuilder();
             },
             templateBuilder: function () {
                 if(!$('[data-module="templatebuilder"]')[0]) return;
 
-                var editor = utils.components.editor();
-
-
-            },
-            addpage: function () {
-                if(!~window.location.pathname.indexOf('/pagebuilder/create')) return;
-
-                var editor = utils.components.editor();
-
-                var $temp_html = $('#temp_html').contents();
-
+                var code = $('textarea[name="html_code"]').val();
+                var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/m; // https://stackoverflow.com/questions/6195615/get-contents-of-body-body-within-a-string?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+                var body = pattern.exec(code);
+                var aceEditor = utils.components.aceEditor();
                 var richEditor = $('#page_rich_body').trumbowyg({
                     autogrow: true,
                     autogrowOnEnter: true,
                     btnsDef: {
                         viewSource: {
                             fn: function(e) {
-                                updateFrame();
+                                richEditor.closest('.rich-editor')
+                                    .toggleClass('inactive')
+                                    .find('.trumbowyg-button-pane')
+                                    .toggleClass('trumbowyg-disable')
+                                    .find('.trumbowyg-viewSource-button')
+                                    .toggleClass('trumbowyg-active');
+
+                                if(richEditor.closest('.rich-editor').hasClass('inactive')) {
+                                    aceEditor.setValue(code.replace(pattern, body[0].split('>')[0] + '>'+ richEditor.trumbowyg('html') +'<body>'));
+                                } else {
+
+                                }
                             },
                             ico: 'viewHTML'
                         }
@@ -1123,75 +1126,13 @@
                     ]
                 });
 
-                setupFrame();
+                richEditor.trumbowyg('html', body[1]);
 
-                function replaceAll(txt, replace, with_this) {
-                    return txt.replace(new RegExp(replace, 'g'),with_this);
-                }
-
-                function setupFrame() {
-                    var page = $('.pageForm [name="page_body"]').val();
-
-                    $temp_html[0].open();
-                    $temp_html[0].write(page);
-                    $temp_html[0].close();
-
-                    editor.setValue(`<!DOCTYPE html>${$temp_html.find('html')[0].outerHTML}`, 1);
-
-                    var template = $temp_html.find('body').html();
-
-                    template = replaceAll(template,"<script", "<!--<notscript");
-                    template = replaceAll(template,"</script>", "</notscript>-->");
-
-                    richEditor.trumbowyg('html',template);
-                }
-                
-                function updateFrame() {
-                    richHtml = editor.getValue();
-
-                    var richHtml, html;
-                    $parent = $('#page_rich_body').closest('.rich-editor');
-                    $parent.toggleClass('inactive').find('.trumbowyg-button-pane').toggleClass('trumbowyg-disable')
-                        .find('.trumbowyg-viewSource-button').toggleClass('trumbowyg-active');
-
-                    if($parent.hasClass('inactive')){
-                        richHtml = richEditor.trumbowyg('html');
-
-                        if($temp_html.find('body')[0]){
-                            $temp_html.find('body').html(richHtml);
-                        }else{
-                            $temp_html[0].open();
-                            $temp_html[0].write(richHtml);
-                            $temp_html[0].close();
-                        }
-
-                        var template = '<!DOCTYPE html>' + $temp_html.find('html')[0].outerHTML;
-
-                        template = replaceAll(template,"<!--<notscript", "<script");
-                        template = replaceAll(template,"</notscript>-->", "</script>");
-
-                        editor.setValue(template);
-                        // editor.setValue($('textarea[name="page_body"]').val());
-                        // editor.setValue(editor.getValue());
-                    }else{
-                        richHtml = editor.getValue();
-
-                        richHtml = replaceAll(richHtml,"<script", "<!--<notscript");
-                        richHtml = replaceAll(richHtml,"</script>", "</notscript>-->");
-
-                        $temp_html[0].open();
-                        $temp_html[0].write('<!DOCTYPE html> '+richHtml);
-                        $temp_html[0].close();
-
-                        if($temp_html.find('body')[0]){
-                            html = $temp_html.find('body').html();
-                        }else{
-                            html = richHtml;
-                        }
-
-                        richEditor.trumbowyg('html', html);
-                    }
-                }
+                aceEditor.container.addEventListener("contextmenu", function(e) {
+                    e.preventDefault();
+                    console.log('test');
+                    return false;
+                }, false);
 
                 var formSubmit = false;
 
