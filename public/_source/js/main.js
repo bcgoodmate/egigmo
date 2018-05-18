@@ -701,6 +701,10 @@
             return arr.join('\n');
         };
 
+        cls.template = function () {
+            
+        }
+
         // public (shared across instances)
         cls.prototype = {
             render: function () {
@@ -876,6 +880,8 @@
             }
         };
 
+
+
         return cls;
     })();
 
@@ -982,7 +988,7 @@
 
             tablets: function () {
 
-                $('.tab-wrapper .tab-row a').on('click', function(e){
+                $('.tab-wrapper .tab-row > a').on('click', function(e){
                     e.preventDefault();
                     $(this).next().slideToggle();
                     $(this).toggleClass('down');
@@ -1126,7 +1132,7 @@
                     ]
                 });
 
-                richEditor.trumbowyg('html', body[1]);
+                // richEditor.trumbowyg('html', body[1]);
 
                 aceEditor.container.addEventListener("contextmenu", function(e) {
                     e.preventDefault();

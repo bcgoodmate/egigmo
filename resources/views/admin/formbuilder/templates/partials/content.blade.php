@@ -16,11 +16,6 @@
 
             <span class="positionMarker"></span>
 
-            <div class="list-btr-top">
-                <input type="button" id="" value="Update" class="btn btn-primary btn-default">
-                <input type="button" id="" value="Copy this Web Form" class="btn btn-default">
-                <input type="button" id="" value="Delete" class="btn btn-default">
-            </div>
 
             <div class="webform-popup">
 
@@ -59,5 +54,10 @@
                 </div>
             </div>
         </div>
+        <div class="button-wrapper">
+                <input type="button" id="" value="Update" class="btn btn-primary btn-default">
+                <input type="button" id="" value="Copy this Web Form" class="btn btn-default">
+                <input type="button" id="" value="Delete" class="btn btn-default">
+            </div>
     </div>
 </div>

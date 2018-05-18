@@ -6,10 +6,11 @@
         Template Details
     </h2>
 </div>
+
 <div class="col-inner-extra">
     <div class="row form-group">
         <div class="col-sm-4 text-right">
-            <label for="name">Template Name</label>
+            <label for="name" onmouseover="Help(this,'Template Name','Please enter a name for this template.');">Template Name</label>
         </div>
         <div class="col-sm-8">
             <input type="text" name="name" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -73,7 +74,7 @@
                     <label for="">Workflow:</label>
                 </div>
                 <div class="col-sm-8">
-                    <p>None Specified <span style="display: inline-block;"><a href="#">Edit</a></span></p>
+                    <span>None Specified <span style="display: inline-block;"><a href="/admin/workflow">Edit</a></span></span>
                 </div>
             </div>
             <div class="row form-group">
@@ -81,7 +82,7 @@
                     <label for="">Template file:</label>
                 </div>
                 <div class="col-sm-8">
-                    <p><a href="#">Upload</a></p>
+                    <p><a class="popup-edit" href="#p0293">Upload</a></p>
                 </div>
             </div>
         </div>
@@ -97,7 +98,7 @@
 
 <div class="">
     <div class="form-group">
-        <label>Content</label>
+        
         <div class="rich-editor">
             <div class="rich_editor">
                 <textarea id="page_rich_body"></textarea>
@@ -109,6 +110,41 @@
 
         <textarea name="html_code" class="hide">{!! $template_file_content !!}</textarea>
     </div>
+</div>
+<div class="button-wrapper">
     <button class="btn btn-primary btn-default btn-submit">Submit</button>
     <a href="#" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('page-form-delete').submit();">Delete</a>
+</div>
+
+
+<div class="popup-content-wrapper mfp-hide" id="p0293">
+    <div class="">
+        <div class="list-btr">
+            <h2>Upload Manager</h2>
+        </div>
+        <div class="modalwindow">
+            <form action="" method="POST">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="name">Select file to upload to server:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="file" name="name" id="d0291" class="form-control" value="test">
+                            <br>
+                            <label>  (250MB limit applies to each file)</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <input type="button" value="Select" class="btn btn-default" for="d0291"> -->
+                            <label for="d0291" class="btn btn-default select">Select</label>
+                        </div>
+                    </div>
+                </div>
+
+                 <hr>
+                <input type="submit" id="btnSaveForm" value="Upload" class="btn btn-primary btn-default">
+
+            </form>
+        </div>
+    </div>
 </div>

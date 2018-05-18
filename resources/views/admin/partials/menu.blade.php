@@ -2,7 +2,7 @@
     <div class="list-tre">
         <ul>
             <li>
-                <a href="{{route('admin.dashboard')}}" class="{{active_class(if_route(['admin.dashboard']))}}">Dashboard</a>
+                <a href="{{route('admin.dashboard')}}" class="{{active_class(if_route(['admin.dashboard']))}}"><i class="icon-menu"></i>Dashboard</a>
             </li>
         </ul>
     </div>
@@ -10,7 +10,7 @@
     <div class="list-tre">
         <ul>
             <li class="has-dropdown">
-                <a href="#" class="open">Site Manager</a>
+                <a href="#" class="open"><i class="icon-menu folder-icon"></i> Site Manager</a>
                 <div class="drop" style="display:block;">
                     <ul>
                         <li><a href="{{route('admin.pagebuilder.index')}}" class="{{active_class(if_route(['admin.pagebuilder.index']))}}">Pages</a></li>

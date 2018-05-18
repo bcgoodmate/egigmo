@@ -141,6 +141,8 @@
     </div>
     <textarea name="page_body" class="hide">{{$page ? $page->content_html: null}}</textarea>
 </div>
+<div class="button-wrapper">
 <button class="btn btn-primary btn-default btn-submit">Submit</button>
 <a href="#" class="btn btn-default" onclick="event.preventDefault();
                                                      document.getElementById('page-form-delete').submit();">Delete</a>
+                                                 </div>

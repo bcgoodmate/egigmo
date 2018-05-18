@@ -333,6 +333,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
         return view('admin.sitebillings.index');
     });
 
+    Route::get('workflow', function () {
+        return view('admin.call.workflow');
+    });
+    
+
 
 
 
