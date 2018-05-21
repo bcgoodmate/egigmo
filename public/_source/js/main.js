@@ -650,7 +650,7 @@
         };
 
         cls.fieldActions = function () {
-            return '<div class="field-actions"><a href="#" class="edit" title="Edit "><i class="icon far fa-edit"></i></a><a href="#" class="delete" title="delete"><i class="icon fas fa-minus-circle"></i></a></div>';
+            return '<div class="field-actions"><a href="#" class="edit" title="Edit "></a><a href="#" class="delete" title="delete"></a></div>';
         };
 
         cls.template = function (tpl, data) {
@@ -879,6 +879,8 @@
                 });
             }
         };
+
+       
 
 
 
@@ -1547,4 +1549,7 @@
         utils.init();
     });
 })(jQuery);
+
+
+
 

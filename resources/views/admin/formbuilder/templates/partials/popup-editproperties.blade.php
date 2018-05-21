@@ -11,7 +11,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Web Form Name </label>
                 </div>
                 <div class="col-sm-8">
@@ -19,8 +19,9 @@
                 </div>
             </div>
         </div>
-
-        <hr>
-        <input type="submit" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+        <div class="footerbuttons">
+            <hr>
+            <input type="submit" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+        </div>
     </form>
 </div>

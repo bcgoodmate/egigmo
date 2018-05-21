@@ -43,6 +43,7 @@ a:focus,
 a:active {
     color: #1E86E3;
     text-decoration: none;
+    outline: 0 auto -webkit-focus-ring-color;
 }
 
 p {
@@ -77,7 +78,6 @@ input[type="submit"],
 label{
     font-size: 12px;
 }
-
 /********** header ***********/
 
 .navbar-brand {
@@ -349,7 +349,7 @@ label{
     position: relative;
     border-radius: 5px;
     margin: 20px auto;
-    padding: 10px 25px;
+    padding: 0;
 }
 
 #webform-builder {
@@ -469,7 +469,7 @@ label{
 }
 
 .modalwindow {
-    padding: 15px 0;
+    padding: 15px 20px;
 }
 
 .modalwindow tr {
@@ -629,7 +629,7 @@ span.prev-edit>* {
 
 .warningMessage {
     border: 1px dashed #FDD8A6;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
@@ -801,6 +801,7 @@ a.blue {
 
 a.delete {
     color: #ff3434;
+    margin-left: 5px;
 }
 
 #system-fields .row>div {
@@ -989,7 +990,7 @@ a.delete {
     padding-right: 15px;
     background: #ffffff;
 }
-.col-inner-extra{
+.col-inner-extra{    
     width: 600px;
 }
 .new-field-settings a {
@@ -1052,6 +1053,7 @@ a.delete {
     font-size: 11px;
     line-height: 1;
     height: 24px;
+    padding: 6px;
 }
 
 #field-buttons .new-field-settings a.save {
@@ -1227,6 +1229,7 @@ a.delete {
     border: 0;
     padding-top: 4px;
     padding-bottom: 3px;
+    color: #595959;
 }
 
 .table-main #table-anchor td a:hover {
@@ -1436,4 +1439,63 @@ i.icon-menu.folder-icon:after{
 }
 .btn-default.select {
     padding: 3px 11px;
+}
+.warning-row {
+    padding: 16px 16px 0;
+}
+
+.warning-row .warningMessage {
+    margin-bottom: 10px;
+    border: 1px dashed #CBCBCB;
+    padding: 16px;
+}
+.list-btr h2 {
+    color: #252525;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+.tab-wrapper .tab-row a + .col-inner-extra {
+    margin-top:  40px;
+}
+.rich-editor textarea{
+    width: 100%;
+    height: 350px;
+}
+.footerbuttons {
+    margin-left:  -20px;
+    margin-right:  -20px;
+}
+
+.footerbuttons input {
+    margin-left:  20px;
+}
+a.delete:after{
+    content: "";
+    background-image: url(/_source/img/remove.png);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    display: inline-block;
+    position: relative;
+}
+a.edit:after{
+    content: "";
+    background-image: url(/_source/img/file-edit.png);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    display: inline-block;
+    position: relative;
+}
+
+.upload-div input[type="file"] {
+    opacity: 0;
+    position: relative;
+    z-index: 20;
+}
+
+.upload-div input[type="text"] {
+    position: relative;
+    margin-top: -22px;
 }

@@ -12,7 +12,7 @@
                         More Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="" href="#">Archive and Rollback</a></li>
+                        <li><a class="" href="/admin/templates-archive">Archive and Rollback</a></li>
                         <li><a class="popup-edit" href="#tab0920">Optimize Content</a></li>
                         <li><a class="popup-edit" href="#tab2920">View Audit Log</a></li>
                     </ul>

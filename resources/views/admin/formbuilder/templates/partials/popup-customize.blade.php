@@ -8,9 +8,11 @@
             <textarea rows="10" class="form-control"></textarea>
         </div>
 
-        <hr>
-        <input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-        <input type="button" id="btnSaveForm" value="Restore to Default" class="btn btn-default">
+		<div class="footerbuttons">
+	        <hr>
+	        <input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+	        <input type="button" id="btnSaveForm" value="Restore to Default" class="btn btn-default">
+	    </div>
 
     </form>
 </div>

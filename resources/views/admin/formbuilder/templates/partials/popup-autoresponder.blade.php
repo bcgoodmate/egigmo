@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Send autoresponder email:</label>
                 </div>
                 <div class="col-sm-8">
@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Email Subject:</label>
                 </div>
                 <div class="col-sm-8">
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Email Subject:</label>
                 </div>
                 <div class="col-sm-8">
@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">From Name:</label>
                 </div>
                 <div class="col-sm-8">
@@ -54,8 +54,8 @@
         </div>
 
         <div class="form-group">
-            <div class="row">
-                <div class="col-sm-4">
+            <div class="row"> 
+                <div class="col-sm-4 text-right">
                     <label for="name">Format: </label>
                 </div>
                 <div class="col-sm-8">
@@ -69,7 +69,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Template: </label>
                 </div>
                 <div class="col-sm-8">
@@ -103,9 +103,10 @@
         <hr>
 
         <textarea rows="10" class="form-control"></textarea>
-
-        <hr>
-        <input type="submit" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-        <input type="reset" id="btnCancel" value="Email Me" class="btn btn-default">
+        <div class="footerbuttons">
+            <hr>
+            <input type="submit" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+            <input type="reset" id="btnCancel" value="Email Me" class="btn btn-default">
+        </div>
     </form>
 </div>

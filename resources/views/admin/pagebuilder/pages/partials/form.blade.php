@@ -1,3 +1,9 @@
+<div class="hybridFormHeader">
+    <h2 class="hybridFormTitlewrap">
+        Page Details
+    </h2>
+</div>
+
 <div class="col-inner-extra">
     <div class="row form-group">
         <div class="col-sm-4 text-right">
@@ -94,42 +100,126 @@
     </div>
 </div>
 <br>
+<div class="tab-wrapper">
+    <div class="tab-row">
+        <a href="#">
+            <div class="hybridFormHeader">
+                <h2 class="hybridFormTitlewrap">
+                   SEO Metadata
+                </h2>
+            </div>
+        </a>
+        <div class="col-inner-extra">
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>Page Title</label>
+                </div>
+                <div class="col-sm-8 ">
+                    @if(old('name'))
+                        <input type="text" name="page_title" class="form-control" value="{{ old('page_title') }}">
+                    @else
+                        <input type="text" name="page_title" class="form-control" value="{{$page ? $page->page_title : null}}">
+                    @endif
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>Page Description</label>
+                </div>
+                <div class="col-sm-8 ">
+                    @if(old('name'))
+                        <textarea name="page_desc" cols="30" rows="5" class="form-control"
+                                  id="page_desc">{{ old('page_desc') }}</textarea>
+                    @else
+                        <textarea name="page_desc" cols="30" rows="5" class="form-control"
+                                  id="page_desc">{{$page ? $page->page_description : null}}</textarea>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
-<h3><b>SEO Metadata</b></h3>
-<div class="col-inner-extra">
-    <div class="row form-group">
-        <div class="col-sm-4 text-right">
-            <label>Page Title</label>
-        </div>
-        <div class="col-sm-8 ">
-            @if(old('name'))
-                <input type="text" name="page_title" class="form-control" value="{{ old('page_title') }}">
-            @else
-                <input type="text" name="page_title" class="form-control" value="{{$page ? $page->page_title : null}}">
-            @endif
+<div class="tab-wrapper">
+    <div class="tab-row">
+        <a href="#">
+            <div class="hybridFormHeader">
+                <h2 class="hybridFormTitlewrap">
+                    More Options
+                </h2>
+            </div>
+        </a>
+        <div class="col-inner-extra">
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>301 Redirect:</label>
+                </div>
+                <div class="col-sm-8 ">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="" class="form-control ">  
+                        </div>            
+                        <div class="col-md-4 col-sm-4">
+                            <a href="#" class="">Browse...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>Release Date:</label>
+                </div>
+                <div class="col-sm-8 ">
+                    <input type="date" name="">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>Expiry Date:</label>
+                </div>
+                <div class="col-sm-8 ">
+                    <input type="date" name="">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>Enabled:</label>
+                </div>
+                <div class="col-sm-8 ">
+                    <input type="checkbox" name="">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label>Exclude From Search Results:</label>
+                </div>
+                <div class="col-sm-8 ">
+                    <input type="checkbox" name="">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label for="">Role Responsible:</label>
+                </div>
+                <div class="col-sm-8">
+                    <span>None Specified <span style="display: inline-block;"><a href="#"> Edit</a></span></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4 text-right">
+                    <label for="">Workflow:</label>
+                </div>
+                <div class="col-sm-8">
+                    <span>None Specified <span style="display: inline-block;"><a href="#"> Edit</a></span></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="col-inner-extra">
-    <div class="row form-group">
-        <div class="col-sm-4 text-right">
-            <label>Page Description</label>
-        </div>
-        <div class="col-sm-8 ">
-            @if(old('name'))
-                <textarea name="page_desc" cols="30" rows="5" class="form-control"
-                          id="page_desc">{{ old('page_desc') }}</textarea>
-            @else
-                <textarea name="page_desc" cols="30" rows="5" class="form-control"
-                          id="page_desc">{{$page ? $page->page_description : null}}</textarea>
-            @endif
-        </div>
-    </div>
-</div>
+
 <br>
 <br>
 <div class="form-group">
-    <label>Content</label>
     <div class="rich-editor">
         <div class="rich_editor">
             <textarea id="page_rich_body"></textarea>

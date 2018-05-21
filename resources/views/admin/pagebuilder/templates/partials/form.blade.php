@@ -10,7 +10,7 @@
 <div class="col-inner-extra">
     <div class="row form-group">
         <div class="col-sm-4 text-right">
-            <label for="name" onmouseover="Help(this,'Template Name','Please enter a name for this template.');">Template Name</label>
+            <label for="name">Template Name</label>           
         </div>
         <div class="col-sm-8">
             <input type="text" name="name" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -74,7 +74,7 @@
                     <label for="">Workflow:</label>
                 </div>
                 <div class="col-sm-8">
-                    <span>None Specified <span style="display: inline-block;"><a href="/admin/workflow">Edit</a></span></span>
+                    <span>None Specified <span style="display: inline-block;"><a href="/admin/templates-workflow">Edit</a></span></span>
                 </div>
             </div>
             <div class="row form-group">
@@ -130,7 +130,10 @@
                             <label for="name">Select file to upload to server:</label>
                         </div>
                         <div class="col-sm-6">
-                            <input type="file" name="name" id="d0291" class="form-control" value="test">
+                            <div class="upload-div">
+                                <input type="file" name="name" id="d0291" class="form-control" value="test">
+                                <input type="text" name="name" id="d0291" class="form-control" value="test">
+                            </div>
                             <br>
                             <label>  (250MB limit applies to each file)</label>
                         </div>

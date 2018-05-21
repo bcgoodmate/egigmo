@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">HTML Code:</label>
                 </div>
                 <div class="col-sm-8">
@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Redirect After Submit:</label>
                 </div>
                 <div class="col-sm-8">
@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-right">
                     <label for="name">Preview:</label>
                 </div>
                 <div class="col-sm-8">
@@ -132,7 +132,10 @@
                             <option>Philippines</option>
                         </select>
                     </div>
-                    <input type="submit" name="" class="btn btn-default">
+                    <div class="footerbuttons">
+                        <hr>
+                        <input type="submit" name="" class="btn btn-default">
+                    </div>
 
                 </div>
             </div>
