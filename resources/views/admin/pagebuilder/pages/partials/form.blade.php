@@ -25,9 +25,18 @@
             @endif
         </div>
     </div>
-</div>
-
-<div class="col-inner-extra">
+    <div class="row form-group">
+        <div class="col-sm-4 text-right">
+            <label>Page Title</label>
+        </div>
+        <div class="col-sm-8 ">
+            @if(old('name'))
+                <input type="text" name="page_title" class="form-control" value="{{ old('page_title') }}">
+            @else
+                <input type="text" name="page_title" class="form-control" value="{{$page ? $page->page_title : null}}">
+            @endif
+        </div>
+    </div>
     <div class="row form-group">
         <div class="col-sm-4 text-right">
             <label for="start_page">Set as Start Page</label>
@@ -36,8 +45,6 @@
             <input type="checkbox" id="start_page" value="1" name="start_page" {{ old('is_start_page') ? 'checked' : $page && $page->is_start_page ? 'checked' : '' }}>
         </div>
     </div>
-</div>
-<div class="col-inner-extra">
     <div class="row form-group">
         <div class="col-sm-4 text-right">
             <label>Folder</label>
@@ -74,8 +81,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="col-inner-extra">
     <div class="row form-group">
         <div class="col-sm-4 text-right">
             <label>Template</label>
@@ -98,44 +103,18 @@
             @endif
         </div>
     </div>
-</div>
-<br>
-<div class="tab-wrapper">
-    <div class="tab-row">
-        <a href="#">
-            <div class="hybridFormHeader">
-                <h2 class="hybridFormTitlewrap">
-                   SEO Metadata
-                </h2>
-            </div>
-        </a>
-        <div class="col-inner-extra">
-            <div class="row form-group">
-                <div class="col-sm-4 text-right">
-                    <label>Page Title</label>
-                </div>
-                <div class="col-sm-8 ">
-                    @if(old('name'))
-                        <input type="text" name="page_title" class="form-control" value="{{ old('page_title') }}">
-                    @else
-                        <input type="text" name="page_title" class="form-control" value="{{$page ? $page->page_title : null}}">
-                    @endif
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-sm-4 text-right">
-                    <label>Page Description</label>
-                </div>
-                <div class="col-sm-8 ">
-                    @if(old('name'))
-                        <textarea name="page_desc" cols="30" rows="5" class="form-control"
-                                  id="page_desc">{{ old('page_desc') }}</textarea>
-                    @else
-                        <textarea name="page_desc" cols="30" rows="5" class="form-control"
-                                  id="page_desc">{{$page ? $page->page_description : null}}</textarea>
-                    @endif
-                </div>
-            </div>
+    <div class="row form-group">
+        <div class="col-sm-4 text-right">
+            <label>Page Description</label>
+        </div>
+        <div class="col-sm-8 ">
+            @if(old('name'))
+                <textarea name="page_desc" cols="30" rows="5" class="form-control"
+                          id="page_desc">{{ old('page_desc') }}</textarea>
+            @else
+                <textarea name="page_desc" cols="30" rows="5" class="form-control"
+                          id="page_desc">{{$page ? $page->page_description : null}}</textarea>
+            @endif
         </div>
     </div>
 </div>
@@ -170,7 +149,7 @@
                     <label>Release Date:</label>
                 </div>
                 <div class="col-sm-8 ">
-                    <input type="date" name="">
+                    <input type="date" name=""  data-toggle="datepicker">
                 </div>
             </div>
             <div class="row form-group">
@@ -210,7 +189,7 @@
                     <label for="">Workflow:</label>
                 </div>
                 <div class="col-sm-8">
-                    <span>None Specified <span style="display: inline-block;"><a href="#"> Edit</a></span></span>
+                    <span>None Specified <span style="display: inline-block;"><a href="/admin/workflow"> Edit</a></span></span>
                 </div>
             </div>
         </div>

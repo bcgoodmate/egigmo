@@ -73,28 +73,34 @@
                     <label for="name">Template: </label>
                 </div>
                 <div class="col-sm-8">
-                    <select name="" id="" class="form-control">
-                        <option selected="selected" value="-1">Don't use a template</option>
-                        <option value="0">Use default template</option>
-                        <option value="">Blank</option>
-                        <option value="">Buyer Dashboard</option>
-                        <option value="">Buyer Dashboard - Account</option>
-                        <option value="">Buyer Dashboard - Inbox</option>
-                        <option value="">Buyer Dashboard - Profile</option>
-                        <option value="">Home</option>
-                        <option value="">Inner</option>
-                        <option value="">Seller Dashboard</option>
-                        <option value="">Seller Dashboard - Account</option>
-                        <option value="">Seller Dashboard - Inbox</option>
-                        <option value="">Seller Dashboard - Listing</option>
-                        <option value="">Seller Dashboard - Tools</option>
-                        <option value="">test-2</option>
-                    </select>
-                    <span id="" class="prev-edit">
-                                                        <a href="#">Preview</a>
-                                                        <span class="actionSeparator">|</span>
-                    <a href="#">Edit</a>
-                    </span>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <select name="" id="" class="form-control">
+                                <option selected="selected" value="-1">Don't use a template</option>
+                                <option value="0">Use default template</option>
+                                <option value="">Blank</option>
+                                <option value="">Buyer Dashboard</option>
+                                <option value="">Buyer Dashboard - Account</option>
+                                <option value="">Buyer Dashboard - Inbox</option>
+                                <option value="">Buyer Dashboard - Profile</option>
+                                <option value="">Home</option>
+                                <option value="">Inner</option>
+                                <option value="">Seller Dashboard</option>
+                                <option value="">Seller Dashboard - Account</option>
+                                <option value="">Seller Dashboard - Inbox</option>
+                                <option value="">Seller Dashboard - Listing</option>
+                                <option value="">Seller Dashboard - Tools</option>
+                                <option value="">test-2</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <span id="" class="prev-edit">
+                            <a href="#">Preview</a>
+                            <span class="actionSeparator">|</span>
+                            <a href="#" class="">Edit</a>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

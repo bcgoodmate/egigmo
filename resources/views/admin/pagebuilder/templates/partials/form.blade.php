@@ -27,7 +27,7 @@
             <label for="enabled">Enabled</label>
         </div>
         <div class="col-sm-8">
-            <input type="checkbox" id="enabled" value="1">
+            <input type="checkbox" id="enabled" value="1" checked="">
         </div>
     </div>
     <div class="row form-group">
@@ -74,7 +74,7 @@
                     <label for="">Workflow:</label>
                 </div>
                 <div class="col-sm-8">
-                    <span>None Specified <span style="display: inline-block;"><a href="/admin/templates-workflow">Edit</a></span></span>
+                    <span>None Specified <span style="display: inline-block;"><a href="/admin/workflow">Edit</a></span></span>
                 </div>
             </div>
             <div class="row form-group">

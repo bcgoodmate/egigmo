@@ -221,10 +221,6 @@ label{
     margin-bottom: 10px;
 }
 
-.list-btr {
-    margin-bottom: 10px;
-}
-
 .sidebar-panel .drop ul li {
     border-bottom: none;
 }
@@ -1270,7 +1266,7 @@ a.delete {
     padding-left: 0;
 }
 .aside .pages .list-btr h2,
-.aside .side-left-main > .card-header h1 {
+.aside .side-left-main .card-header h1 {
     padding:  13px 18px;
     margin: 0;
     color: #000;
@@ -1466,9 +1462,10 @@ i.icon-menu.folder-icon:after{
     margin-left:  -20px;
     margin-right:  -20px;
 }
-
+.footerbuttons button,
 .footerbuttons input {
     margin-left:  20px;
+    margin-right: -10px;
 }
 a.delete:after{
     content: "";
@@ -1498,4 +1495,8 @@ a.edit:after{
 .upload-div input[type="text"] {
     position: relative;
     margin-top: -22px;
+}
+#nestable span.req {
+    color: #f00;
+    font-weight: bold;
 }

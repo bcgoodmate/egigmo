@@ -536,8 +536,8 @@
                     }
 
                     let $div = $('<div class="grabbing" />');
-                    $div.append('<label for="'+ fields[i].name +'">'+ fields[i].label +'</label>')
-                        .append((fields[i].required == true) ? ' <span class="req">*</span>' : '')
+                    $div.append('<label for="'+ fields[i].name +'">'+ fields[i].label + ' <span class="req">*</span>' + '</label>')
+                        // .append((fields[i].required == true) ? ' <span class="req">*</span>' : '')
                         .append(FormBuilder.fieldType(fields[i]));
                     $li.find('.dd-handle').append($div)
 
@@ -1549,7 +1549,3 @@
         utils.init();
     });
 })(jQuery);
-
-
-
-

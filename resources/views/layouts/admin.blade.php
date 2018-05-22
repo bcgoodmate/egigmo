@@ -39,6 +39,7 @@
     <script src="{{ asset('_source/vendors/dataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('_source/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('_source/vendors/magnific-popup/magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('_source/vendors/datepicker/jQueryDatepicker.js') }}"></script>
     <script src="{{ asset('_source/js/main.js') }}"></script>
 </div>
 </body>

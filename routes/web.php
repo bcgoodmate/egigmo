@@ -332,16 +332,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('sitebillings-index', function () {
         return view('admin.sitebillings.index');
     });
-
-    Route::get('templates-workflow', function () {
-        return view('admin.pagebuilder.templates.another.workflow');
+    Route::get('workflow', function () {
+        return view('admin.call.workflow');
     });
     Route::get('templates-archive', function () {
         return view('admin.pagebuilder.templates.another.archive');
     });
-    
-
-
 
 
 

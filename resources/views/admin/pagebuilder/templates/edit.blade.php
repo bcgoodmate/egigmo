@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="" id="pt02">
     <div class="card-header"><h1>Edit Template</h1></div>
     <br>
     <div class="btn-add">
@@ -20,8 +21,8 @@
             </li>
         </ul>
     </div>
+        <div class="form-builders ">
     <div class="row">
-        <div class="">
             <div class="card">
 
                 <div class="card-body">
@@ -93,8 +94,10 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <input type="submit" id="btnSaveForm" value="Perform Selected Changes" class="btn btn-primary btn-default">
+                    <div class="footerbuttons">
+                        <hr>
+                        <input type="submit" id="btnSaveForm" value="Perform Selected Changes" class="btn btn-primary btn-default">
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,6 +112,8 @@
             </div>
         </div>
     </div>
+
+</div>
 
 
 
