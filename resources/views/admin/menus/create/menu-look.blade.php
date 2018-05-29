@@ -2,29 +2,29 @@
 
 @section('content')
 
+        <div class="list-btr">
+            <h2>Menus</h2>
+        </div>	
+		<div class="list-view">
+	        <ul>
+	            <li><a href="/admin/menus-create-details">Details</a></li>
+	            <li><a href="/admin/menus-create-menu">Menu Items</a></li>
+	            <li class="active"><a href="/admin/menus-create-menulook">Menu look</a></li>
+	            <li><a href="/admin/menus-create-itemslook">IItems look</a></li>
+	        </ul>
+	    </div>
 	   	<div class="row">
-	   		<div class="col-inner">
-		        <div class="list-btr">
-		            <h2>Menus</h2>
-		        </div>	
-
-				<div class="list-view">
-			        <ul>
-			            <li><a href="/admin/menus-create-details">Details</a></li>
-			            <li><a href="/admin/menus-create-menu">Menu Items</a></li>
-			            <li class="active"><a href="/admin/menus-create-menulook">Menu look</a></li>
-			            <li><a href="/admin/menus-create-itemslook">IItems look</a></li>
-			        </ul>
-			    </div>
-
+	   		<div class="col-inner-deep">
 			    <br>
-				
-				
 				<div class="rad-wrapper">
-					<div class="form-group">						
-					    <label for="name">Customize overall look of : </label>
-					    <input type="radio" name="name" id="" class="choice" value="" href="#rad-root" checked>The root menu
-					    <input type="radio" name="name" id="" class="choice" value="" href="#rad-sub">All sub-menus
+					<div class="form-group">
+						<div class="col-md-6 text-right">						
+					    	<label for="name">Customize overall look of : </label>
+					    </div>
+					    <div class="col-md-6">	
+						    <input type="radio" name="name" id="" class="choice" value="" href="#rad-root" checked>The root menu
+						    <input type="radio" name="name" id="" class="choice" value="" href="#rad-sub">All sub-menus
+						</div>
 				    </div>
 
 				    <hr>

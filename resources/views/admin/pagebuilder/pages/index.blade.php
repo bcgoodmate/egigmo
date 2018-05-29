@@ -9,6 +9,7 @@
     <div class="list-view">
         @include('admin.pagebuilder.pages.partials.menu')
     </div>
+    <br>
     <div class="btn-add">
         <ul>
             <li><a href="{{route('admin.pagebuilder.create')}}">Add Page</a></li>

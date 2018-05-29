@@ -248,16 +248,13 @@ label{
     color: #fff;
 }
 
-.list-view {
-    margin-bottom: 20px;
-}
-
 .aside .pages .list-btr {
     margin-bottom: 0;
 }
 
 .pages .list-view ul {
     border-bottom: 1px solid #e6e6e6;
+    margin: 0;
 }
 
 .drop.active {
@@ -1499,4 +1496,10 @@ a.edit:after{
 #nestable span.req {
     color: #f00;
     font-weight: bold;
+}
+.col-inner-menus{
+    width: 800px;
+}
+.col-inner-deep{
+    width: 500px;
 }
