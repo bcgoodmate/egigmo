@@ -638,10 +638,6 @@ span.prev-edit>* {
     display: block;
 }
 
-.rad-wrapper input[type="radio"] {
-    display: block;
-}
-
 a.pad-lft {
     padding-left: 20px;
     color: #428bca;
@@ -689,6 +685,8 @@ a.blue {
 
 .rad-wrapper input[type="radio"] {
     display: block;
+        margin-top: 1px;
+    margin-right: 4px;
 }
 
 a.pad-lft {
@@ -1008,7 +1006,7 @@ a.delete {
     display: inline-flex;
 }
 
-.radio-add input {
+git.radio-add input {
     margin-right: 4px;
 }
 
@@ -1502,4 +1500,13 @@ a.edit:after{
 }
 .col-inner-deep{
     width: 500px;
+}
+.flex-center{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 48px;
+}
+.flex-inline {
+    display:  flex;
 }
