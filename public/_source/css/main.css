@@ -1499,7 +1499,7 @@ a.edit:after{
     width: 800px;
 }
 .col-inner-deep{
-    width: 500px;
+    width: 548px;
 }
 .flex-center{
     display: flex;
@@ -1509,4 +1509,16 @@ a.edit:after{
 }
 .flex-inline {
     display:  flex;
+}
+i.folder-img{
+    content: "";
+    background-image: url(/_source/img/folder-img.png);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-left: 5px;
+    margin-right: 2px;
 }

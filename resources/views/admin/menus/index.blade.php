@@ -26,19 +26,19 @@
 	                </thead>
 	                <tbody>
 	                    <tr>
-	                        <td>Booking Form</td>
-	                        <td><a href="/admin/menus-edit-menu" class="blue">Edit</a></td>	                                                                                     
+	                        <td><a href="/admin/menus-edit-menu">Booking Form</a></td>
+	                        <td><a href="/admin/menus-edit-menu" >Edit</a></td>	                                                                                     
 	                    </tr>
 
 	                    <tr>
-	                         <td>Booking Form</td>
-	                        <td><a href="/admin/menus-edit-menu" class="blue">Edit</a></td>	    
+	                        <td><a href="/admin/menus-edit-menu">Booking Form</a></td>
+	                        <td><a href="/admin/menus-edit-menu" >Edit</a></td>	    
 	                                                                                     
 	                    </tr>
 
 	                    <tr>
-	                        <td>Booking Form</td>
-	                        <td><a href="/admin/menus-edit-menu" class="blue">Edit</a></td>	                                           
+	                        <td><a href="/admin/menus-edit-menu">Booking Form</a></td>
+	                        <td><a href="/admin/menus-edit-menu">Edit</a></td>	                                           
 	                    </tr>
 	                    
 	                   

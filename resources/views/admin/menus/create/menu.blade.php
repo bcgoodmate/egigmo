@@ -167,13 +167,11 @@
 						</div>
 					</div>
 				</div>
-
-		    	<hr>
-		       
-		       	<input type="button" id="" value="Save Item" class="btn btn-primary">
-			   
 			   </div>
-			</div>
+		    <div class="button-wrapper">		       
+		       <input type="button" id="" value="Save Item" class="btn btn-primary">
+		    </div>
+		</div>
 
     	
 @endsection

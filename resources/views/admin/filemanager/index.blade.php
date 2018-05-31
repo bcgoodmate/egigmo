@@ -32,26 +32,26 @@
 
 
 	                    <tr>
-	                        <td><a href="#"><i class="fas fa-folder-open"></i> _System</a</td>
+	                        <td><a href="#"><i class="folder-img"></i> _System</a</td>
 	                        <td></td>
 	                        <td></td>
 	                                                                                     
 	                    </tr>
 
 	                    <tr>
-	                        <td><a href="#"><i class="fas fa-folder-open"></i> assets</a></td>  
+	                        <td><a href="#"><i class="folder-img"></i> assets</a></td>  
 	                        <td></td>
 	                        <td></td>
 	                                                                                     
 	                    </tr>	    
 
 	                    <tr>
-	                        <td><a href="#"><i class="fas fa-folder-open"></i> css</a></td>  
+	                        <td><a href="#"><i class="folder-img"></i> css</a></td>  
 	                        <td></td>
 	                        <td></td>	                                                                                     
 	                    </tr>	  
 	                    <tr>
-	                        <td><a href="#"><i class="fas fa-folder-open"></i> js</a></td>  
+	                        <td><a href="#"><i class="folder-img"></i> js</a></td>  
 	                        <td></td>
 	                        <td></td>
 	                                                                                     

@@ -12,8 +12,7 @@
 	        </ul>
 	    </div>
 	   	<div class="row">
-	   		<div class="col-inner-deep">
-				
+	   		<div class="col-inner-deep">				
 			    <div class="row form-group">
 			        <div class="col-sm-4 text-right">
 			            <label>Page Name</label>
@@ -22,7 +21,6 @@
                         <input type="text" name="name" id="name" class="form-control" value="">      
                 	</div>
 			    </div>
-
 			    <div class="row form-group">
 			        <div class="col-sm-4 text-right">
 			            <label>Menu Type:</label>			
@@ -35,16 +33,13 @@
 						</select>   
                 	</div>
 			    </div>
-				
-
-		    	<div class="button-wrapper">
-			       	<input type="button" id="" value="Save" class="btn btn-default">
-			       	<input type="button" id="" value="Cancel" class="btn btn-default">
-			       	<input type="button" id="" value="Next" class="btn btn-primary btn-default">
-			    </div>
-			   
-			   </div>
 			</div>
+	    	<div class="button-wrapper">
+		       	<input type="button" id="" value="Save" class="btn btn-default">
+		       	<input type="button" id="" value="Cancel" class="btn btn-default">
+		       	<input type="button" id="" value="Next" class="btn btn-primary btn-default">
+		    </div>			   
+		</div>
 
     	
 @endsection
