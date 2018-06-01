@@ -6,20 +6,117 @@
 	        <div class="list-btr">
 	            <h2>File Manager</h2>
 	        </div>
-			
 			<br>
-
-	        <div class="btn-add">
-		        <ul>
-		            <li><a id="" class="popup-edit" href="#edit-prop">New Folder</a></li>
-		            <li><a id="" class="" href="#">Delete Folder</a></li>
-		            <li><a id="" class="popup-edit" href="#edit-up">Upload File(s)</a></li>
-		            <li><a id="" class="" href="#">Thumbnail View</a></li>
-		            <li><a id="" class="" href="#">Detail View</a></li>
-		        </ul>
-		    </div>	      
-
-	         <div class="table-main">
+			<div class="path-tablet">
+		        <div class="btn-add">
+			        <ul>
+			            <li><a id="" class="path-trigger" href="#edit-prop">New Folder</a></li>
+			            <li><a id="" class="" href="#">Delete Folder</a></li>
+			            <li><a id="" class="path-trigger" href="#edit-up">Upload File(s)</a></li>
+			            <li><a id="" class="" href="#">Thumbnail View</a></li>
+			            <li><a id="" class="" href="#">Detail View</a></li>
+			        </ul>
+			    </div>	
+				<div class="path-wrapper">
+					<div class="path-head">
+						<span> Current Folder:</span>
+						<span> / <a href="#">Root</a> / </span>
+					</div>
+					<div class="">
+						<div class="path-body" id="edit-prop">
+							<div class="col-inner-extra">
+								<br>
+								<div class="row form-group">
+							        <div class="col-sm-4 text-right">
+							            <label for="">Folder Name</label> 
+							        </div>
+							        <div class="col-sm-8">
+							            <input type="text" name="name" id="name" class="form-control" value="">
+							        </div>
+							    </div>
+							    <div class="row form-group">
+							        <div class="col-sm-4 text-right">						            
+							        </div>
+							        <div class="col-sm-8">		
+								       	<input type="button" id="" value="Save" class="btn btn-primary">
+								       	<input type="button" id="" value="Cancel" class="btn btn-default">									
+							        </div>
+							    </div>
+							</div>
+						</div>
+						<div class="path-body" id="edit-up">
+							<div class="file-bg-01">
+								<div class="col-inner-extra">
+									<br>
+									<div class="row form-group">
+								        <div class="col-sm-4 text-right">
+								            <label for="">Choose folder to upload to:	</label> 
+								        </div>
+								        <div class="col-sm-6">
+								            <select name="" id="D" class="form-control">
+												<option value="">/</option>
+												<option value="">/_ajax/</option>
+												<option value="">/_assets/</option>		
+											</select>
+								        </div>
+								    </div>
+								    <div class="row form-group">
+								        <div class="col-sm-4 text-right">						           
+								        </div>
+								        <div class="col-sm-6">
+								            <div class="upload-div">
+				                                <input type="file" name="" id="pko20" class="form-control" value="">
+				                                <input type="text" name="" id="pko20" class="form-control" value="">
+				                            </div>
+								        </div>
+								        <label for="pko20" class="btn btn-default select">Select</label>
+								    </div>
+								    <div class="row form-group">
+								        <div class="col-sm-4 text-right">
+								            <label for="">Select file to upload to server:	</label> 
+								        </div>
+								        <div class="col-sm-6">
+								            <div class="upload-div">
+				                                <input type="file" name="" id="pko220" class="form-control" value="">
+				                                <input type="text" name="" id="pko220" class="form-control" value="">
+				                            </div>
+								        </div>
+								        <label for="pko220" class="btn btn-default select">Select</label>
+								    </div>
+								    <div class="row form-group">
+								        <div class="col-sm-4 text-right">
+								           
+								        </div>
+								        <div class="col-sm-6">
+								            <div class="upload-div">
+				                                <label for="pko20" class="btn btn-default select">Add</label>
+				                            </div>
+								        </div>
+								    </div>
+								    <div class="row form-group">
+								        <div class="col-sm-4 text-right">
+								           
+								        </div>
+								        <div class="col-sm-6">
+								            <div class="upload-div">
+				                                <span class="font-size-11">(250MB limit applies to each file)</span>
+				                            </div>
+								        </div>
+								    </div>
+								    <div class=""><span class="font-size-11"> Tip: you can also use SFTP to upload web pages and files! <a href="#">[Learn More]</a> <a href="#">[See Details]</a></span></div>
+								    <br>
+								    <div class="button-wrapper-deep">
+									    <button class="btn btn-primary btn-default btn-submit">Submit</button>
+									    <a href="#" class="btn btn-default" onclick="">Delete</a>
+									</div>
+									<br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	        <div class="table-main">
 	            <table id="table-anchor" class="display" style="width:100%">
 	                <thead>
 	                    <tr class="">                                    
@@ -29,22 +126,18 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-
-
 	                    <tr>
 	                        <td><a href="#"><i class="folder-img"></i> _System</a</td>
 	                        <td></td>
 	                        <td></td>
 	                                                                                     
 	                    </tr>
-
 	                    <tr>
 	                        <td><a href="#"><i class="folder-img"></i> assets</a></td>  
 	                        <td></td>
 	                        <td></td>
 	                                                                                     
-	                    </tr>	    
-
+	                    </tr>	
 	                    <tr>
 	                        <td><a href="#"><i class="folder-img"></i> css</a></td>  
 	                        <td></td>
@@ -53,22 +146,16 @@
 	                    <tr>
 	                        <td><a href="#"><i class="folder-img"></i> js</a></td>  
 	                        <td></td>
-	                        <td></td>
-	                                                                                     
-	                    </tr>	                                        
-	                   
+	                        <td></td>                                                          
+	                    </tr>	  
 	                </tbody>
-	               
 	            </table>
 	        </div>
-	    	
-
-	    	<div class="mfp-hide popup-content-wrapper" id="edit-prop">
+	    	<!-- <div class="mfp-hide popup-content-wrapper" id="edit-prop">
 	    		<div class="">	        	
 		        	<div class="list-btr">
 			            <h2>File Manager</h2>
 			        </div>
-
 					<div class="modalwindow">		
 
 					   <form action="" method="post">		
@@ -138,7 +225,7 @@
 						</form>
 					</div>
 				</div>	
-			</div>
+			</div> -->
     	
 @endsection
 

@@ -1429,7 +1429,10 @@ i.icon-menu.folder-icon:after{
     padding-left:  5px;
 }
 .btn-default.select {
-    padding: 3px 11px;
+    padding: 2px 14px;
+    border-radius: 3px;
+    background: #fff;
+    font-weight: 400;
 }
 .warning-row {
     padding: 16px 16px 0;
@@ -1521,4 +1524,36 @@ i.folder-img{
     top: 4px;
     margin-left: 5px;
     margin-right: 2px;
+}
+
+.path-body{
+    display: none;
+}
+.path-body.open{
+    display: block;
+}
+.path-wrapper{
+    margin: 0 18px -13px 18px;
+    border: 1px solid #dadada;
+}
+.path-wrapper .path-head{
+    border-bottom: 1px solid #eee;
+    background: #F7F7F7;
+    padding: 0 9px;
+    line-height: 27px;
+    font-size: 11px;
+}
+.path-wrapper span{
+    color: #000;
+}
+.button-wrapper-deep {
+    border-top: 1px solid #d4d4d4;
+    padding-top: 10px;
+    padding-left:  20px;
+}
+.file-bg-01{
+    background: #eee;
+}
+span.font-size-11 {
+    font-size:  11px;
 }

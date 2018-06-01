@@ -1049,8 +1049,13 @@
                     $parents.find('.rad-main').removeClass('open');
                     $(target).addClass('open');  
                  });
-
-
+                $('a.path-trigger').on('click', function(e){
+                    e.preventDefault();
+                    var $parents = $(this).parents('.path-tablet');
+                    var target = $(this).attr('href');
+                    // $parents.find('.path-body').toggleClass('sdas');
+                    $(target).toggleClass('open');
+                });
             },
             fieldSettingPopover: function(){
                 $('.field-actions a.edit').on('click', function(){
