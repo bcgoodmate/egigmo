@@ -10,7 +10,6 @@
                 <label>Page Title</label>
                 <input type="text" name="page_title" class="form-control">
             </div>
-
             <div class="form-group">
                 <label>Folder</label>
                 <select name="folder" class="form-control">
@@ -20,9 +19,10 @@
                     @endforeach
                 </select>
             </div>
-
             <textarea name="page_body" cols="30" rows="10" class="form-control"></textarea>
-            <button class="btn btn-default">Submit</button>
+            <div class="button-wrapper">
+                <button class="btn btn-default">Submit</button>
+            </div>
         </form>
     </div>
 @endsection

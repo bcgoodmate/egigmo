@@ -1,73 +1,89 @@
 @extends('layouts.admin')
 
-@section('content')
-
-	   	
+@section('content')	   	
 	        <div class="list-btr">
 	            <h2>URL Redirects</h2>
 	        </div>
-			
 			<br>
-
 	        <div class="btn-add">
 		        <ul>
 		            <li><a id="" class="popup-edit" href="#chooseweb">New URL Redirect</a></li>
 		            <li><a id="" class="" href="/admin/url-ridirects-import">Import URL Redirects</a></li>
 		        </ul>
 		    </div>
-
-
+		   	<div class="warning-row">
+		        <div class="warningMessage">
+		        	<span>Archived information older than 90 days is automatically deleted from the system.</span>
+	        	</div>
+	        </div>
+	        <br>
 			<div class="mfp-hide popup-content-wrapper" id="chooseweb">
-		        	
-		        <h2>New URL Redirect</h2>
-		       	<hr>
-
-		       	<h3><b>Source Url</b></h3>
-
+				<div class="list-btr">
+				    <h2>New URL Redirect</h2>
+				</div>
 		        <div class="modalwindow">
-
+					<div class="hybridFormHeader">
+					    <h2 class="hybridFormTitlewrap">
+					       Source Url
+					    </h2>
+					</div>
 	        		<form id="" action="">	
-
-	        			<div class="form-group">
-						    <label for="name">Folder:</label>
-						    <select name="folder" class="form-control ">
-			                    <option value="">/</option>
-			                   	<option value="/template">/template</option>
-			                    <option value="/_source">/_source</option>
-			                    <option value="/_source/css">/_source/css</option>
-                            </select>
+	        			<div class="row form-group">
+	        				<div class="col-md-3 text-right">
+						    	<label for="name">Folder:</label>
+						    </div>
+						    <div class="col-md-6">
+							    <select name="folder" class="form-control ">
+				                    <option value="">/</option>
+				                   	<option value="/template">/template</option>
+				                    <option value="/_source">/_source</option>
+				                    <option value="/_source/css">/_source/css</option>
+	                            </select>
+	                        </div>
 					    </div>
-
-					    <div class="form-group">
-						    <label for="name">File Name:</label>
-						    <input type="text" name="name" id="name" class="form-control" value="">
+					    <div class="row form-group">
+					    	<div class="col-md-3 text-right">
+						    	<label for="name">File Name:</label>
+						    </div>
+						    <div class="col-md-6">
+						    	<input type="text" name="name" id="name" class="form-control" value="">
+						    </div>
 					    </div>
-
-					    <div class="form-group">
-						    <label for="name">URL:</label>
-						    <a href="#"></a>
+					    <div class="row form-group">
+					    	<div class="col-md-3 text-right">
+						    	<label for="name">URL:</label>
+						    </div>
+						    <div class="col-md-6">
+						    	<a href="#">http://egigmo.businesscatalyst.com/</a>
+						    </div>
 					    </div>
-
-					    <h3><b>Source Url</b></h3>
-
-					    <hr>
-
-					    <div class="form-group">
-						    <label for="name">Modules:</label>
-						    <select name="folder" class="form-control ">
-			                    <option value="">Web Pages</option>
-			                    <option value="">News</option>
-			                   	<option value="">Media Downloads</option>
-			                    <option value="">FAQs</option>
-			                    <option value="">Events</option>
-                            </select>
+					    <div class="hybridFormHeader">
+						    <h2 class="hybridFormTitlewrap">
+						       Source Url
+						    </h2>
+						</div>
+					    <div class="row form-group">
+					    	<div class="col-md-3 text-right">
+						    	<label for="name">Modules:</label>
+						    </div>
+						    <div class="col-md-6">
+							    <select name="folder" class="form-control ">
+				                    <option value="">Web Pages</option>
+				                    <option value="">News</option>
+				                   	<option value="">Media Downloads</option>
+				                    <option value="">FAQs</option>
+				                    <option value="">Events</option>
+	                            </select>
+	                        </div>
 					    </div>
-
-					    <div class="form-group">
-						    <label for="name">Select Web Page</label>
-						    <input type="text" name="name" id="name" class="form-control" value="">
+					    <div class="row form-group">
+					    	<div class="col-md-3 text-right">
+						    	<label for="name">Select Web Page</label>
+						    </div>
+						    <div class="col-md-6">
+						    	<input type="text" name="name" id="name" class="form-control" value="">
+						    </div>
 					    </div>
-
 					    <div class="inline">
 						    <ul>
 						    	<li><a href="#" class="blue">Web Pages</a></li><span>/</span>
@@ -82,20 +98,23 @@
 						    	<li><a href="#" class="blue">Web Apps</a></li>
 						    </ul>
 						</div>
-
-					    <h3><b>Source Url</b></h3>
-
-					    <hr>
-
-					    <div class="form-group">
-						    <label for="name">Enabled</label>
-						    <input type="checkbox" name="name" id="name" class="" value="">
+						<div class="hybridFormHeader">
+						    <h2 class="hybridFormTitlewrap">
+						       Options
+						    </h2>
+						</div>
+					    <div class="row form-group">
+					    	<div class="col-md-3 text-right">
+						    	<label for="name">Enabled</label>
+						    </div>
+						    <div class="col-md-6">
+						    	<input type="checkbox" name="name" id="name" class="" value="">
+						    </div>
 					    </div>
-
-	        			<hr>
-
-
-	        			<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">					   
+	        			<div class="footerbuttons">
+	        				<hr>
+	        				<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
+	        			</div>					   
 
 					</form>
 				</div>

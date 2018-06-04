@@ -95,94 +95,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
         return view('admin.menus.edit.items-look');
     });
 
-    Route::get('SecureZoneAccessExpired', function () {
-        return view('admin.systempages.custom.SecureZoneAccessExpired');
+    Route::get('systempages-custom', function () {
+        return view('admin.systempages.custom.custom');
     });
 
-    Route::get('SecureZoneAccessDenied', function () {
-        return view('admin.systempages.custom.SecureZoneAccessDenied');
-    });
-
-    Route::get('ReauthenticationPage', function () {
-        return view('admin.systempages.custom.ReauthenticationPage');
-    });
-
-    Route::get('LogOutPage', function () {
-        return view('admin.systempages.custom.LogOutPage');
-    });
-
-    Route::get('PassRetrieveReques', function () {
-        return view('admin.systempages.custom.PassRetrieveReques');
-    });
-
-    Route::get('PassRetrieveConfirmation', function () {
-        return view('admin.systempages.custom.PassRetrieveConfirmation');
-    });
-
-    Route::get('PassReset', function () {
-        return view('admin.systempages.custom.PassReset');
-    });
-
-    Route::get('PassResetSuccess', function () {
-        return view('admin.systempages.custom.PassResetSuccess');
-    });
-
-    Route::get('SecureZoneUnauthorized', function () {
-        return view('admin.systempages.custom.SecureZoneUnauthorized');
-    });
-
-    Route::get('404PageNotFound', function () {
-        return view('admin.systempages.custom.404PageNotFound');
-    });
-    Route::get('General', function () {
-        return view('admin.systempages.custom.General');
-    });
-    Route::get('CreditCardPaymentFailPage', function () {
-        return view('admin.systempages.custom.CreditCardPaymentFailPage');
-    });
-    Route::get('FavoritesConfirmationPage', function () {
-        return view('admin.systempages.custom.FavoritesConfirmationPage');
-    });
-    Route::get('CommentsConfirmationPage', function () {
-        return view('admin.systempages.custom.CommentsConfirmationPage');
-    });
-
-    Route::get('CommentsDeniedPage', function () {
-        return view('admin.systempages.custom.CommentsDeniedPage');
-    });
-    Route::get('SubscriptionConfirmationRequest', function () {
-        return view('admin.systempages.custom.SubscriptionConfirmationRequest');
-    });
-    Route::get('SubscriptionConfirmed', function () {
-        return view('admin.systempages.custom.SubscriptionConfirmed');
-    });
-    Route::get('UnsubscribeConfirmation', function () {
-        return view('admin.systempages.custom.UnsubscribeConfirmation');
-    });
-    Route::get('UnsubscribeConfirmed', function () {
-        return view('admin.systempages.custom.UnsubscribeConfirmed');
-    });
-    Route::get('EventVerificationConfirmForm', function () {
-        return view('admin.systempages.custom.EventConfirmationPage');
-    });
-    Route::get('UnsubscribeConfirmed', function () {
-        return view('admin.systempages.custom.EventVerificationConfirmForm');
-    });
-    Route::get('EventVerificationPage', function () {
-        return view('admin.systempages.custom.EventVerificationPage');
-    });
-    Route::get('WebFormsConfirmation', function () {
-        return view('admin.systempages.custom.WebFormsConfirmation');
-    });
-    Route::get('EventVerificationPage', function () {
-        return view('admin.systempages.custom.UpdateDetailsFormConfirmation');
-    });
-    Route::get('WebAppItemConfirmation', function () {
-        return view('admin.systempages.custom.WebAppItemConfirmation');
-    });
-    Route::get('WebAppItemDeleteConfirmation', function () {
-        return view('admin.systempages.custom.WebAppItemDeleteConfirmation');
-    });
     Route::get('PasswordRetrieveEmail', function () {
         return view('admin.systememails.custom.PasswordRetrieveEmail');
     });
