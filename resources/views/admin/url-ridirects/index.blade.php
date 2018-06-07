@@ -13,7 +13,7 @@
 		    </div>
 		   	<div class="warning-row">
 		        <div class="warningMessage">
-		        	<span>Archived information older than 90 days is automatically deleted from the system.</span>
+		        	<span>There are no URL Redirects. To add a URL Redirect, click on "New URL Redirect"</span>
 	        	</div>
 	        </div>
 	        <br>
@@ -114,8 +114,7 @@
 	        			<div class="footerbuttons">
 	        				<hr>
 	        				<input type="button" id="btnSaveForm" value="Save" class="btn btn-primary btn-default">
-	        			</div>					   
-
+	        			</div>	
 					</form>
 				</div>
 			</div>

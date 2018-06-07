@@ -99,72 +99,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
         return view('admin.systempages.custom.custom');
     });
 
-    Route::get('PasswordRetrieveEmail', function () {
-        return view('admin.systememails.custom.PasswordRetrieveEmail');
+    Route::get('systememails-custom', function () {
+        return view('admin.systememails.custom.custom');
     });
-    Route::get('Invoice', function () {
-        return view('admin.systememails.custom.Invoice');
-    });
-    Route::get('OrderStatusChanged', function () {
-        return view('admin.systememails.custom.OrderStatusChanged');
-    });
-    Route::get('Quote', function () {
-        return view('admin.systememails.custom.Quote');
-    });
-    Route::get('GiftVoucher', function () {
-        return view('admin.systememails.custom.GiftVoucher');
-    });
-    Route::get('DropShipping', function () {
-        return view('admin.systememails.custom.DropShipping');
-    });
-    Route::get('FirstCartRecoveryEmail', function () {
-        return view('admin.systememails.custom.FirstCartRecoveryEmail');
-    });
-    Route::get('SecondCartRecoveryEmail', function () {
-        return view('admin.systememails.custom.SecondCartRecoveryEmail');
-    });
-    Route::get('DoubleOpt', function () {
-        return view('admin.systememails.custom.DoubleOpt');
-    });
-    Route::get('SecureZoneLoginDetails', function () {
-        return view('admin.systememails.custom.SecureZoneLoginDetails');
-    });
-    Route::get('AffiliateProgramDetails', function () {
-        return view('admin.systememails.custom.AffiliateProgramDetails');
-    });
-    Route::get('TellFriend', function () {
-        return view('admin.systememails.custom.TellFriend');
-    });
-    Route::get('ForumsSubscriberAlert', function () {
-        return view('admin.systememails.custom.ForumsSubscriberAlert');
-    });
-    Route::get('ForumsSubscriberAlertTopics', function () {
-        return view('admin.systememails.custom.ForumsSubscriberAlertTopics');
-    });
-    Route::get('CustomerServiceTicketing', function () {
-        return view('admin.systememails.custom.CustomerServiceTicketing');
-    });
-    Route::get('WorkflowNotification', function () {
-        return view('admin.systememails.custom.WorkflowNotification');
-    });
-    Route::get('3rdPartyWorkflow', function () {
-        return view('admin.systememails.custom.3rdPartyWorkflow');
-    });
-    Route::get('WorkflowTask', function () {
-        return view('admin.systememails.custom.WorkflowTask');
-    });
-    Route::get('WorkflowCompletion', function () {
-        return view('admin.systememails.custom.WorkflowCompletion');
-    });
-    Route::get('WorkflowReminder', function () {
-        return view('admin.systememails.custom.WorkflowReminder');
-    });
-    Route::get('WorkflowEscalation', function () {
-        return view('admin.systememails.custom.WorkflowEscalation');
-    });
-    Route::get('WorkflowRejection', function () {
-        return view('admin.systememails.custom.WorkflowRejection');
-    });
+
     Route::get('url-ridirects-index', function () {
         return view('admin.url-ridirects.index');
     });
